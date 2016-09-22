@@ -36,6 +36,12 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise', '~> 4.2'
 
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
+
+gem 'delayed_job_active_record'
+
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

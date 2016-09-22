@@ -23,8 +23,8 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
-
+  #config.assets.compile = false
+  config.assets.compile = true
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -83,4 +83,23 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.active_job.queue_adapter = :delayed_job
+
+
+  config.action_mailer.default charset: 'utf-8'
+  config.action_mailer.perform_deliveries = true
+
+
+  # SMTP settings for mailgun
+  config.action_mailer.smtp_settings = {
+      :port           => 587,
+      :address        => 'smtp.mailgun.org',
+      :user_name      => ENV['username'],
+      :password       => ENV['password'],
+      :domain         => ENV['domain'],
+      :authentication => :plain,
+  }
+  config.action_mailer.delivery_method = :smtp
+
 end

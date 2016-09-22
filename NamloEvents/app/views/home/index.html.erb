@@ -1,0 +1,85 @@
+<div class="container" id="home_container">
+  <div class="row">
+    <div class="col-sm-1">
+
+    </div>
+
+    <div class="col-sm-8">
+      <div class="carousel slide" id="home_carousel" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#home_carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#home_carousel" data-slide-to="1" ></li>
+          <li data-target="#home_carousel" data-slide-to="2" ></li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+          <div class="item active" id="slide1">
+            <div class="carousel-caption">
+              <h5>Wedding Events</h5>
+              <p>Let us help you ease the stress </p>
+            </div>
+          </div>
+
+          <div class="item" id="slide2">
+            <div class="carousel-caption">
+              <h5>Fashion Shows</h5>
+              <p>Do not worry, we got you covered.</p>
+            </div>
+          </div>
+
+          <div class="item" id="slide3">
+            <div class="carousel-caption">
+              <h5>Art Exhibitions</h5>
+              <p>Let us promote</p>
+            </div>
+          </div>
+        </div>
+        <a class="left carousel-control" data-slide="prev" href="#home_carousel" role="button" aria-hidden="true"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" data-slide="next" href="#home_carousel" role="button" aria-hidden="true"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+    </div>
+
+    <div class="col-sm-3" id="home_login">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <div class="center_image">
+            <h3 class="panel-title">Online Login</h3>
+          </div>
+        </div>
+
+        <div class="panel-body">
+
+
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Username">
+              <br>
+              <input type="password" class="form-control" placeholder="Password">
+              <br>
+            </div>
+            <button type="submit" class="btn btn-info btn-block">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" id="down_indicator">
+      <a  href="#home_jumbotron" role="button"><span class="glyphicon glyphicon-chevron-down"></span></a>
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+  <br>
+  <br>
+  <div class="jumbotron" id="home_jumbotron">
+    <h2>Stress Free Management</h2>
+    <p>
+      Event Management can be stressful. Let us releave some of those stress.
+    </p>
+    <p>
+      <%= link_to 'SIGN UP FOR FREE',new_user_registration_path, :class => 'btn btn-large btn-info'%>
+    </p>
+  </div>
+</div>

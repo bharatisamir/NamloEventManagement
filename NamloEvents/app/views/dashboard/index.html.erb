@@ -1,0 +1,188 @@
+<div class="container" id="dashboard_container">
+  <div class="page-header">
+    <h1>TabbedBoards</h1>
+  </div><!-- end page-header -->
+
+  <div id="more_info" class="row">
+    <div class="">
+
+    </div><!-- end class -->
+
+    <div class="col-sm-12">
+      <div class="tabbable">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#Profile" data-toggle="tab"><h4>User's Profile</h4></a>
+          </li>
+          <li>
+            <a href="#Host" data-toggle="tab"><h4>Host's Dashboard</h4></a>
+          </li>
+          <li>
+            <a href="#Provider" data-toggle="tab"><h4>Service Provider's Dashboard</h4></a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="Profile" class="tab-pane active">
+            <br />
+            <div class="row">
+              <div class="col-sm-1">
+
+              </div><!-- end class -->
+
+              <div class="col-sm-3">
+                <div class="thumbnail">
+                  <%= image_tag('carousel/carousel_original_01.jpg')%>
+                </div><!-- end thumbnail -->
+              </div><!-- end col-sm-3 -->
+
+              <div class="col-sm-7">
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <div class="list-group-item-heading">
+                      <h5>Personal Information</h5>
+                    </div><!-- end list-group-item-heading -->
+                    <p class="list-group-item-text">User ID:</p>
+                    <p class="list-group-item-text">First Name:</p>
+                    <p class="list-group-item-text">Last Name: </p>
+                    <p class="list-group-item-text">Address: </p>
+                  </div><!-- end list-group-item -->
+                </div><!-- end list-group -->
+              </div><!-- end col-sm-7 -->
+
+              <div class="col-sm-7">
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <div class="list-group-item-heading">
+                      <h5>Communication Information</h5>
+                    </div><!-- end list-group-item-heading -->
+                    <p class="list-group-item-text">email:</p>
+                    <p class="list-group-item-text">Phone: </p>
+                  </div><!-- end list-group-item -->
+                </div><!-- end list-group -->
+              </div><!-- end col-sm-2 -->
+
+              <div class="col-sm-4">
+
+              </div><!-- end col-sm-4 -->
+
+              <div class="col-sm-7">
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <div class="list-group-item-heading">
+                      <h5>Account Settings</h5>
+                    </div><!-- end list-group-item-heading -->
+                    <%= link_to 'Change Passord', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    <p></p>
+                  </div><!-- end list-group-item -->
+                </div><!-- end list-group -->
+              </div><!-- end col-sm-7 -->
+
+              <div class="1">
+
+              </div><!-- end class -->
+            </div><!-- end row -->
+          </div><!-- end tab-pane active -->
+
+          <div id="Host" class="tab-pane">
+            <div class="row"><br />
+              <div class="col-sm-1">
+
+              </div><!-- end col-sm-1 -->
+
+              <div class="col-sm-3">
+                <div class="thumbnail">
+                  <%= image_tag('carousel/carousel_original_01.jpg')%>
+                </div><!-- end thumbnail -->
+              </div><!-- end col-sm-3 -->
+
+              <div class="col-sm-7">
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <div class="list-group-item-heading">
+                      <h5>Personal Information</h5>
+                    </div><!-- end list-group-item-heading -->
+                    <p class="list-group-item-text">Host ID:</p>
+                  </div><!-- end list-group-item -->
+                </div><!-- end list-group -->
+              </div><!-- end col-sm-7 -->
+
+              <div class="col-sm-4">
+
+              </div><!-- end col-sm-4 -->
+
+              <div class="col-sm-7">
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <div class="list-group-item-heading">
+                      <h5>Activities</h5>
+                    </div><!-- end list-group-item-heading -->
+                    <%= link_to 'Create an Event', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    <%= link_to 'Create Attendents List', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    <%= link_to 'Create RFQ', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    <%= link_to 'Book / Appoint Manager', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    <p></p>
+                    <%= link_to 'View Reports', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    <p></p>
+                  </div><!-- end list-group-item -->
+                </div><!-- end list-group -->
+              </div><!-- end col-sm-7 -->
+
+              <div class="1">
+
+              </div><!-- end class -->
+            </div><!-- end row -->
+          </div><!-- end tab-pane -->
+
+          <div id="Provider" class="tab-pane">
+            <div class="row"><br />
+              <div class="col-sm-1">
+
+              </div><!-- end col-sm-1 -->
+
+              <div class="col-sm-3">
+                <div class="thumbnail">
+                  <%= image_tag('carousel/carousel_original_01.jpg')%>
+                </div><!-- end thumbnail -->
+              </div><!-- end col-sm-3 -->
+
+              <div class="col-sm-7">
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <div class="list-group-item-heading">
+                      <h5>Personal Information</h5>
+                    </div><!-- end list-group-item-heading -->
+                    <p class="list-group-item-text">Service Provider ID:</p>
+                  </div><!-- end list-group-item -->
+                </div><!-- end list-group -->
+              </div><!-- end col-sm-7 -->
+
+              <div class="col-sm-4">
+
+              </div><!-- end col-sm-4 -->
+
+              <div class="col-sm-7">
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <div class="list-group-item-heading">
+                      <h5>Manage Activities</h5>
+                    </div><!-- end list-group-item-heading -->
+                    <%= link_to 'View Booking', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    <%= link_to 'View Ratings', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    <%= link_to 'View Peer Reviews', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    <p></p>
+                  </div><!-- end list-group-item -->
+                </div><!-- end list-group -->
+              </div><!-- end col-sm-7 -->
+
+              <div class="1">
+
+              </div><!-- end class -->
+            </div><!-- end row -->
+          </div><!-- end tab-pane -->
+        </div><!-- end tab-content -->
+      </div><!-- end tabbable -->
+    </div><!-- end col-sm-12 -->
+  </div><!-- end row -->
+</div><!-- end container -->
+

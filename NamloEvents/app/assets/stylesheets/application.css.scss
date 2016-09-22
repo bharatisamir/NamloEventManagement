@@ -10,9 +10,141 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+ *=# require_tree .
+ *=# require_self
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap/theme';
+@import "bootstrap.scss";
+
+
+.navbar-brand {
+  padding: 0px; /* firefox bug fix */
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px; /* firefox bug fix */
+  width: auto;
+}
+
+.center_image
+{
+  text-align:center;
+  display:block;
+}
+
+
+#contact
+{
+  margin-left: 15px;
+  display:block;
+}
+
+
+
+/* --------------------------------------
+   Layout
+   -------------------------------------- */
+
+#features {
+  text-align: center;
+}
+
+#features img {
+  margin: 0 0 20px;
+}
+
+
+#features img {
+  margin: 0 0 20px;
+}
+
+.img-circle{
+  margin-left: 75px;
+  margin-top: 10px;
+}
+
+footer {
+  background: #333;
+  color: #eee;
+  font-size: 11px;
+  padding: 20px;
+}
+
+
+/* --------------------------------------
+   Typography
+   -------------------------------------- */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+  padding-top: 70px;
+  padding-bottom: 70px;
+
+}
+
+.well .page-header {
+  margin-top: 0;
+}
+
+.well .page-header h1 {
+  margin-top: 0;
+}
+
+ul.unstyled {
+  list-style: none;
+  padding: 0;
+}
+
+
+/* --------------------------------------
+   Carousel
+   -------------------------------------- */
+
+#home_login {
+  margin-top: 130px;
+}
+
+#home_carousel {
+  margin-top: 60px;
+  margin-bottom: 70px;
+}
+
+.carousel-caption {
+  font-size: 24px;
+}
+
+.carousel-caption h5 {
+  font-size: 32px;
+}
+
+#home_carousel .item {
+  height: 400px;
+
+
+}
+
+
+#down_indicator a {
+  font-size: 24px;
+}
+
+#home_jumbotron{
+  background-color: #2dbe60;
+  color: white;
+}
+
+
+#slide1 {
+  background: url('carousel/carousel_original_01.jpg') top center no-repeat;
+}
+
+#slide2 {
+  background: url('carousel/carousel_original_02.jpg') top center no-repeat;
+}
+
+#slide3 {
+  background: url('carousel/carousel_original_03.jpg') top center no-repeat;
+}
