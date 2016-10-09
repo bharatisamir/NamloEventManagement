@@ -1,0 +1,175 @@
+
+<p id="notice"><%= notice %></p>
+
+
+<div class="container" id="peer_reviews_container">
+  <div class="page-header">
+    <h2> Peer Reviews for <%= @provider_user.first_name %> <%= @provider_user.last_name %></h2>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 ">
+        <div class="img-thumbnail">
+          <%= image_tag("application/dinesh_dai1.jpg", :alt =>"service provider") %>
+        </div>
+
+        <% if @peer_reviews != nil %>
+
+            <div class="star-rating" data-score=" <%= @avg_review %>">
+
+            </div>
+            <em><%= "#{@peer_reviews.length} reviews"%></em>
+            </div>
+
+            <div class="col-sm-9">
+              <div class="list-group">
+                <% @peer_reviews.each do |peer_review| %>
+                    <div class="list-group-item">
+                      <div class="star-rating1" data-score= <%= peer_review.organization_score %> >
+
+                      </div>
+
+                      <div class="star-rating2" data-score= <%= peer_review.expertise_score %> >
+
+                      </div>
+
+                      <div class="star-rating3" data-score= <%= peer_review.professionalism_score %> >
+
+                      </div>
+
+                      <div class="star-rating4" data-score= <%= peer_review.time_management_score %> >
+
+                      </div>
+
+                      <div class="star-rating5" data-score= <%= peer_review.cooperation_score %> >
+
+                      </div>
+
+                      <div class="star-rating6" data-score= <%= peer_review.communication_score %>>
+
+                      </div>
+
+                      <div class="star-rating7" data-score= <%= peer_review.people_skills_score %> >
+
+                      </div>
+
+                      <div class="star-rating8" data-score= <%= peer_review.service_score %> >
+
+                      </div>
+
+                      <h5>- <%=User.find(peer_review.reviewer_id).first_name %> <%=User.find(peer_review.reviewer_id).last_name %>| <%= peer_review.created_at %></h5>
+                      <p></p>
+                      <p class="list-group-item-text"><%= peer_review.comments %></p>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+
+        <% else %>
+            <h3>Sorry, no peer reviews have been submitted yet </h3>
+        <% end %>
+
+        </div>
+  </div>
+
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+
+      <% if @provider_user.id == @user.id %>
+          <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %> </h1>
+      <% elsif @user_is_provider != nil %>
+          <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %> </h1>
+          <h1> <%= link_to 'Write Peer Review', new_service_provider_peer_review_path(@provider_user.id), :class => 'btn btn-large btn-info' %> </h1>
+      <% else %>
+          <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %> </h1>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $('.star-rating1').raty({
+    path: '/assets',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+</script>
+
+  <script>
+    $('.star-rating2').raty({
+      path: '/assets',
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      }
+    });
+  </script>
+
+  <script>
+    $('.star-rating3').raty({
+      path: '/assets',
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      }
+    });
+  </script>
+
+  <script>
+    $('.star-rating4').raty({
+      path: '/assets',
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      }
+    });
+  </script>
+
+  <script>
+    $('.star-rating5').raty({
+      path: '/assets',
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      }
+    });
+  </script>
+
+  <script>
+    $('.star-rating6').raty({
+      path: '/assets',
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      }
+    });
+  </script>
+
+  <script>
+    $('.star-rating7').raty({
+      path: '/assets',
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      }
+    });
+  </script>
+
+  <script>
+    $('.star-rating8').raty({
+      path: '/assets',
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      }
+    });
+  </script>
+

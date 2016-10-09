@@ -1,0 +1,203 @@
+<div class="container" id="peer_reviews_container">
+  <div class="page-header">
+    <h1>Review Your Service Provider </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Cinematographer :: Arjun</h3>
+        </div>
+        <%= image_tag("application/arjun_dai.jpg", :alt =>"Arjun Cinematographer", :class =>"img-circle") %>
+        <p></p>
+        <p align="center">"With today's technology anyone can point and shoot a video. But, only professional cinematographer can add true magic of cinema "</p>
+
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="list-group">
+        <div class="list-group-item">
+          <%= form_for(@peer_review) do |f| %>
+              <% if @peer_review.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@peer_review.errors.count, "error") %> prohibited this peer_review from being saved:</h2>
+
+                    <ul>
+                      <% @peer_review.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <!--<div class="field">
+    <%= f.label :reviewer_id %>
+    <%= f.text_field :reviewer_id %>
+  </div>-->
+
+              <div class="hidden">
+                <%= hidden_field_tag 'reviewer_id', @user.id %>
+              </div>
+
+              <div class="field">
+                <%= f.label :serviceprovider_id %>
+                <%= f.text_field :serviceprovider_id, class:'form-control' %>
+              </div>
+
+              <p></p>
+
+              <!-- <div class="hidden">
+                <%= hidden_field_tag 'serviceprovider_id', @user.id %>
+              </div>
+              -->
+
+              <div class="form-group">
+                <%= f.label :organization_score %>
+                <%#= f.number_field :organization_score %>
+                <div id="star-rating1">
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :expertise_score %>
+                <%#= f.number_field :expertise_score %>
+                <div id="star-rating2">
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :professionalism_score %>
+                <%#= f.number_field :professionalism_score %>
+                <div id="star-rating3">
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :time_management_score %>
+                <%#= f.number_field :time_management_score %>
+                <div id="star-rating4">
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :cooperation_score %>
+                <%#= f.number_field :cooperation_score %>
+                <div id="star-rating5">
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :communication_score %>
+                <%#= f.number_field :communication_score %>
+                <div id="star-rating6">
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :people_skills_score %>
+                <%#= f.number_field :people_skills_score %>
+                <div id="star-rating7">
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :service_score %>
+                <%#= f.number_field :service_score %>
+                <div id="star-rating8">
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :comments %>
+                <%= f.text_area :comments, class:'form-control' %>
+
+              </div>
+
+
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">CEO :: Bikrant</h3>
+        </div>
+        <%= image_tag("application/bikrant.jpg", :alt =>"CEO", :class =>"img-circle") %>
+        <p></p>
+        <p align="center">"Managing event is stressful. At Namlo Event Management Inc, we take that stress away from you "</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#star-rating1').raty({
+    path: '/assets/',
+    scoreName: 'peer_review[organization_score]'
+  });
+</script>
+
+<script>
+  $('#star-rating2').raty({
+    path: '/assets/',
+    scoreName: 'peer_review[expertise_score]'
+  });
+</script>
+
+<script>
+  $('#star-rating3').raty({
+    path: '/assets/',
+    scoreName: 'peer_review[professionalism_score]'
+  });
+</script>
+
+<script>
+  $('#star-rating4').raty({
+    path: '/assets/',
+    scoreName: 'peer_review[time_management_score]'
+  });
+</script>
+
+<script>
+  $('#star-rating5').raty({
+    path: '/assets/',
+    scoreName: 'peer_review[cooperation_score]'
+  });
+</script>
+
+<script>
+  $('#star-rating6').raty({
+    path: '/assets/',
+    scoreName: 'peer_review[communication_score]'
+  });
+</script>
+
+<script>
+  $('#star-rating7').raty({
+    path: '/assets/',
+    scoreName: 'peer_review[people_skills_score]'
+  });
+</script>
+
+<script>
+  $('#star-rating8').raty({
+    path: '/assets/',
+    scoreName: 'peer_review[service_score]'
+  });
+</script>

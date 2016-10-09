@@ -14,69 +14,196 @@
           <li class="active">
             <a href="#Profile" data-toggle="tab"><h4>User's Profile</h4></a>
           </li>
-          <li>
-            <a href="#Host" data-toggle="tab"><h4>Host's Dashboard</h4></a>
-          </li>
-          <li>
-            <a href="#Provider" data-toggle="tab"><h4>Service Provider's Dashboard</h4></a>
-          </li>
+
+          <% if @host!= nil %>
+              <li>
+                <a href="#Host" data-toggle="tab"><h4>Host's Dashboard</h4></a>
+              </li>
+          <% end %>
+
+          <% if @service_provider!= nil %>
+              <li>
+                <a href="#Provider" data-toggle="tab"><h4>Service Provider's Dashboard</h4></a>
+              </li>
+          <% end %>
+
+
         </ul>
 
         <div class="tab-content">
           <div id="Profile" class="tab-pane active">
             <br />
             <div class="row">
-              <div class="col-sm-1">
+              <!--<div class="col-sm-1">
 
-              </div><!-- end class -->
+              </div>&lt;!&ndash; end class &ndash;&gt;-->
 
-              <div class="col-sm-3">
+              <div class="col-sm-4 feature">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title" align="center">DJ Dinesh</h3>
+                  </div><!-- end panel-heading -->
+                  <%= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+                  <p></p>
+                </div><!-- end panel -->
+              </div><!-- end col-sm-4 -->
+
+              <!--<div class="col-sm-3">
                 <div class="thumbnail">
-                  <%= image_tag('carousel/carousel_original_01.jpg')%>
-                </div><!-- end thumbnail -->
-              </div><!-- end col-sm-3 -->
+                  <%#= image_tag('carousel/carousel_original_01.jpg')%>
+                </div>&lt;!&ndash; end thumbnail &ndash;&gt;
+              </div>&lt;!&ndash; end col-sm-3 &ndash;&gt;-->
 
-              <div class="col-sm-7">
+              <div class="col-sm-7 feature">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h5 class="panel-title" align="center">Personal Information</h5>
+                  </div><!-- end panel-heading -->
+                  <p></p>
+                  <p align="center">User ID:  <%=@user.id%></p>
+                  <p align="center">First Name: <%=@user.first_name%></p>
+                  <p align="center">Last Name:  <%=@user.last_name%></p>
+                  <p align="center">Address: <%= @profile.street_address%></p>
+                  <p align="center"><%= @profile.city%></p>
+                  <p align="center"><%= @profile.state_province%>, <%= @profile.zip_postal_code%></p>
+                  <p align="center"><%= @profile.country_region%></p>
+                  <p></p>
+                </div><!-- end panel -->
+              </div><!-- end col-sm-4 -->
+
+              <!--<div class="col-sm-7">
                 <div class="list-group">
                   <div class="list-group-item">
                     <div class="list-group-item-heading">
                       <h5>Personal Information</h5>
-                    </div><!-- end list-group-item-heading -->
-                    <p class="list-group-item-text">User ID:</p>
-                    <p class="list-group-item-text">First Name:</p>
-                    <p class="list-group-item-text">Last Name: </p>
+                    </div>&lt;!&ndash; end list-group-item-heading &ndash;&gt;
+                    <p class="list-group-item-text">User ID:  <%=@user.id%></p>
+                    <p class="list-group-item-text">First Name: <%=@user.first_name%></p>
+                    <p class="list-group-item-text">Last Name:  <%=@user.last_name%> </p>
                     <p class="list-group-item-text">Address: </p>
-                  </div><!-- end list-group-item -->
-                </div><!-- end list-group -->
-              </div><!-- end col-sm-7 -->
+                  </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+                </div>&lt;!&ndash; end list-group &ndash;&gt;
+              </div>&lt;!&ndash; end col-sm-7 &ndash;&gt;-->
 
-              <div class="col-sm-7">
+              <div class="col-sm-4 feature">
+
+              </div>
+
+              <div class="col-sm-7 feature">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h5 class="panel-title" align="center">Communication Information</h5>
+                  </div><!-- end panel-heading -->
+                  <p></p>
+                  <p align="center">email:  <%=@user.email%></p>
+                  <p align="center">Home Phone:  <%= @profile.home_phone%> </p>
+                  <p align="center">Cell Phone:  <%= @profile.cell_phone%></p>
+                  <p></p>
+                </div><!-- end panel -->
+              </div><!-- end col-sm-4 -->
+
+              <!--<div class="col-sm-7">
                 <div class="list-group">
                   <div class="list-group-item">
                     <div class="list-group-item-heading">
                       <h5>Communication Information</h5>
-                    </div><!-- end list-group-item-heading -->
-                    <p class="list-group-item-text">email:</p>
+                    </div>&lt;!&ndash; end list-group-item-heading &ndash;&gt;
+                    <p class="list-group-item-text">email:  <%=@user.email%></p>
                     <p class="list-group-item-text">Phone: </p>
-                  </div><!-- end list-group-item -->
-                </div><!-- end list-group -->
-              </div><!-- end col-sm-2 -->
+                  </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+                </div>&lt;!&ndash; end list-group &ndash;&gt;
+              </div>&lt;!&ndash; end col-sm-2 &ndash;&gt;-->
 
               <div class="col-sm-4">
 
               </div><!-- end col-sm-4 -->
 
-              <div class="col-sm-7">
+              <div class="col-sm-7 feature">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h5 class="panel-title" align="center">Account Settings</h5>
+                  </div><!-- end panel-heading -->
+                  <p></p>
+                  <p align="center">
+                  <%= link_to 'Change Password', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                  <%= link_to 'Edit Profile', edit_user_profile_path(@user.id,@profile.id), :class => 'btn btn-small btn-info' %>
+                  <%#= link_to 'Edit Service Provider', edit_user_service_provider_path(@user.id,@service_profile.id), :class => 'btn btn-small btn-info' %>
+
+                  </p>
+                  <p></p>
+                </div><!-- end panel -->
+              </div><!-- end col-sm-4 -->
+
+              <!--<div class="col-sm-7">
                 <div class="list-group">
                   <div class="list-group-item">
                     <div class="list-group-item-heading">
                       <h5>Account Settings</h5>
-                    </div><!-- end list-group-item-heading -->
-                    <%= link_to 'Change Passord', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    </div>&lt;!&ndash; end list-group-item-heading &ndash;&gt;
+                    <%= link_to 'Change Password', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    <%= link_to 'Edit Profile', edit_user_password_path, :class => 'btn btn-small btn-info' %>
                     <p></p>
-                  </div><!-- end list-group-item -->
-                </div><!-- end list-group -->
-              </div><!-- end col-sm-7 -->
+                  </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+                </div>&lt;!&ndash; end list-group &ndash;&gt;
+              </div>&lt;!&ndash; end col-sm-7 &ndash;&gt;-->
+
+              <div class="col-sm-4">
+
+              </div><!-- end col-sm-4 -->
+
+              <div class="col-sm-7 feature">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h5 class="panel-title" align="center">Manage Activities</h5>
+                  </div><!-- end panel-heading -->
+                  <p></p>
+                  <p align="center">
+                    <% if $profile_status=='success' %>
+                        <div class="hidden">
+                          <%= link_to 'Create User Profile', new_user_profile_path(@user), :class => 'btn btn-small btn-info' %>
+                        </div>
+
+                    <% else %>
+                        <%= link_to 'Create User Profile', new_user_profile_path(@user), :class => 'btn btn-small btn-info'%>
+                  <% end %>
+
+
+                  <% if $provider_status == 'success' %>
+                      <div class="hidden">
+                        <%= link_to 'Create Service Provider Account',new_user_service_provider_path(@user), :class => 'btn btn-small btn-info' %>
+                      </div>
+
+                  <% else %>
+                      <%= link_to 'Create Service Provider Account', new_user_service_provider_path(@user), :class => 'btn btn-small btn-info' %>
+                  <% end %>
+
+                  <% if $host_status == 'success' %>
+                      <div class="hidden">
+                        <%= link_to 'Create Host Account',new_user_host_path(@user), :class => 'btn btn-small btn-info' %>
+                      </div>
+
+                  <% else %>
+                      <%= link_to 'Create Host Account', new_user_host_path(@user), :class => 'btn btn-small btn-info' %>
+                  <% end %>
+
+                  </p>
+                  <p></p>
+                </div><!-- end panel -->
+              </div><!-- end col-sm-4 -->
+
+              <!--<div class="col-sm-7">
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <div class="list-group-item-heading">
+                      <h5>Manage Activities</h5>
+                    </div>&lt;!&ndash; end list-group-item-heading &ndash;&gt;
+                    <%= link_to 'Create Host Account', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                    <%= link_to 'Create Service Provider Account', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+
+                    <p></p>
+                  </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+                </div>&lt;!&ndash; end list-group &ndash;&gt;
+              </div>&lt;!&ndash; end col-sm-7 &ndash;&gt;-->
 
               <div class="1">
 
@@ -84,102 +211,188 @@
             </div><!-- end row -->
           </div><!-- end tab-pane active -->
 
-          <div id="Host" class="tab-pane">
-            <div class="row"><br />
-              <div class="col-sm-1">
+          <% if @host != nil %>
+              <div id="Host" class="tab-pane">
+                <div class="row"><br />
+                  <!--<div class="col-sm-1">
 
-              </div><!-- end col-sm-1 -->
+                  </div>&lt;!&ndash; end col-sm-1 &ndash;&gt;-->
 
-              <div class="col-sm-3">
-                <div class="thumbnail">
-                  <%= image_tag('carousel/carousel_original_01.jpg')%>
-                </div><!-- end thumbnail -->
-              </div><!-- end col-sm-3 -->
+                  <div class="col-sm-4 feature">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title" align="center">DJ Dinesh</h3>
+                      </div><!-- end panel-heading -->
+                      <%= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+                      <p></p>
+                    </div><!-- end panel -->
+                  </div><!-- end col-sm-4 -->
 
-              <div class="col-sm-7">
-                <div class="list-group">
-                  <div class="list-group-item">
-                    <div class="list-group-item-heading">
-                      <h5>Personal Information</h5>
-                    </div><!-- end list-group-item-heading -->
-                    <p class="list-group-item-text">Host ID:</p>
-                  </div><!-- end list-group-item -->
-                </div><!-- end list-group -->
-              </div><!-- end col-sm-7 -->
+                  <!--<div class="col-sm-3">
+                    <div class="thumbnail">
+                      <%= image_tag('carousel/carousel_original_01.jpg')%>
+                    </div>&lt;!&ndash; end thumbnail &ndash;&gt;
+                  </div>&lt;!&ndash; end col-sm-3 &ndash;&gt;-->
 
-              <div class="col-sm-4">
+                  <div class="col-sm-7 feature">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title" align="center">Personal Information</h5>
+                      </div><!-- end panel-heading -->
+                      <p></p>
+                      <p align="center">Host ID: </p>
+                      <p></p>
+                    </div><!-- end panel -->
+                  </div><!-- end col-sm-4 -->
 
-              </div><!-- end col-sm-4 -->
+                  <!--<div class="col-sm-7">
+                    <div class="list-group">
+                      <div class="list-group-item">
+                        <div class="list-group-item-heading">
+                          <h5>Personal Information</h5>
+                        </div>&lt;!&ndash; end list-group-item-heading &ndash;&gt;
+                        <p class="list-group-item-text">Host ID:</p>
+                      </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+                    </div>&lt;!&ndash; end list-group &ndash;&gt;
+                  </div>&lt;!&ndash; end col-sm-7 &ndash;&gt;-->
 
-              <div class="col-sm-7">
-                <div class="list-group">
-                  <div class="list-group-item">
-                    <div class="list-group-item-heading">
-                      <h5>Activities</h5>
-                    </div><!-- end list-group-item-heading -->
-                    <%= link_to 'Create an Event', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                    <%= link_to 'Create Attendents List', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                    <%= link_to 'Create RFQ', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                    <%= link_to 'Book / Appoint Manager', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                    <p></p>
-                    <%= link_to 'View Reports', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                    <p></p>
-                  </div><!-- end list-group-item -->
-                </div><!-- end list-group -->
-              </div><!-- end col-sm-7 -->
+                  <div class="col-sm-4">
 
-              <div class="1">
+                  </div><!-- end col-sm-4 -->
 
-              </div><!-- end class -->
-            </div><!-- end row -->
-          </div><!-- end tab-pane -->
+                  <div class="col-sm-7 feature">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title" align="center">Manage Activities</h5>
+                      </div><!-- end panel-heading -->
+                      <p></p>
+                      <p align="center">
+                        <%= link_to 'Create an Event', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Create Attendents List', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Create RFQ', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Book / Appoint Manager', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                      </p>
+                      <p align="center">
+                      <%= link_to 'View Reports', edit_user_password_path, :class => 'btn btn-small btn-info' %></p>
+                      </p>
+                      <p></p>
+                    </div><!-- end panel -->
+                  </div><!-- end col-sm-4 -->
 
-          <div id="Provider" class="tab-pane">
-            <div class="row"><br />
-              <div class="col-sm-1">
+                  <!--<div class="col-sm-7">
+                    <div class="list-group">
+                      <div class="list-group-item">
+                        <div class="list-group-item-heading">
+                          <h5>Activities</h5>
+                        </div>&lt;!&ndash; end list-group-item-heading &ndash;&gt;
+                        <%= link_to 'Create an Event', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Create Attendents List', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Create RFQ', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Book / Appoint Manager', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <p></p>
+                        <%= link_to 'View Reports', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <p></p>
+                      </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+                    </div>&lt;!&ndash; end list-group &ndash;&gt;
+                  </div>&lt;!&ndash; end col-sm-7 &ndash;&gt;-->
 
-              </div><!-- end col-sm-1 -->
+                  <div class="1">
 
-              <div class="col-sm-3">
-                <div class="thumbnail">
-                  <%= image_tag('carousel/carousel_original_01.jpg')%>
-                </div><!-- end thumbnail -->
-              </div><!-- end col-sm-3 -->
+                  </div><!-- end class -->
+                </div><!-- end row -->
+              </div><!-- end tab-pane -->
+          <%end %>
 
-              <div class="col-sm-7">
-                <div class="list-group">
-                  <div class="list-group-item">
-                    <div class="list-group-item-heading">
-                      <h5>Personal Information</h5>
-                    </div><!-- end list-group-item-heading -->
-                    <p class="list-group-item-text">Service Provider ID:</p>
-                  </div><!-- end list-group-item -->
-                </div><!-- end list-group -->
-              </div><!-- end col-sm-7 -->
+          <% if @service_provider != nil %>
+              <div id="Provider" class="tab-pane">
+                <div class="row"><br />
+                  <!--<div class="col-sm-1">
 
-              <div class="col-sm-4">
+                  </div>&lt;!&ndash; end col-sm-1 &ndash;&gt;-->
 
-              </div><!-- end col-sm-4 -->
+                  <div class="col-sm-4 feature">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title" align="center">DJ Dinesh</h3>
+                      </div><!-- end panel-heading -->
+                      <%= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+                      <p></p>
+                    </div><!-- end panel -->
+                  </div><!-- end col-sm-4 -->
 
-              <div class="col-sm-7">
-                <div class="list-group">
-                  <div class="list-group-item">
-                    <div class="list-group-item-heading">
-                      <h5>Manage Activities</h5>
-                    </div><!-- end list-group-item-heading -->
-                    <%= link_to 'View Booking', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                    <%= link_to 'View Ratings', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                    <%= link_to 'View Peer Reviews', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                    <p></p>
-                  </div><!-- end list-group-item -->
-                </div><!-- end list-group -->
-              </div><!-- end col-sm-7 -->
+                  <!--<div class="col-sm-3">
+                    <div class="thumbnail">
+                      <%= image_tag('carousel/carousel_original_01.jpg')%>
+                    </div>&lt;!&ndash; end thumbnail &ndash;&gt;
+                  </div>&lt;!&ndash; end col-sm-3 &ndash;&gt;-->
 
-              <div class="1">
+                  <div class="col-sm-7 feature">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title" align="center">Personal Information</h5>
+                      </div><!-- end panel-heading -->
+                      <p></p>
+                      <p align="center">Service Provider ID: <%= @service_provider.id %> </p>
+                      <p></p>
+                    </div><!-- end panel -->
+                  </div><!-- end col-sm-4 -->
 
-              </div><!-- end class -->
-            </div><!-- end row -->
-          </div><!-- end tab-pane -->
+                  <!--<div class="col-sm-7">
+                    <div class="list-group">
+                      <div class="list-group-item">
+                        <div class="list-group-item-heading">
+                          <h5>Personal Information</h5>
+                        </div>&lt;!&ndash; end list-group-item-heading &ndash;&gt;
+                        <p class="list-group-item-text">Service Provider ID:</p>
+                      </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+                    </div>&lt;!&ndash; end list-group &ndash;&gt;
+                  </div>&lt;!&ndash; end col-sm-7 &ndash;&gt;-->
+
+                  <div class="col-sm-4">
+
+                  </div><!-- end col-sm-4 -->
+
+                  <div class="col-sm-7 feature">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title" align="center">Manage Activities</h5>
+                      </div><!-- end panel-heading -->
+                      <p></p>
+                      <p align="center">
+                        <%= link_to 'View Booking', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'View Providers', service_providers_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'View Reviews', service_provider_reviews_path(@service_provider.id), :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'View Peer Reviews', service_provider_peer_reviews_path(@service_provider.id), :class => 'btn btn-small btn-info' %>
+                      </p>
+
+                      <p align="center">
+
+                      </p>
+                      <p></p>
+
+                    </div><!-- end panel -->
+                  </div><!-- end col-sm-4 -->
+
+                  <!--<div class="col-sm-7">
+                    <div class="list-group">
+                      <div class="list-group-item">
+                        <div class="list-group-item-heading">
+                          <h5>Manage Activities</h5>
+                        </div>&lt;!&ndash; end list-group-item-heading &ndash;&gt;
+                        <%= link_to 'View Booking', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'View Ratings', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'View Peer Reviews', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <p></p>
+                      </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+                    </div>&lt;!&ndash; end list-group &ndash;&gt;
+                  </div>&lt;!&ndash; end col-sm-7 &ndash;&gt;-->
+
+                  <div class="1">
+
+                  </div><!-- end class -->
+                </div><!-- end row -->
+              </div><!-- end tab-pane -->
+          <%end %>
         </div><!-- end tab-content -->
       </div><!-- end tabbable -->
     </div><!-- end col-sm-12 -->

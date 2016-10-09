@@ -1,0 +1,18 @@
+<!--
+<p>Welcome <%= @email %>!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+-->
+
+<p>Welcome <%= @email %>!</p>
+
+<p>Please, click this link to activate your Account </p>
+
+<p><%= link_to 'Activate my account', confirmation_url(@resource, confirmation_token: @token) %>
+
+<p>
+  <%= link_to "Activate my account", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+</p>
+

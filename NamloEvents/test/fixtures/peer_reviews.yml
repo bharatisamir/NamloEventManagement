@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reviewer_id: MyString
+  organization_score: 1
+  expertise_score: 1
+  professionalism_score: 1
+  time_management_score: 1
+  cooperation_score: 1
+  communication_score: 1
+  people_skills_score: 1
+  service_score: 1
+  comments: MyText
+  serviceprovider: one
+
+two:
+  reviewer_id: MyString
+  organization_score: 1
+  expertise_score: 1
+  professionalism_score: 1
+  time_management_score: 1
+  cooperation_score: 1
+  communication_score: 1
+  people_skills_score: 1
+  service_score: 1
+  comments: MyText
+  serviceprovider: two

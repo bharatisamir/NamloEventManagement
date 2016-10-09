@@ -1,0 +1,1 @@
+json.array! @peer_reviews, partial: 'peer_reviews/peer_review', as: :peer_review

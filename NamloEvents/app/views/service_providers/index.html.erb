@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container" id="service_provider__index_container">
+  <div class="page-header">
+    <h1> Service Provider Profiles</h1>
+  </div>
+
+  <div class="row" id="features">
+
+    <% @service_providers.each do |service_provider| %>
+
+        <div class="col-sm-4 ">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= service_provider.user.first_name %> <%= service_provider.user.last_name%> </h3>
+            </div>
+            <p></p>
+            <%#= image_tag(service_provider.image.url(:thumb),:alt =>"Wedding Event", :class =>"img-circle") %>
+            <%= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+            <p align="middle">Service: <%= service_provider.service_category %></p>
+            <p align="middle">Business Phone: <%= service_provider.business_phone %>, Fax:  <%= service_provider.fax %> </p>
+            <p align="middle">Address: <%#= service_provider.user.profile.street_address %><%= Profile.find_by_user_id(service_provider.user_id).street_address %>, <%= Profile.find_by_user_id(service_provider.user_id).city %>, <%= Profile.find_by_user_id(service_provider.user_id).state_province%> <%= Profile.find_by_user_id(service_provider.user_id).zip_postal_code %> </p>
+            <p align="middle"><%= Profile.find_by_user_id(service_provider.user_id).country_region %>   </p>
+
+            <%#= link_to 'Profile', service_provider, :class => 'btn btn-large btn-info' %>
+            <%#= link_to 'Edit', edit_service_provider_path(service_provider) , :class => 'btn btn-large btn-warning' %>
+            <%#= link_to 'Destroy', service_provider, method: :delete, data: { confirm: 'Are you sure?' },:class => 'btn btn-large btn-danger' %>
+            <%= link_to 'Reviews', service_provider_reviews_path(service_provider.id), :class => 'btn btn-large btn-info' %>
+            <%= link_to 'Peer Reviews', service_provider_peer_reviews_path(service_provider.id), :class => 'btn btn-large btn-info' %>
+
+            <%#= link_to 'Book', service_provider,:class => 'btn btn-large btn-warning' %>
+
+
+            <p></p>
+
+          </div>
+        </div>
+
+    <% end %>
+
+  </div>
+
+  <%#= will_paginate @service_providers %>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h1>
+    </div>
+  </div>
+</div>
+
+

@@ -55,6 +55,16 @@
   margin: 0 0 20px;
 }
 
+.error_message{
+  color: red;
+}
+#error_explanation{
+  color: red;
+}
+
+#flash_messages{
+  color: green;
+}
 
 #features img {
   margin: 0 0 20px;
@@ -136,6 +146,10 @@ ul.unstyled {
   color: white;
 }
 
+
+#remember_box{
+  margin-left: -150px;
+}
 
 #slide1 {
   background: url('carousel/carousel_original_01.jpg') top center no-repeat;

@@ -29,4 +29,25 @@ class User::PasswordsController < Devise::PasswordsController
   # def after_sending_reset_password_instructions_path_for(resource_name)
   #   super(resource_name)
   # end
+
+
+=begin
+  def new
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user ! nil?
+      NamloMailer.reset_password(@user).deliver
+    else
+      flash[:danger] = 'Sorry, the email you entered doesnot exist. Please, enter registered email'
+      render 'new'
+    end
+  end
+=end
+
+
+
+
+
+
+
+
 end

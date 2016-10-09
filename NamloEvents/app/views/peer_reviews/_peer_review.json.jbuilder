@@ -1,0 +1,2 @@
+json.extract! peer_review, :id, :reviewer_id, :organization_score, :expertise_score, :professionalism_score, :time_management_score, :cooperation_score, :communication_score, :people_skills_score, :service_score, :comments, :serviceprovider_id, :created_at, :updated_at
+json.url peer_review_url(peer_review, format: :json)

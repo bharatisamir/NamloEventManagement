@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reviewer:</strong>
+  <%= @peer_review.reviewer_id %>
+</p>
+
+<p>
+  <strong>Organization score:</strong>
+  <%= @peer_review.organization_score %>
+</p>
+
+<p>
+  <strong>Expertise score:</strong>
+  <%= @peer_review.expertise_score %>
+</p>
+
+<p>
+  <strong>Professionalism score:</strong>
+  <%= @peer_review.professionalism_score %>
+</p>
+
+<p>
+  <strong>Time management score:</strong>
+  <%= @peer_review.time_management_score %>
+</p>
+
+<p>
+  <strong>Cooperation score:</strong>
+  <%= @peer_review.cooperation_score %>
+</p>
+
+<p>
+  <strong>Communication score:</strong>
+  <%= @peer_review.communication_score %>
+</p>
+
+<p>
+  <strong>People skills score:</strong>
+  <%= @peer_review.people_skills_score %>
+</p>
+
+<p>
+  <strong>Service score:</strong>
+  <%= @peer_review.service_score %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @peer_review.comments %>
+</p>
+
+<p>
+  <strong>Serviceprovider:</strong>
+  <%= @peer_review.serviceprovider %>
+</p>
+
+<%= link_to 'Edit', edit_peer_review_path(@peer_review) %> |
+<%= link_to 'Back', peer_reviews_path %>

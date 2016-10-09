@@ -2,24 +2,30 @@
 <html>
   <head>
     <title>NamloEvents</title>
-    <link rel="stylesheet" href="jquery.raty.css">
-    <script src="jquery.raty.js"></script>
-    <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="jquery.raty.css">
+    <script src="jquery.raty.js"></script>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
     <%= render 'shared/head' %>
   </head>
 
   <body>
 
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>">
+
+    <% flash.each do |key, value| %>
+      <% alert_class = case key
+                         when :notice then "success"
+                         when :alert then "danger"
+                         else key
+                       end %>
+      <%= content_tag :div, class: "alert alert-#{alert_class}" do %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <%= value %>
-        </div>
       <% end %>
-    </div>
+  <% end %>
 
     <%= yield %>
 

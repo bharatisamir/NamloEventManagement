@@ -1,0 +1,156 @@
+
+
+<div class="container" id="contactContainer">
+  <div class="page-header">
+    <h1>Contact Us</h1>
+  </div>
+
+  <div class="row" id="features">
+    <div class="col-sm-6">
+      <br><br><br>
+
+      <h1 id="contact"><small>You would like for us to contact you instead ? <br>Sure! Just send us  a message using the form below</small></h1><br>
+
+      <div class="thumbnail">
+        <div align="center">
+          <h3>Send us a message </h3><br>
+
+
+          <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
+              <div class="error_message">
+                <%= devise_error_messages! %>
+              </div>
+
+              <div class="field">
+                <%= f.label 'What should we call you ?'  %><br>
+                <%= f.text_field :name, size:30,:required => true %>
+              </div><br>
+
+
+              <%#= f.input :name, :required => true %>
+
+              <div class="field">
+                <%= f.label 'Which email box should we respond to ? ' %><br>
+                <%= f.text_field :email, size:40, :required => true %>
+              </div><br>
+
+              <%#= f.input :email, :required => true %>
+
+              <div class="field">
+                <%= f.label 'Which subject matter should we clarify ?' %><br>
+                <%= f.text_field :subject, size:50, :required => true %>
+              </div><br>
+
+              <%#= f.input :subject, :as => :text, :required => true %>
+
+
+              <div class="field">
+                <%= f.label 'Please help us by providing some details on the subject' %><br>
+                <%= f.text_area :message, cols:60, rows:5,  :required => true %>
+              </div>
+
+
+              <%#= f.input :message, :as => :text, :required => true %>
+
+
+              <div class= "hidden">
+
+                <div class="field">
+                  <%= f.label :nickname %><br>
+                  <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+                </div><br>
+
+                <%#= f.input :nickname, :hint => 'Leave this field blank!' %>
+              </div>
+
+
+              <div>
+                </br>
+                <%= f.button :submit, 'Send message', :class=> "btn btn-primary" %>
+              </div><br>
+
+
+          <% end %>
+        </div>
+        <%#= image_tag('carousel_original_02.jpg', :alt =>'Namlo team', :class => 'image') %>
+      </div>
+
+    </div>
+
+
+    <div class="col-sm-6">
+      <h2 align="middle">For General Inquiries</h2>
+      <hr>
+      <div class="list-group">
+        <div class="list-group-item">
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="img-thumbnail">
+                <%= image_tag('bikrant.jpg', :alt =>'Namlo team', :class => 'image') %>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <br>
+              <h2  align ="left" class="list-group-item-heading"><small>Bikrant Shrestha</small></h2>
+              <p class="list-group-item-text">
+              </p>
+              <p align="left">Ph: (303)-587-6465</p>
+              <p align="left"> Fax: (303)-587-6467</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="list-group-item">
+          <div class="row">
+
+            <div class="col-sm-6">
+              <div class="img-thumbnail">
+                <%= image_tag('dineshDai1.jpg', :alt =>'Namlo team', :class => 'image') %>
+              </div>
+            </div>
+
+            <br>
+            <div class="col-sm-6">
+              <h2 align ="left" class="list-group-item-heading"><small>Dinesh Gurung</small></h2>
+              <p class="list-group-item-text">
+              </p>
+              <p align="left">Ph: (410)-771-1410</p>
+              <p align="left">Fax: (410)-771-1415</p>
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+        <div class="list-group-item">
+          <h2 class="list-group-item-heading"><small>Customer Support</small></h2>
+          <p class="list-group-item-text">
+          </p>
+          <p align="middle">Toll Free: 1800-namloe</p>
+          <p align="middle">email: namlomanagement@namlo.com</p>
+        </div>
+
+      </div>
+      <hr>
+    </div>
+
+  </div>
+
+
+
+
+</div>
+<hr>
+
+
+
+
+
+
+
+

@@ -41,7 +41,10 @@ gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 gem 'delayed_job_active_record'
 
 
+#gem 'mail_form', '~> 1.5', '>= 1.5.1'
 
+
+#gem 'simple_form', '~> 3.3', '>= 3.3.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

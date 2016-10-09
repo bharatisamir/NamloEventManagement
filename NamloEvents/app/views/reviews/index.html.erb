@@ -1,0 +1,78 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container" id="reviews_container">
+  <div class="page-header">
+    <h2> Reviews for <%= @provider_user.first_name %> <%= @provider_user.last_name %></h2>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 ">
+        <div class="img-thumbnail">
+          <%= image_tag("application/dinesh_dai1.jpg", :alt =>"service provider") %>
+        </div>
+
+        <% if @review != nil %>
+
+        <div class="star-rating" data-score=" <%= @avg_review %>">
+
+        </div>
+        <em><%= "#{@reviews.length} reviews"%></em>
+      </div>
+
+      <div class="col-sm-9">
+        <div class="list-group">
+          <% @reviews.each do |review| %>
+              <div class="list-group-item">
+                <div class="star-rating" data-score= <%= review.rating_score %> >
+
+                </div>
+
+                <h5>- <%=User.find(review.reviewer_id).first_name %> <%=User.find(review.reviewer_id).last_name %>| <%= review.created_at %></h5>
+                <p></p>
+                <p class="list-group-item-text"><%= review.comments %></p>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+     <% else %>
+        <h4>Sorry, no reviews have been submitted yet </h4>
+     <% end %>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <% if @provider_user.id == @user.id %>
+          <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %> </h1>
+      <% else %>
+          <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %> </h1>
+          <h1> <%= link_to 'Write Review', new_service_provider_review_path(@provider_user.id), :class => 'btn btn-large btn-info' %> </h1>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $('.star-rating').raty({
+    path: '/assets',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+</script>
+
+
+
+
+
+
+
+

@@ -89,17 +89,68 @@ Rails.application.configure do
 
   config.action_mailer.default charset: 'utf-8'
   config.action_mailer.perform_deliveries = true
-
+  #config.action_mailer.default_url_options = { :host => "http://www.gmail.com" }
+  #config.action_mailer.delivery_method = :smtp
 
   # SMTP settings for mailgun
+
+=begin
   config.action_mailer.smtp_settings = {
-      :port           => 587,
+
+      :port           =>  587,
       :address        => 'smtp.mailgun.org',
       :user_name      => ENV['username'],
       :password       => ENV['password'],
       :domain         => ENV['domain'],
       :authentication => :plain,
   }
+=end
+
+
+
+  #config.action_mailer.delivery_method = :smtp
+=begin
+  config.action_mailer.smtp_settings = {
+      :ssl => true,
+      :ssl_version => 'SSLv3',
+      :address => 'smtp.gmail.com',
+      :port =>      587,
+      #:domain =>  ENV['gmail_domain'],
+      :authentication => 'plain',
+      :user_name => ENV['gmail_username'],
+      :password =>  ENV['gmail_password'],
+      :enable_starttls_auto => true
+  }
+=end
+
+=begin
+  config.action_mailer.smtp_settings = {
+      #:ssl => true,
+      #:ssl_version => 'SSLv3',
+      :address => 'smtp.gmail.com',
+      :port =>      25,
+      :domain =>  ENV['gmail_domain'],
+      :authentication => 'plain',
+      :user_name => ENV['gmail_username'],
+      :password =>  ENV['gmail_password'],
+      :enable_starttls_auto => true
+  }
+
   config.action_mailer.delivery_method = :smtp
+=end
+
+
+=begin
+  config.action_mailer.smtp_settings = {
+
+     :address              => "smtp.gmail.com",
+     :port                 => 587,
+     :domain               => "gmail.com",
+     :user_name            => ENV['gmail_username'],
+     :password             => ENV['gmail_password'],
+     :authentication       => "plain",
+     :enable_starttls_auto => true
+   }
+=end
 
 end
