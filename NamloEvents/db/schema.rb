@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004033113) do
+ActiveRecord::Schema.define(version: 20161024143456) do
+
+  create_table "events", force: :cascade do |t|
+    t.string   "event_name"
+    t.date     "event_date"
+    t.time     "event_start_time"
+    t.time     "event_end_time"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state_province"
+    t.string   "zip_postal_code"
+    t.string   "country_region"
+    t.string   "event_contact"
+    t.text     "comments"
+    t.boolean  "publish_on_marketplace"
+    t.integer  "host_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "venue"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["host_id"], name: "index_events_on_host_id"
+  end
 
   create_table "hosts", force: :cascade do |t|
     t.integer  "user_id"
@@ -45,9 +69,26 @@ ActiveRecord::Schema.define(version: 20161004033113) do
     t.string   "home_phone"
     t.string   "cell_phone"
     t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "quotations", force: :cascade do |t|
+    t.text    "rfq_contact"
+    t.text    "rfq_delivery_method"
+    t.text    "services_requested"
+    t.text    "comments"
+    t.integer "event_id"
+    t.text    "created_at",          null: false
+    t.text    "updated_at",          null: false
+    t.date    "rfq_issue_date"
+    t.date    "rfq_closing_date"
+    t.index ["event_id"], name: "index_quotations_on_event_id", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -60,6 +101,19 @@ ActiveRecord::Schema.define(version: 20161004033113) do
     t.index ["serviceprovider_id"], name: "index_reviews_on_serviceprovider_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "roles_users", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+    t.index ["role_id", "user_id"], name: "index_roles_users_on_role_id_and_user_id"
+  end
+
   create_table "service_providers", force: :cascade do |t|
     t.string   "service_category"
     t.string   "company"
@@ -68,7 +122,27 @@ ActiveRecord::Schema.define(version: 20161004033113) do
     t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.boolean  "namlo_partner"
+    t.boolean  "namlo_preferred"
     t.index ["user_id"], name: "index_service_providers_on_user_id"
+  end
+
+  create_table "to_do_items", force: :cascade do |t|
+    t.string   "todo_item"
+    t.datetime "completed_at"
+    t.integer  "to_do_list_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["to_do_list_id"], name: "index_to_do_items_on_to_do_list_id"
+  end
+
+  create_table "to_do_lists", force: :cascade do |t|
+    t.string   "todo_list_title"
+    t.text     "todo_list_description"
+    t.integer  "user_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["user_id"], name: "index_to_do_lists_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

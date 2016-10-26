@@ -1,6 +1,14 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :user
+  #before_action :check_permissions
+
+
+  def check_permissions
+    authorize! :crud, @review
+
+  end
+
 
   # GET /reviews
   # GET /reviews.json
@@ -11,8 +19,11 @@ class ReviewsController < ApplicationController
   #GET id of current user
   def user
     @user = current_user
-
-    @provider_user= User.find(ServiceProvider.find(params[:service_provider_id]).user_id)
+    @service_provider = params[:service_provider_id]
+    #@provider_user= User.find(ServiceProvider.find(params[:service_provider_id]).user_id)
+    @provider_user= User.find(ServiceProvider.find(@service_provider).user_id)
+    @provider_profile = Profile.find_by_user_id(@provider_user.id)
+    #@provider_profile = Profile.where(["user_id = ?", @provider_user.user_id])
 
     #@user_id= current_user.id
     #@profile_id = Profile.find_by_user_id(@user_id).id
@@ -37,12 +48,12 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
-    @review.user_id = params[:user_id]
+    @review.reviewer_id = params[:user_id]
     @review.serviceprovider_id = params[:serviceprovider_id]
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+        format.html { redirect_to dashboard_index_path, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new }

@@ -166,4 +166,11 @@ class NamloMailer < ApplicationMailer
   end
 =end
 
+  def contact_us(contact)
+    @contact = contact
+
+    mail(from: %("#{@contact.name}" <#{@contact.email}>),to: 'namloeventmanagement@gmail.com', subject: @contact.subject)
+    $message = 200
+  end
+
 end

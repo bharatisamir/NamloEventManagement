@@ -1,0 +1,74 @@
+<div class="container" id="todolist_show_container">
+  <div class="row">
+
+
+    <div class="col-sm-2 feature">
+
+    </div><!-- end col-sm-2 -->
+
+    <% if can? :index, @to_do_list %>
+    <div class="col-sm-8">
+      <div class="row" id="features">
+            <div class="col-sm-12 ">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title"><%= @to_do_list.todo_list_title %></h3>
+                </div>
+
+                <p></p>
+                <p align="middle"><%= @to_do_list.todo_list_description %></p>
+                <p></p>
+
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <div>
+                      <p></p>
+                      <%= render @to_do_list.to_do_items %>
+                      <div id="form">
+                        <p></p>
+                        <%= render 'to_do_items/form' %>
+                      </div>
+                    </div>
+
+                    <% if can? :update, @to_do_list%>
+                    <%= link_to 'Edit', edit_user_to_do_list_path(@to_do_list) %> |
+                    <% end %>
+                    <% if can? :index, @to_do_list%>
+                    <%= link_to 'Back', user_to_do_lists_path %>
+                    <% end %>
+                  </div><!-- end list-group-item -->
+                </div><!-- end list-group -->
+
+              </div>
+            </div>
+      </div>
+    </div><!-- end col-sm-4 -->
+    <% else %>
+       <% flash[:warning] = 'Sorry, you are not authorize to access this page' %>
+        <% controller.redirect_to user_to_do_lists_path %>
+    <% end %>
+
+    <div class="col-sm-2">
+    </div><!-- end col-sm-2 -->
+  </div><!-- end row -->
+</div><!-- end todolist_container -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

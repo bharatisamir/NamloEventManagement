@@ -1,0 +1,2 @@
+json.extract! quotation, :id, :rfq_issue_date, :rfq_closing_date, :rfq_contact, :rfq_delivery_method, :services_requested, :comments, :event_id, :created_at, :updated_at
+json.url quotation_url(quotation, format: :json)

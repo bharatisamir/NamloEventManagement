@@ -16,37 +16,45 @@
           <h3>Send us a message </h3><br>
 
 
-          <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
-              <div class="error_message">
-                <%= devise_error_messages! %>
-              </div>
+          <%= simple_form_for @contact, :url => contact_path do |f| %>
+              <% if @contact.errors.any? %>
+                  <div id="error_explanation">
+                    <h4><%= pluralize(@contact.errors.count, "error") %> prohibited this message from being sent</h4>
 
-              <div class="field">
+                    <ul>
+                      <% @contact.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <div class="form-group">
                 <%= f.label 'What should we call you ?'  %><br>
-                <%= f.text_field :name, size:30,:required => true %>
+                <%= f.text_field :name, size:30, required: true, class:'form-control' %>
               </div><br>
 
 
               <%#= f.input :name, :required => true %>
 
-              <div class="field">
+              <div class="form-group">
                 <%= f.label 'Which email box should we respond to ? ' %><br>
-                <%= f.text_field :email, size:40, :required => true %>
+                <%= f.text_field :email, size:40, required: true, class:'form-control' %>
               </div><br>
 
               <%#= f.input :email, :required => true %>
 
-              <div class="field">
+              <div class="form-group">
                 <%= f.label 'Which subject matter should we clarify ?' %><br>
-                <%= f.text_field :subject, size:50, :required => true %>
+                <%= f.text_field :subject, size:50, required: true, class:'form-control' %>
               </div><br>
 
               <%#= f.input :subject, :as => :text, :required => true %>
 
 
-              <div class="field">
+              <div class="form-group">
                 <%= f.label 'Please help us by providing some details on the subject' %><br>
-                <%= f.text_area :message, cols:60, rows:5,  :required => true %>
+                <%= f.text_area :message, cols:60, rows:5, required: true, class:'form-control' %>
               </div>
 
 
@@ -72,6 +80,8 @@
 
           <% end %>
         </div>
+
+
         <%#= image_tag('carousel_original_02.jpg', :alt =>'Namlo team', :class => 'image') %>
       </div>
 
@@ -87,7 +97,7 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="img-thumbnail">
-                <%= image_tag('bikrant.jpg', :alt =>'Namlo team', :class => 'image') %>
+                <%= image_tag('application/namlo_team-200x200.png', :alt =>'Namlo team', :class => 'image') %>
               </div>
             </div>
 
@@ -108,7 +118,7 @@
 
             <div class="col-sm-6">
               <div class="img-thumbnail">
-                <%= image_tag('dineshDai1.jpg', :alt =>'Namlo team', :class => 'image') %>
+                <%= image_tag('application/namlo_team-200x200.png', :alt =>'Namlo team', :class => 'image') %>
               </div>
             </div>
 
@@ -132,7 +142,7 @@
           <p class="list-group-item-text">
           </p>
           <p align="middle">Toll Free: 1800-namloe</p>
-          <p align="middle">email: namlomanagement@namlo.com</p>
+          <p align="middle">email: namloeventmanagement@namlo.com</p>
         </div>
 
       </div>

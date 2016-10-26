@@ -1,0 +1,45 @@
+
+  <% if to_do_item.completed? %>
+
+     <div class="complete_check">
+       <%= link_to complete_user_to_do_list_to_do_item_path(@to_do_list.user_id, @to_do_list,to_do_item.id), method: :patch do %>
+           <i style="opacity: 0.4;" class="fa fa-check"></i>
+       <% end %>
+     </div>
+
+      <div class="to_do_item">
+        <p style="opacity: 0.5;"><strong><strike><%= to_do_item.todo_item %></strike></strong></p>
+      </div>
+
+
+      <div class="delete_trash">
+        <%= link_to  user_to_do_list_to_do_item_path(@to_do_list.user_id, @to_do_list,to_do_item.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i style="opacity: 0.4;" class="fa fa-trash"></i>
+        <% end %>
+      </div>
+
+
+  <% else %>
+          <div class="complete_check">
+            <%= link_to  complete_user_to_do_list_to_do_item_path(@to_do_list.user_id, @to_do_list,to_do_item.id), method: :patch do %>
+                <i style="opacity: 0.4;" class="fa fa-check"></i>
+            <% end %>
+          </div>
+
+        <div class="to_do_item">
+          <p><strong><%= to_do_item.todo_item %></strong></p>
+        </div>
+
+        <div class="delete_trash">
+          <%= link_to  user_to_do_list_to_do_item_path(@to_do_list.user_id, @to_do_list,to_do_item.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i style="opacity: 0.4;" class="fa fa-trash"></i>
+          <% end %>
+        </div>
+
+  <% end %>
+
+  <hr>
+
+
+
+

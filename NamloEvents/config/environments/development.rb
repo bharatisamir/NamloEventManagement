@@ -45,8 +45,8 @@ Rails.application.configure do
       :domain               => "gmail.com",
       #:user_name            => ENV['gmail_username'],
       #:password             => ENV['gmail_password'],
-      :user_name            => 'user@gmail.com',
-      :password             => 'gmailpassword',
+      :user_name            => 'namloeventmanagement@gmail.com',
+      :password             => '#303eNAMLOmail303#',
       :authentication       => "plain",
       :enable_starttls_auto => true,
       :openssl_verify_mode  => 'none'

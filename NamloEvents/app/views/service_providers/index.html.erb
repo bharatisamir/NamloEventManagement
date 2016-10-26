@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container" id="service_provider__index_container">
   <div class="page-header">
     <h1> Service Provider Profiles</h1>
@@ -16,7 +14,19 @@
             </div>
             <p></p>
             <%#= image_tag(service_provider.image.url(:thumb),:alt =>"Wedding Event", :class =>"img-circle") %>
-            <%= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+            <%#= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+
+            <% if service_provider.namlo_partner == true %>
+                <%= image_tag("application/namlo_partners.jpg", :alt =>"Namlo Partners", :class =>"img-circle") %>
+            <% end %>
+
+            <%= image_tag(Profile.find_by_user_id(service_provider.user_id).image.url(:thumb),:alt =>'Profile image', :class =>"img-circle") %>
+
+            <% if service_provider.namlo_preferred == true %>
+              <%= image_tag("application/namlo_preferred.jpg", :alt =>"Namlo Preferred", :class =>"img-circle") %>
+            <% end %>
+            <%#= image_tag(service_provider.image.url(:thumb),:alt =>"Wedding Event", :class =>"img-circle") %>
+            <%#= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
             <p align="middle">Service: <%= service_provider.service_category %></p>
             <p align="middle">Business Phone: <%= service_provider.business_phone %>, Fax:  <%= service_provider.fax %> </p>
             <p align="middle">Address: <%#= service_provider.user.profile.street_address %><%= Profile.find_by_user_id(service_provider.user_id).street_address %>, <%= Profile.find_by_user_id(service_provider.user_id).city %>, <%= Profile.find_by_user_id(service_provider.user_id).state_province%> <%= Profile.find_by_user_id(service_provider.user_id).zip_postal_code %> </p>
@@ -40,7 +50,7 @@
 
   </div>
 
-  <%#= will_paginate @service_providers %>
+  <%= will_paginate @service_providers %>
 </div>
 
 

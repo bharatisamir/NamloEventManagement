@@ -1,8 +1,10 @@
 <div>
   <% flash.each do |key, value| %>
       <div>
-        <a href="#" data-dismiss="alert">×</a>
-        <%= value %>
+        <p>
+          <%= value %><a href="http://127.0.0.1:3000/contact/new" data-dismiss="alert"> X </a>
+        </p>
+
       </div>
   <% end %>
 </div>

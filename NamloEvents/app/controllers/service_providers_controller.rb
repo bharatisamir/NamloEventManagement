@@ -5,13 +5,15 @@ class ServiceProvidersController < ApplicationController
   # GET /service_providers
   # GET /service_providers.json
   def index
-    @service_providers = ServiceProvider.all
+    @service_providers = ServiceProvider.all.order("created_at desc").paginate(page: params[:page], per_page:12)
 
   end
 
   #GET id of current user
   def user
     @user = current_user
+
+
     #@user_id= current_user.id
    # @profile_id = Profile.find_by_user_id(@user_id).id
   end
@@ -38,7 +40,7 @@ class ServiceProvidersController < ApplicationController
     @service_provider.user_id = params[:user_id]
     respond_to do |format|
       if @service_provider.save
-        $provider_status = 'success'
+        #$provider_status = 'success'
         format.html { redirect_to dashboard_index_path, notice: 'Service provider was successfully created.' }
         format.json { render :show, status: :created, location: @service_provider }
       else

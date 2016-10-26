@@ -1,0 +1,31 @@
+
+
+
+
+
+<%= form_for([@to_do_list,@to_do_list.to_do_items.build],  :url => user_to_do_list_to_do_items_path(to_do_list_id: @to_do_list.id)) do |f| %>
+
+
+  <div class="form-group">
+    <%= f.text_field :todo_item,placeholder: 'New to do item', class: 'form-control' %>
+  </div>
+
+  <!--<div class="field">
+    <%= f.label :completed_at %>
+    <%= f.datetime_select :completed_at %>
+  </div>-->
+
+  <!--<div class="field">
+    <%= f.label :to_do_list_id %>
+    <%= f.text_field :to_do_list_id %>
+  </div>-->
+
+
+    <div class="hidden">
+      <%= hidden_field_tag 'to_do_list_id', @to_do_list.id %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

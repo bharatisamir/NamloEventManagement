@@ -1,0 +1,53 @@
+<div class="container" id="service_provider__index_container">
+  <div class="page-header">
+    <h1>Your To Do Lists</h1>
+  </div>
+
+  <div class="row" id="features">
+    <% @to_do_lists.each do |to_do_list| %>
+
+        <%# if to_do_list.user_id == @user.id%>
+        <div class="col-sm-4 ">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= to_do_list.todo_list_title %></h3>
+            </div>
+
+            <p></p>
+            <p align="middle"><%= to_do_list.todo_list_description %></p>
+
+
+            <%= link_to 'Show', user_to_do_list_path(to_do_list.user_id,to_do_list.id), :class => 'btn btn-small btn-info' %>
+
+            <%= link_to 'Edit', edit_user_to_do_list_path(to_do_list.user_id,to_do_list.id), :class => 'btn btn-small btn-warning' %>
+
+            <%= link_to 'Destroy', user_to_do_list_path(to_do_list.user_id,to_do_list.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+            <p></p>
+          </div>
+        </div>
+        <%# end %>
+        <% end %>
+
+  </div>
+
+  <%= will_paginate @to_do_list %>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %> <%= link_to 'Create New To Do List', new_user_to_do_list_path(@user), :class => 'btn btn-large btn-info' %></h1>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

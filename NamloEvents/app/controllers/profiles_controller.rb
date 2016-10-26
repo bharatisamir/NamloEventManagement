@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
   def user
     @user = current_user
     @user_id= current_user.id
-    @profile_id = Profile.find_by_user_id(@user_id).id
+    @profile_id = Profile.find_by_user_id(@user_id)
   end
 
   # GET /profiles/1
@@ -37,8 +37,8 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        $profile_status = 'success'
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+        #$profile_status = 'success'
+        format.html { redirect_to dashboard_index_path, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new }
@@ -79,6 +79,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:street_address, :city, :state_province, :zip_postal_code, :country_region, :home_phone, :cell_phone, :user_id)
+      params.require(:profile).permit(:street_address, :city, :state_province, :zip_postal_code, :country_region, :home_phone, :cell_phone, :user_id, :image )
     end
 end

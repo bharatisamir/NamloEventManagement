@@ -1,0 +1,145 @@
+<div class="container" id="event_container">
+  <div class="row">
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Cinematographer :: Anoj</h3>
+        </div><!-- end panel-heading -->
+        <%= image_tag("application/anoj-200x200.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+        <p></p>
+        <p align="center">"With today's technology anyone can point and shoot a video. But, the true magic of cinema can only be delivered by professional cinematographer"</p>
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-4">
+      <div class="list-group">
+        <div class="list-group-item">
+          <%= form_for ([@user,@host, @event]) do |f| %>
+              <% if @event.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+                    <ul>
+                      <% @event.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <div class="form-group">
+                <%= f.label :event_name %>
+                <%= f.text_field :event_name, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :event_date %>
+                <%= f.date_select :event_date, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :event_start_time %>
+                <%= f.time_select :event_start_time, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :event_end_time %>
+                <%= f.time_select :event_end_time, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :venue %>
+                <%= f.text_field :venue, class:'form-control' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :street_address %>
+                <%= f.text_field :street_address, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :city %>
+                <%= f.text_field :city, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :state_province %>
+                <%= f.text_field :state_province, class:'form-control' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :zip_postal_code %>
+                <%= f.text_field :zip_postal_code, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :country_region %>
+                <%= f.text_field :country_region, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :event_contact %>
+                <%= f.text_field :event_contact, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :comments %>
+                <%= f.text_area :comments, class:'form-control' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :image %><br>
+                <%= f.file_field :image %>
+              </div>
+              <p></p>
+
+              <div class="form-group">
+                <%= f.label :publish_on_marketplace %>
+                <%= f.check_box :publish_on_marketplace, class:'form-control' %>
+              </div>
+
+              <!--<div class="form-group">
+                <%= f.label :host_id %>
+                <%= f.text_field :host_id, class:'form-control' %>
+              </div>-->
+
+              <div class="hidden">
+                <%= hidden_field_tag 'host_id', @host.id %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          <% end %>
+        </div><!-- end list-group-item -->
+      </div><!-- end list-group -->
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Artist :: Amy</h3>
+        </div><!-- end panel-heading -->
+        <%= image_tag("application/amy-200x200.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+        <p></p>
+        <p align="center">"Photos are windows to past. Make every moments of your past memorable by hiring the right photographer"</p>
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+  </div><!-- end row -->
+</div><!-- end edit_password_container -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+
+<%#= link_to 'Back', quotations_path %>
+<div class="container">
+  <div class="page-header">
+    <h2>Request For Quotations</h2>
+  </div><!-- end page-header -->
+</div>
+
+<%= render 'form', quotation: @quotation %>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1> <%= link_to 'Go Back', user_host_events_path(@user,@event.host_id), :class => 'btn btn-large btn-info' %></h1>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->

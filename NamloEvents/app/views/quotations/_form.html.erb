@@ -1,0 +1,99 @@
+
+<div class="container" id="quotation_container">
+  <div class="row">
+    <div class="col-sm-4 feature">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center"><strong><%= @event.event_name%></strong></h3>
+        </div>
+        <p></p>
+        <p align="center"><strong>Event Date: <%= @event.event_date %></strong> </p>
+        <p align="center"><strong>Event Time: <%= @event.event_start_time.strftime('%H:%M')%> - <%= @event.event_end_time.strftime('%H:%M')%></strong> </p>
+        <p align="center"><strong>Contact Person: <%= @event.event_contact %></strong> </p>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="list-group">
+        <div class="list-group-item">
+          <%= form_for([@event,@quotation]) do |f| %>
+              <% if @quotation.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@quotation.errors.count, "error") %> prohibited this quotation from being saved:</h2>
+
+                    <ul>
+                      <% @quotation.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+
+
+              <div class="form-group">
+                <%= f.label :issue_date %>
+                <%= f.date_select :rfq_issue_date, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :closing_date %>
+                <%= f.date_select :rfq_closing_date, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :rfq_contact %>
+                <%= f.text_field :rfq_contact, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :rfq_delivery_method %>
+                <%= f.text_field :rfq_delivery_method, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :services_requested %>
+                <%= f.text_area :services_requested,placeholder: 'Please separate services using comma ', class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :comments %>
+                <%= f.text_area :comments, class:'form-control' %>
+              </div>
+
+              <!--<div class="field">
+                <%= f.label :event_id %>
+                <%= f.text_field :event_id %>
+              </div>-->
+
+              <div class="hidden">
+                <%= hidden_field_tag 'event_id', @event.id %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center"><strong><%= @event.event_name%></strong></h3>
+        </div>
+        <p></p>
+        <p align="center"><strong>Event Date: <%= @event.event_date %></strong> </p>
+        <p align="center"><strong>Event Time: <%= @event.event_start_time.strftime('%H:%M')%> - <%= @event.event_end_time.strftime('%H:%M')%></strong> </p>
+        <p align="center"><strong>Contact Person: <%= @event.event_contact %></strong> </p>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+

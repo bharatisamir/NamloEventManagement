@@ -10,6 +10,7 @@ class Host < ApplicationRecord
 
   #--------------------- ASSOCIATIONS -------------------------
   belongs_to :user
+  has_many :events, dependent: :destroy
 
   #--------------------- End of ASSOCIATIONS -------------------------
 

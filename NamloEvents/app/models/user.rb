@@ -21,8 +21,19 @@ class User < ApplicationRecord
 
   #--------------------- ASSOCIATIONS -------------------------
   belongs_to :profile, polymorphic: true, dependent: :destroy
+  has_many :to_do_lists
+  has_and_belongs_to_many :roles
 
   #--------------------- End of ASSOCIATIONS -------------------------
+
+
+  def role?(role)
+    return !!self.roles.find_by_name(role.to_s)
+  end
+
+  def has_role?(role_sym)
+    roles.any? { |r| r.name.underscore.to_sym == role_sym }
+  end
 
 
   def User.new_token

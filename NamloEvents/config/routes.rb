@@ -1,16 +1,31 @@
 Rails.application.routes.draw do
 
 
+  #resources :quotations
+  #resources :events
+  resources :roles
+  #resources :to_do_items
+  #resources :to_do_lists
   resources :peer_reviews
   resources :reviews
-  resources :hosts
+  #resources :hosts
 
   devise_for :users
 
   resources :users do
     resources :profiles, only: [:new, :create, :edit, :update]
     resources :service_providers, only: [:new, :create, :edit, :update]
-    resources :hosts, only: [:new, :create]
+    resources :hosts, only: [:new, :create] do
+      resources :events
+    end
+    resources :to_do_lists do
+      resources :to_do_items do
+        member do
+          patch :complete
+        end
+      end
+    end
+
   end
 
 
@@ -19,6 +34,9 @@ Rails.application.routes.draw do
     resources :peer_reviews
   end
 
+  resources :events do
+    resources :quotations
+  end
   #resources :profiles, only: [:new, :create, :edit]
 
 
@@ -37,7 +55,7 @@ Rails.application.routes.draw do
 
 
   match '/contact', to:'contact#new', via: 'get'
-  resources 'contact', only: [:new, :create]
+  resources :contact, only: [:new, :create]
 
 
 =begin

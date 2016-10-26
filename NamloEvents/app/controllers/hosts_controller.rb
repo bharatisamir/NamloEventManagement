@@ -37,7 +37,7 @@ class HostsController < ApplicationController
 
     respond_to do |format|
       if @host.save
-        $host_status = 'success'
+        #$host_status = 'success'
         format.html { redirect_to dashboard_index_path, notice: 'Host was successfully created.' }
         format.json { render :show, status: :created, location: @host }
       else
@@ -79,6 +79,6 @@ class HostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def host_params
-      params.require(:host).permit(:user_id)
+      params.permit(:user_id)
     end
 end

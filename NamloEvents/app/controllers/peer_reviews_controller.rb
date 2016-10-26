@@ -13,6 +13,7 @@ class PeerReviewsController < ApplicationController
     @user = current_user
     @provider_user = User.find(ServiceProvider.find(params[:service_provider_id]).user_id)
     @user_is_provider = ServiceProvider.find_by_user_id(@user.id)
+    @provider_profile = Profile.find_by_user_id(@provider_user.id)
     #@profile_id = Profile.find_by_user_id(@user_id).id
   end
 
@@ -34,10 +35,12 @@ class PeerReviewsController < ApplicationController
   # POST /peer_reviews.json
   def create
     @peer_review = PeerReview.new(peer_review_params)
+    @peer_review.serviceprovider_id = params[:serviceprovider_id]
+    @peer_review.reviewer_id = params[:reviewer_id]
 
     respond_to do |format|
       if @peer_review.save
-        format.html { redirect_to @peer_review, notice: 'Peer review was successfully created.' }
+        format.html { redirect_to dashboard_index_path, notice: 'Peer review was successfully created.' }
         format.json { render :show, status: :created, location: @peer_review }
       else
         format.html { render :new }

@@ -1,0 +1,97 @@
+<div class="container" id="quotation_index_container">
+  <div class="page-header">
+    <h1> Request For Quotes </h1>
+  </div>
+
+  <div class="row" id="features">
+    <% @quotations.each do |quotation| %>
+      <% if quotation.event_id == @event.id %>
+    <div class="col-sm-3 feature">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center"><strong><%= @event.event_name%></strong></h3>
+        </div>
+        <p></p>
+        <p align="center"><strong>Event Id: <%= @event.id %></strong> </p>
+        <p align="center"><strong>Event Date: <%= @event.event_date %></strong> </p>
+        <p align="center"><strong>Event Time: <%= @event.event_start_time.strftime('%H:%M')%> - <%= @event.event_end_time.strftime('%H:%M')%></strong> </p>
+        <p align="center"><strong>Contact Person: <%= @event.event_contact %></strong> </p>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="table-responsive">
+                <hr>
+                <table class="table">
+                  <tbody>
+                  <tr class="success">
+                    <td> <strong>Event ID:</strong></td>
+                    <td><em><strong><%= quotation.event_id %></strong></em></td>
+                    <td> <strong>Delivery of Quote:</strong></td>
+                    <td><em><strong><%= quotation.rfq_delivery_method %></strong></em></td>
+                  </tr>
+
+                  <tr class="danger">
+                    <td> <strong>RFQ Issue Date:</strong></td>
+                    <td><em><strong><%= quotation.rfq_issue_date %></strong></em></td>
+                    <td> <strong>RFQ Closing Date:</strong></td>
+                    <td><em><strong><%= quotation.rfq_closing_date %></strong></em></td>
+                  </tr>
+
+                  <tr class="info">
+                    <td><strong>RFQ Contact:</strong></td>
+                    <td><em><strong><%= quotation.rfq_contact %></strong></em></td>
+                    <td></td><td></td>
+                  </tr>
+                  <tr class="danger">
+                    <td><strong>Service Requested:</strong></td>
+                    <td></td><td></td><td></td>
+                    <% @services = quotation.services_requested.split(',').each {|element | p element }%>
+                    <% @services.each do |service| %>
+                      <tr class="success">
+                        <td></td>
+                        <td><strong><em><%= service%></em></strong></td>
+                        <td></td><td></td>
+                      </tr>
+                  <% end %>
+
+                  </tr>
+                  <tr class="info">
+                    <td><strong>Remarks:</strong></td>
+                    <td><em><strong><%= quotation.comments %></strong></em></td><td></td><td></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <hr>
+                <%#= link_to 'Show', event_quotation_path(@event,quotation) %>
+                <%= link_to 'Edit', edit_event_quotation_path(@event,quotation), :class => 'btn btn-large btn-warning' %>
+                <%= link_to 'Destroy', event_quotation_path(@event,quotation), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-large btn-danger' %>
+                <hr>
+              </div>
+    </div>
+
+    <div class="col-sm-3 feature">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center"><strong>Host Information </strong></h3>
+        </div>
+        <p></p>
+        <p align="center"><strong>Host Name: <%= @event_host_user.first_name %> <%= @event_host_user.last_name %></strong></p>
+        <p align="center"><strong>email: <%= @event_host_user.email %></strong> </p>
+      </div>
+    </div>
+    <% else %>
+        <h4>Sorry, no RFQs have been submitted for this event yet </h4>
+    <% end %>
+
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1> <%= link_to 'Go Back', user_host_events_path(@user,@event.host_id), :class => 'btn btn-large btn-info' %></h1>
+    </div>
+  </div>
+</div>

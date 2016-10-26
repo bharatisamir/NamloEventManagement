@@ -1,0 +1,78 @@
+
+<%#= link_to 'New Event', new_event_path %>
+
+<div class="container" id="event_index_container">
+  <div class="page-header">
+    <h1>Events Hosted by You </h1>
+  </div>
+
+
+  <div class="row" id="features">
+
+    <% @events.each do |event| %>
+
+        <div class="col-sm-4 ">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= event.event_name %></h3>
+            </div>
+            <p></p>
+            <%= image_tag(event.image.url(:thumb),:alt =>'Venue image', :class =>"img-circle") %>
+            <p align="middle">Date: <%= event.event_date %></p>
+            <p align="middle">Time: <%= event.event_start_time.strftime('%H:%M') %> - <%= event.event_end_time.strftime('%H:%M') %></p>
+            <p align="middle">  <%= event.venue %></p>
+            <p align="middle">  <%= event.street_address %></p>
+            <p align="middle">  <%= event.city %>,<%= event.state_province %> <%= event.zip_postal_code %> </p>
+            <p align="middle">  <%= event.country_region %></p>
+            <p align="middle">Contact:  <%= event.event_contact %></p>
+            <p align="middle">  <%= event.comments %></td></p>
+            <%#= link_to 'Show', user_host_event_path(@user,event.host_id,event.id), :class => 'btn btn-small btn-info' %>
+            <%= link_to 'Edit', edit_user_host_event_path(@user,event.host_id,event.id), :class => 'btn btn-small btn-warning' %>
+            <%= link_to 'Destroy', user_host_event_path(@user,event.host_id,event.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+            <%= link_to 'Create RFQ', new_event_quotation_path(event), :class => 'btn btn-small btn-info' %>
+            <%= link_to 'View RFQ', event_quotations_path(event), :class => 'btn btn-small btn-info' %>
+            <p></p>
+
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <%= will_paginate @service_providers %>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h1>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

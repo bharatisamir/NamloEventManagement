@@ -3,6 +3,7 @@
     <h1>TabbedBoards</h1>
   </div><!-- end page-header -->
 
+
   <div id="more_info" class="row">
     <div class="">
 
@@ -41,9 +42,11 @@
               <div class="col-sm-4 feature">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h3 class="panel-title" align="center">DJ Dinesh</h3>
+                    <h3 class="panel-title" align="center"><%= @user.first_name %> <%= @user.last_name %></h3>
                   </div><!-- end panel-heading -->
-                  <%= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+                  <% if @profile!= nil %>
+                      <%= image_tag(@profile.image.url(:thumb),:alt =>'Profile image', :class =>"img-circle") %>
+                  <% end %>
                   <p></p>
                 </div><!-- end panel -->
               </div><!-- end col-sm-4 -->
@@ -63,11 +66,17 @@
                   <p align="center">User ID:  <%=@user.id%></p>
                   <p align="center">First Name: <%=@user.first_name%></p>
                   <p align="center">Last Name:  <%=@user.last_name%></p>
-                  <p align="center">Address: <%= @profile.street_address%></p>
-                  <p align="center"><%= @profile.city%></p>
-                  <p align="center"><%= @profile.state_province%>, <%= @profile.zip_postal_code%></p>
-                  <p align="center"><%= @profile.country_region%></p>
-                  <p></p>
+
+                  <% if @profile!= nil %>
+                      <p align="center">Address: <%= @profile.street_address%></p>
+                      <p align="center"><%= @profile.city%></p>
+                      <p align="center"><%= @profile.state_province%>, <%= @profile.zip_postal_code%></p>
+                      <p align="center"><%= @profile.country_region%></p>
+                      <p></p>
+                  <% else %>
+                      <p align="center"><strong>Please, create your profile first</strong></p>
+                  <% end %>
+
                 </div><!-- end panel -->
               </div><!-- end col-sm-4 -->
 
@@ -96,9 +105,15 @@
                   </div><!-- end panel-heading -->
                   <p></p>
                   <p align="center">email:  <%=@user.email%></p>
-                  <p align="center">Home Phone:  <%= @profile.home_phone%> </p>
-                  <p align="center">Cell Phone:  <%= @profile.cell_phone%></p>
-                  <p></p>
+
+                  <% if @profile!= nil %>
+                      <p align="center">Home Phone:  <%= @profile.home_phone%> </p>
+                      <p align="center">Cell Phone:  <%= @profile.cell_phone%></p>
+                      <p></p>
+                  <% else %>
+                      <p align="center"><strong>Please, create your profile first</strong></p>
+                  <% end %>
+
                 </div><!-- end panel -->
               </div><!-- end col-sm-4 -->
 
@@ -126,7 +141,13 @@
                   <p></p>
                   <p align="center">
                   <%= link_to 'Change Password', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                  <%= link_to 'Edit Profile', edit_user_profile_path(@user.id,@profile.id), :class => 'btn btn-small btn-info' %>
+
+                  <% if @profile!= nil %>
+                      <%= link_to 'Edit Profile', edit_user_profile_path(@user.id,@profile.id), :class => 'btn btn-small btn-info' %>
+                  <% end %>
+
+
+
                   <%#= link_to 'Edit Service Provider', edit_user_service_provider_path(@user.id,@service_profile.id), :class => 'btn btn-small btn-info' %>
 
                   </p>
@@ -158,36 +179,35 @@
                   </div><!-- end panel-heading -->
                   <p></p>
                   <p align="center">
-                    <% if $profile_status=='success' %>
-                        <div class="hidden">
-                          <%= link_to 'Create User Profile', new_user_profile_path(@user), :class => 'btn btn-small btn-info' %>
-                        </div>
 
-                    <% else %>
-                        <%= link_to 'Create User Profile', new_user_profile_path(@user), :class => 'btn btn-small btn-info'%>
+                  <% if @profile == nil %>
+                      <%= link_to 'Create User Profile', new_user_profile_path(@user), :class => 'btn btn-small btn-info'%>
+                  <%else%>
+                      <%= link_to 'Create User Profile', {}, :disabled => true,:class => 'btn btn-small btn-info'%>
                   <% end %>
 
-
-                  <% if $provider_status == 'success' %>
-                      <div class="hidden">
+                    <% if @service_provider == nil %>
                         <%= link_to 'Create Service Provider Account',new_user_service_provider_path(@user), :class => 'btn btn-small btn-info' %>
-                      </div>
-
-                  <% else %>
-                      <%= link_to 'Create Service Provider Account', new_user_service_provider_path(@user), :class => 'btn btn-small btn-info' %>
+                    <%else%>
+                        <%= link_to 'Create Service Provider Account', {}, :disabled => true, :class => 'btn btn-small btn-info'%>
                   <% end %>
 
-                  <% if $host_status == 'success' %>
-                      <div class="hidden">
-                        <%= link_to 'Create Host Account',new_user_host_path(@user), :class => 'btn btn-small btn-info' %>
-                      </div>
-
-                  <% else %>
-                      <%= link_to 'Create Host Account', new_user_host_path(@user), :class => 'btn btn-small btn-info' %>
-                  <% end %>
+                    <% if @host == nil %>
+                        <%= link_to 'Create Host Account', new_user_host_path(@user), :class => 'btn btn-small btn-info' %>
+                    <%else%>
+                        <%= link_to 'Create Host Account', {}, :disabled => true, :class => 'btn btn-small btn-info'%>
+                    <% end %>
 
                   </p>
+
+                  <p align="center">
+                    <%= link_to 'Create ToDo List', new_user_to_do_list_path(@user), :class => 'btn btn-small btn-info' %>
+                    <%= link_to 'View ToDo List', user_to_do_lists_path(@user), :class => 'btn btn-small btn-info' %>
+
+                  </p>
+
                   <p></p>
+
                 </div><!-- end panel -->
               </div><!-- end col-sm-4 -->
 
@@ -221,9 +241,9 @@
                   <div class="col-sm-4 feature">
                     <div class="panel panel-default">
                       <div class="panel-heading">
-                        <h3 class="panel-title" align="center">DJ Dinesh</h3>
+                        <h3 class="panel-title" align="center"><%= @user.first_name %> <%= @user.last_name %></h3>
                       </div><!-- end panel-heading -->
-                      <%= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+                      <%= image_tag(@profile.image.url(:thumb),:alt =>'Profile image', :class =>"img-circle") %>
                       <p></p>
                     </div><!-- end panel -->
                   </div><!-- end col-sm-4 -->
@@ -240,7 +260,7 @@
                         <h5 class="panel-title" align="center">Personal Information</h5>
                       </div><!-- end panel-heading -->
                       <p></p>
-                      <p align="center">Host ID: </p>
+                      <p align="center">Host ID: <%= @host.id%> </p>
                       <p></p>
                     </div><!-- end panel -->
                   </div><!-- end col-sm-4 -->
@@ -267,13 +287,16 @@
                       </div><!-- end panel-heading -->
                       <p></p>
                       <p align="center">
-                        <%= link_to 'Create an Event', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                        <%= link_to 'Create Attendents List', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                        <%= link_to 'Create RFQ', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Create an Event', new_user_host_event_path(@user,@host), :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Create Attendants List', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%#= link_to 'Create RFQ', new_event_quotation_path(@event), :class => 'btn btn-small btn-info' %>
                         <%= link_to 'Book / Appoint Manager', edit_user_password_path, :class => 'btn btn-small btn-info' %>
                       </p>
                       <p align="center">
-                      <%= link_to 'View Reports', edit_user_password_path, :class => 'btn btn-small btn-info' %></p>
+                      <%= link_to 'View Reports', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                      <%= link_to 'View Events', user_host_events_path(@user,@host), :class => 'btn btn-small btn-info' %>
+
+
                       </p>
                       <p></p>
                     </div><!-- end panel -->
@@ -286,7 +309,7 @@
                           <h5>Activities</h5>
                         </div>&lt;!&ndash; end list-group-item-heading &ndash;&gt;
                         <%= link_to 'Create an Event', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                        <%= link_to 'Create Attendents List', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Create Attendants List', edit_user_password_path, :class => 'btn btn-small btn-info' %>
                         <%= link_to 'Create RFQ', edit_user_password_path, :class => 'btn btn-small btn-info' %>
                         <%= link_to 'Book / Appoint Manager', edit_user_password_path, :class => 'btn btn-small btn-info' %>
                         <p></p>
@@ -313,9 +336,9 @@
                   <div class="col-sm-4 feature">
                     <div class="panel panel-default">
                       <div class="panel-heading">
-                        <h3 class="panel-title" align="center">DJ Dinesh</h3>
+                        <h3 class="panel-title" align="center"><%= @user.first_name %> <%= @user.last_name %></h3>
                       </div><!-- end panel-heading -->
-                      <%= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+                      <%= image_tag(@profile.image.url(:thumb),:alt =>'Profile image', :class =>"img-circle") %>
                       <p></p>
                     </div><!-- end panel -->
                   </div><!-- end col-sm-4 -->

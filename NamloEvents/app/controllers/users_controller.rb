@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.first_name = params[:first_name]
+    @user.last_name = params[:last_name]
     if @user.save
       #NamloMailer.account_activation(@user).deliver
       #SendEmailJob.send(wait: 30.seconds).perform_later(@contact)

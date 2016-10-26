@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <div class="container" id="reviews_container">
   <div class="page-header">
@@ -9,7 +9,12 @@
     <div class="row">
       <div class="col-sm-3 ">
         <div class="img-thumbnail">
-          <%= image_tag("application/dinesh_dai1.jpg", :alt =>"service provider") %>
+          <%#= image_tag("application/dinesh_dai1.jpg", :alt =>"service provider") %>
+
+          <% if @provider_profile!= nil %>
+              <%= image_tag(@provider_profile.image.url(:thumb),:alt =>'Profile image', :class =>"img-square") %>
+          <% end %>
+
         </div>
 
         <% if @review != nil %>
@@ -49,10 +54,9 @@
   <div class="row">
     <div class="page-header">
       <% if @provider_user.id == @user.id %>
-          <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %> </h1>
+          <h1> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %> </h1>
       <% else %>
-          <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %> </h1>
-          <h1> <%= link_to 'Write Review', new_service_provider_review_path(@provider_user.id), :class => 'btn btn-large btn-info' %> </h1>
+          <h1> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %>  <%= link_to 'Write Review', new_service_provider_review_path(@provider_user.id), :class => 'btn btn-large btn-info' %> </h1>
       <% end %>
     </div>
   </div>

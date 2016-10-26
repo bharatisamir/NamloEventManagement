@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  todo_item: MyString
+  completed_at: 2016-10-18 07:06:51
+  to_do_list: one
+
+two:
+  todo_item: MyString
+  completed_at: 2016-10-18 07:06:51
+  to_do_list: two

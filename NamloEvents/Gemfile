@@ -42,9 +42,19 @@ gem 'delayed_job_active_record'
 
 
 #gem 'mail_form', '~> 1.5', '>= 1.5.1'
-
-
 #gem 'simple_form', '~> 3.3', '>= 3.3.1'
+
+
+gem 'mail_form'
+gem 'simple_form'
+
+gem 'will_paginate', '~> 3.1.0'
+
+#Use paperclip to manage uploads of image
+gem "paperclip", "~> 5.0.0"
+
+gem 'cancancan', '~> 1.10', require: 'cancancan'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
