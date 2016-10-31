@@ -3,6 +3,13 @@ class EventsController < ApplicationController
   before_action :set_host
   #before_action :set_quotation
   #before_action :set_event, except: [:create]
+  before_action :check_permissions
+
+
+  def check_permissions
+    #authorize! :read, @quotation
+    authorize! :crud, @event
+  end
 
   # GET /events
   # GET /events.json

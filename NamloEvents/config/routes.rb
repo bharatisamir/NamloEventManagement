@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'market_place/index'
+
   #resources :quotations
   #resources :events
   resources :roles

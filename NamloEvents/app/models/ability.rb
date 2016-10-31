@@ -31,14 +31,42 @@ class Ability
 
     def initialize(user)
 
-      alias_action :create, :read, :update, :destroy, :to => :crud
-      alias_action :create, :update, :destroy, :to => :cud
-      alias_action :create, :read, :complete, :destroy, :to => :crcd
+      #alias_action :create, :read, :update, :destroy, :to => :crud
+      alias_action :update, :destroy, :to => :modify
+      alias_action :complete, :read, :update, :destroy, :to => :crud
 
       user ||= User.new
 
+
       if user.role?(:admin)
         can :manage, :all
+
+      elsif user.role?(:host)
+        can :create, Event
+        can :modify, Event do |event|
+          event.Host.user_id == user.id
+        end
+
+        can :crud, Quotation do |quote|
+          quote.Event.Host.user_id == user.id
+        end
+
+      elsif user.role?(:service_provider)
+        can :read, Event
+        can :read, Quotation
+
+      else
+        can :create, ToDoList
+        can :crud, ToDoList do |to_do_list|
+          to_do_list.user_id == user.id
+        end
+
+      end
+
+=begin
+      if user.role?(:admin)
+        can :manage, :all
+
       else
 
         can :crud, ToDoList do |to_do_list|
@@ -50,7 +78,20 @@ class Ability
           to_do_item.user_id == user.id
         end
 
+        can :read, :all
+        can :cud, Quotation do |quote|
+          @event = Event.find(quote.event_id)
+          @host = Host.find(@event.host_id)
+          @host.user_id == user
+        end
+
+
+
+
       end
+=end
+
+
 
 =begin
       if user.role?(:host)

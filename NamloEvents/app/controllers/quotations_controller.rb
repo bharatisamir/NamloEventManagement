@@ -1,6 +1,18 @@
 class QuotationsController < ApplicationController
+  #load_and_authorize_resource
+
   before_action :set_quotation, only: [:show, :edit, :update, :destroy]
   before_action :set_event
+  before_action :check_permissions
+
+
+
+  def check_permissions
+    #authorize! :read, @quotations
+    #authorize! :crud, @quotation
+  end
+
+
 
   # GET /quotations
   # GET /quotations.json

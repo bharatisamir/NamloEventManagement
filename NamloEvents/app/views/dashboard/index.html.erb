@@ -382,6 +382,7 @@
                       </div><!-- end panel-heading -->
                       <p></p>
                       <p align="center">
+                        <%= link_to 'Visit Marketplace', market_place_index_path , :class => 'btn btn-small btn-info' %>
                         <%= link_to 'View Booking', edit_user_password_path, :class => 'btn btn-small btn-info' %>
                         <%= link_to 'View Providers', service_providers_path, :class => 'btn btn-small btn-info' %>
                         <%= link_to 'View Reviews', service_provider_reviews_path(@service_provider.id), :class => 'btn btn-small btn-info' %>
