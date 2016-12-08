@@ -1,5 +1,6 @@
 class NamloMailer < ApplicationMailer
   default from: 'namloeventmanagement@gmail.com'
+  #default from: 'namloevent@gmail.com'
 
 =begin
   def password_reset(user)
@@ -171,6 +172,39 @@ class NamloMailer < ApplicationMailer
 
     mail(from: %("#{@contact.name}" <#{@contact.email}>),to: 'namloeventmanagement@gmail.com', subject: @contact.subject)
     $message = 200
+  end
+
+  def invitation_email(event,user)
+    @user = user
+    @event = event
+    @recipients = GuestList.where(('event_id LIKE ?'),@event.id )
+    @event_invitation = Invitation.find_by_event_id(@event.id )
+
+    if ((@event!= nil) || (@recipients!= nil) || (@event_invitation!= nil))
+
+      mail(
+          from: %("#{@user.first_name}" <#{@user.email}>),
+          bcc: @recipients.map(&:email).uniq,
+          subject: 'Event Invitation')
+      $message = 200
+
+    end
+
+
+
+  end
+
+  def general_email(email,user)
+    @user = user
+    @email = email
+    mail(
+        from: %("#{@user.first_name}" <#{@user.email}>),
+        to: %("#{@email.name}" <#{@email.email}>),
+        subject: @email.subject,
+        body: @email.message
+    )
+    $message = 200
+
   end
 
 end

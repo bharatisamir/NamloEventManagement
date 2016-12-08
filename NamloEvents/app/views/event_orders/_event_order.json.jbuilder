@@ -1,0 +1,2 @@
+json.extract! event_order, :id, :order_date, :primary_onsite_contact, :secondary_onsite_contact, :primary_phone, :secondary_phone, :event_id, :created_at, :updated_at
+json.url event_order_url(event_order, format: :json)

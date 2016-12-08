@@ -1,0 +1,189 @@
+<!--
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tag line:</strong>
+  <%= @portfolio.tag_line %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @portfolio.bio %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @portfolio.website %>
+</p>
+
+<p>
+  <strong>Work experience:</strong>
+  <%= @portfolio.work_experience %>
+</p>
+
+<p>
+  <strong>Achievements:</strong>
+  <%= @portfolio.achievements %>
+</p>
+
+<p>
+  <strong>Area of expertise:</strong>
+  <%= @portfolio.area_of_expertise %>
+</p>
+
+<p>
+  <strong>Services offered:</strong>
+  <%= @portfolio.services_offered %>
+</p>
+
+<p>
+  <strong>Works projects:</strong>
+  <%= @portfolio.works_projects %>
+</p>
+
+<p>
+  <strong>Service provider:</strong>
+  <%= @portfolio.service_provider %>
+</p>
+
+<%#= link_to 'Edit', edit_portfolio_path(@portfolio) %> |
+<%#= link_to 'Back', portfolios_path %>
+-->
+
+
+
+<div class="container" id="dashboard_container">
+
+
+  <div class="page-header">
+    <h2><%= @provider_user.first_name %> <%= @provider_user.last_name %></h2>
+    <h4><%= Service.find(@service_provider_service.service_id).service_name%></h4>
+  </div><!-- end page-header -->
+
+  <div class="row" id="profile">
+
+      <div class="col-sm-12">
+        <div class="list-group">
+          <div class="list-group-item">
+            <p class="list-group-item-heading"></p>
+            <p class="list-group-item-text" align="middle"><strong><%= @portfolio.tag_line%></strong></p>
+          </div><!-- end list-group-item -->
+        </div>
+      </div><br>
+
+    <div class="col-sm-12">
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <br>
+          <%= image_tag(@profile.image.url(:thumb),:alt =>'Profile image', :class => 'image' ) %>
+          <br>
+        </div><!-- end thumbnail -->
+      </div><!-- end col-sm-4 -->
+
+      <div class="col-sm-9">
+        <div class="list-group">
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading"> <%= @profile.city%>, <%= @profile.state_province%></h4>
+            <p class="list-group-item-text"><%= @portfolio.bio %></p>
+          </div><!-- end list-group-item -->
+
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">Achievements</h4>
+            <p class="list-group-item-text" style="white-space: pre-line"><%= @portfolio.achievements %></p>
+          </div><!-- end list-group-item -->
+
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">Website</h4>
+            <p class="list-group-item-text" style="white-space: pre-line"><%= @portfolio.website %></p>
+          </div><!-- end list-group-item -->
+
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">Area of Expertise</h4>
+            <p class="list-group-item-text" style="white-space: pre-line"><%= @portfolio.area_of_expertise %></p>
+          </div><!-- end list-group-item -->
+
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">Services offered</h4>
+            <p class="list-group-item-text" style="white-space: pre-line"><%= @portfolio.services_offered %></p>
+          </div><!-- end list-group-item -->
+
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">Work Experience</h4>
+            <p class="list-group-item-text" style="white-space: pre-line"><%= @portfolio.work_experience %></p>
+          </div><!-- end list-group-item -->
+
+          <div class="list-group-item">
+            <h4 class="list-group-item-heading">Work / Projects</h4>
+            <p class="list-group-item-text" style="white-space: pre-line"><%= @portfolio.works_projects %></p>
+          </div><!-- end list-group-item -->
+        </div><!-- end list-group -->
+      </div><!-- end col-sm-8 -->
+    </div><!-- end col-sm-12 -->
+
+
+
+  </div><!-- end row -->
+
+
+  <div class="row" id="gallery">
+
+    <div class="col-sm-12">
+        <div class="list-group">
+          <div class="list-group-item">
+            <h2 class="list-group-item-heading">Gallery</h2>
+
+            <div id="gallery-canvas">
+              <br>
+              <%if @gallery == nil%>
+                  <%= link_to 'Create Gallery', new_portfolio_gallery_path(@portfolio.id), class: 'btn btn-small btn-primary' %>
+              <%else%>
+                  <%@images.each do |gal|%>
+                      <div class="col-sm-3">
+                        <div class="thumbnail">
+                          <br>
+                          <%= image_tag(gal.image.url(:thumb),:alt =>'Profile image', :class => 'image' ) %>
+                          <br>
+                        </div><!-- end thumbnail -->
+                      </div><!-- end col-sm-4 -->
+                  <%end%>
+              <%end%>
+              <br>
+            </div>
+
+          </div><!-- end list-group-item -->
+        </div>
+      </div><br>
+
+  </div><!-- end row -->
+
+</div><!-- end container -->
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', market_place_index_path, :class => 'btn btn-large btn-info' %>
+
+
+        <% if can? :update, Portfolio%>
+            <%= link_to 'Edit Portfolio', edit_service_provider_portfolio_path(@service_provider.id, @portfolio.id), :class => 'btn btn-large btn-warning' %>
+        <% end %>
+
+
+        <% if can? :update, Portfolio%>
+            <% if @gallery != nil %>
+                <%= link_to 'Edit Gallery', edit_portfolio_gallery_path(@portfolio.id, @gallery.id), :class => 'btn btn-large btn-warning' %>
+            <% end %>
+        <% end %>
+
+        <% if can? :destroy, Portfolio%>
+            <%= link_to 'Destroy Portfolio', service_provider_portfolio_path(@service_provider.id, @portfolio.id), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-small btn-danger'%></td>
+        <% end %>
+
+      </h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
+
+<div class="script">
+
+</div>

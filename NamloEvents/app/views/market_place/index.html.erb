@@ -1,0 +1,245 @@
+
+<%#= link_to 'New Event', new_event_path %>
+
+<div class="container" id="market_place_index_container">
+  <div class="page-header">
+    <h2>Welcome to Market Place </h2>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+
+    </div>
+
+
+    <div class="col-sm-8">
+      <div class="provider_search">
+        <div id="search-container" >
+          <div class="" id="search-canvas">
+            <%= form_tag market_place_index_path, :method => 'get' do %>
+                <table>
+                  <tr>
+                    <td><%= text_field_tag :search, params[:search], placeholder:'Enter first name or last name ',class: 'form-control',:size=>"50" %></td><td><%= submit_tag "Search Providers", :name => nil %></td>
+                  </tr>
+                </table>
+
+
+            <% end %>
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+
+    </div>
+
+  </div>
+
+
+  <div class="page-header">
+    <h2>Events </h2>
+  </div>
+
+  <div class="row" id="features">
+    <% @events_on_market.each do |event| %>
+
+        <div class="col-sm-4">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= event.event_name %></h3>
+            </div>
+            <p></p>
+            <%#= image_tag(event.image.url(:thumb),:alt =>'Venue image', :class =>"img-circle") %>
+            <p align="middle">Date: <%= event.event_date %> --|-- Time: <%= event.event_start_time.strftime('%H:%M') %> - <%= event.event_end_time.strftime('%H:%M') %></p>
+            <p align="middle">  <%= event.venue %></p>
+            <p align="middle">  <%= event.street_address %></p>
+            <p align="middle">  <%= event.city %>, <%= event.state_province %> <%= event.zip_postal_code %>, <%= event.country_region%>  </p>
+            <%= link_to 'View RFQ', event_quotations_path(event), :class => 'btn btn-small btn-info' %>
+            <p></p>
+
+          </div>
+        </div>
+    <% end %>
+    <%= will_paginate @events_on_market %>
+  </div>
+
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h2>RFQs </h2>
+</div>
+
+<div class="row" id="features">
+  <% @quotations.each do |rfq| %>
+
+      <div class="col-sm-4">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= Event.find(rfq.event_id).event_name %></h3>
+          </div>
+          <p></p>
+          <%#= image_tag(event.image.url(:thumb),:alt =>'Venue image', :class =>"img-circle") %>
+          <p align="middle">Issue Date: <%= rfq.rfq_issue_date %> --|-- Closing Date: <%= rfq.rfq_closing_date %></p>
+          <p align="middle">RFQ Contact:  <%= rfq.rfq_contact %></p>
+          <p align="middle">RFQ Delivery Method:  <%= rfq.rfq_delivery_method %></p>
+          <%= link_to 'View RFQ', event_quotations_path(rfq.event_id), :class => 'btn btn-small btn-info' %>
+          <p></p>
+
+        </div>
+      </div>
+  <% end %>
+  <%= will_paginate @quotations %>
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h2>Offers </h2>
+</div>
+
+<div class="row" id="features">
+  <div class="offer_market_container">
+    <% @offers.each do |offer| %>
+        <div class="col-sm-4">
+          <div id="offer-market-container">
+            <div class="thumbnail" id="offer-thumb">
+
+              <div class="label label-success price" id="market-price">
+                <span class="glyphicon glyphicon-tag"></span>
+                <sup>$</sup><%= offer.price %>
+              </div>
+              <h3 class="panel-title" align="middle" id="offer-panel-title"><%= offer.name %></h3>
+
+              <br>
+              <p align="middle" id="offer-panel-detail" style="white-space: pre-line"><%= offer.details %></p>
+              <div id="offer-price-market-container">
+                <p align="middle" id="original-price">Original Price | Offer Price </p>
+                <p align="middle" id="original-market-price">$<%= offer.original_price %> <span class="market-span">$<%= offer.price %></span> </p>
+              </div>
+
+
+              <%= link_to 'View Offer', service_provider_offer_path(offer.service_provider_id, offer.id), :class => 'btn btn-large btn-warning' %>
+
+              <p></p>
+            </div>
+
+
+          </div>
+        </div>
+    <% end %>
+
+  </div>
+  <%= will_paginate @offers %>
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h2>Service Providers </h2>
+</div>
+
+<div class="row" id="features">
+  <% @service_providers.each do |service_provider| %>
+
+      <div class="col-sm-4 ">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= service_provider.user.first_name %> <%= service_provider.user.last_name%> </h3>
+          </div>
+          <p></p>
+          <%#= image_tag(service_provider.image.url(:thumb),:alt =>"Wedding Event", :class =>"img-circle") %>
+          <%#= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+
+          <% if service_provider.namlo_partner == true %>
+              <%= image_tag("application/namlo_partners.jpg", :alt =>"Namlo Partners", :class =>"img-circle") %>
+          <% end %>
+
+          <%= image_tag(Profile.find_by_user_id(service_provider.user_id).image.url(:thumb),:alt =>'Profile image', :class =>"img-circle") %>
+
+          <% if service_provider.namlo_preferred == true %>
+              <%= image_tag("application/namlo_preferred.jpg", :alt =>"Namlo Preferred", :class =>"img-circle") %>
+          <% end %>
+          <%#= image_tag(service_provider.image.url(:thumb),:alt =>"Wedding Event", :class =>"img-circle") %>
+          <%#= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+          <p align="middle">Service(s):
+            <%  @service_provider_service = ServiceProviderService.where((' service_provider_id LIKE ? '), service_provider.id).first %>
+
+            <% if @service_provider_service != nil%>
+                <%=Service.find( @service_provider_service.service_id).service_name%><br>
+            <%end%>
+
+          </p>
+          <p align="middle">Business Phone: <%= service_provider.business_phone %>, Fax:  <%= service_provider.fax %> </p>
+
+          <p align="middle">Address: <%#= service_provider.user.profile.street_address %><%= Profile.find_by_user_id(service_provider.user_id).street_address %> </p>
+          <p align="middle"><%= Profile.find_by_user_id(service_provider.user_id).city %>, <%= Profile.find_by_user_id(service_provider.user_id).state_province%> <%= Profile.find_by_user_id(service_provider.user_id).zip_postal_code %> </p>
+          <p align="middle"><%= Profile.find_by_user_id(service_provider.user_id).country_region %></p>
+
+          <% @portfolio = Portfolio.find_by_service_provider_id(service_provider.id)%>
+          <% if @portfolio.present? %>
+          <%= link_to 'Portfolio', service_provider_portfolio_path(service_provider.id, @portfolio.id), :class => 'btn btn-small btn-info' %>
+          <%end%>
+
+          <%= link_to 'Book', new_booking_path(:service_provider_id => service_provider.id), :class => 'btn btn-small btn-info' %>
+          <%= link_to 'Reviews', user_service_provider_path(service_provider.user_id, service_provider.id), :class => 'btn btn-large btn-info' %>
+
+          <%#= link_to 'Profile', service_provider, :class => 'btn btn-large btn-info' %>
+          <%#= link_to 'Edit', edit_service_provider_path(service_provider) , :class => 'btn btn-large btn-warning' %>
+          <%#= link_to 'Destroy', service_provider, method: :delete, data: { confirm: 'Are you sure?' },:class => 'btn btn-large btn-danger' %>
+          <%#= link_to 'Reviews', service_provider_reviews_path(service_provider.id), :class => 'btn btn-small btn-info' %>
+          <%= link_to 'Peer Reviews', service_provider_peer_reviews_path(service_provider.id), :class => 'btn btn-small btn-info' %>
+
+          <%#= link_to 'Book', service_provider,:class => 'btn btn-large btn-warning' %>
+          <p></p>
+        </div>
+      </div>
+
+  <% end %>
+  <%= will_paginate @service_providers %>
+</div>
+
+<hr>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h2>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

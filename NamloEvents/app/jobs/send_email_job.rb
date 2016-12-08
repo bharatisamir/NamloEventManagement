@@ -10,4 +10,10 @@ class SendEmailJob < ApplicationJob
     NamloMailer.sample_email(@user).deliver_later
   end
 
+
+  def perform(recipients)
+    @recipient = recipients
+    NamloMailer.invitation_email(@recipient).deliver_later
+  end
+
 end

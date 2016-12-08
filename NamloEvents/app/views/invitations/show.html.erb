@@ -1,0 +1,485 @@
+
+<%#= link_to 'Edit', edit_invitation_path(@invitation) %>
+<%#= link_to 'Back', invitations_path %>
+
+<!--<p>-->
+  <!--<b>opening_tag_line:</b>-->
+  <!--<%= best_in_place @invitation, :opening_tag_line %>-->
+<!--</p>-->
+
+
+<!--<div class="container" id="invitation_container">
+  <div class="row">
+    <div class="col-sm-1">
+    </div>&lt;!&ndash; end col-sm-1 &ndash;&gt;
+
+    <div class="col-sm-10">
+      <div class="list-group">
+        <div class="list-group-item">
+
+              <div class="head_image">
+
+              </div>
+
+              <div class="invitation">
+                <p align="center">INVITATION</p>
+              </div>
+
+              <div class="open_tag">
+                <p align="center"><%= best_in_place @invitation, :opening_tag_line %></p>
+              </div>
+
+              <div class="groom_tag">
+                <p align="center"><%= best_in_place @invitation, :groom_tag_line %></p>
+              </div>
+
+              <div class="groom_tag2">
+                <p align="center"><%= best_in_place @invitation, :groom_tagline2 %></p>
+              </div>
+
+              <div class="connector">
+                <p align="center">&</p>
+              </div>
+
+              <div class="bride_tag">
+                <p align="center"><%= best_in_place @invitation, :bride_tag_line %></p>
+              </div>
+
+              <div class="bride_tag2">
+                <p align="center"><%= best_in_place @invitation, :bride_tagline2 %></p>
+              </div>
+
+              <br>
+              <div class="mid_tag">
+                <p align="center"><%= best_in_place @invitation, :mid_tag_line %></p>
+              </div>
+
+              <div class="mid_tag2">
+                <p align="center"><%= best_in_place @invitation, :mid_tagline2 %></p>
+              </div>
+
+              <div class="event_tag">
+                <p align="center"><%= best_in_place @invitation, :event_tag_line %></p>
+              </div>
+              <br>
+
+              <div class="image_divider">
+
+              </div>
+
+              <div class="event_container">
+                <p align="center">Events</p>
+
+
+              </div>
+              <br>
+
+              <div class="image_divider">
+
+              </div>
+
+              <div class="reservation_container">
+                <p align="center">RSVP</p>
+
+
+              </div>
+              <br>
+
+              <div class="gift_container">
+                <p align="center">Gifts</p>
+
+
+
+              </div>
+              <br>
+
+              <div class="image_divider">
+
+              </div>
+
+              <div class="default_tag">
+                <p align="center">With Best Compliments</p>
+              </div>
+
+
+              <div class="close_tag">
+                <p align="center"><%= best_in_place @invitation, :closing_tag_line%></p>
+              </div>
+
+              <br>
+
+        </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+      </div>&lt;!&ndash; end list-group &ndash;&gt;
+    </div>&lt;!&ndash; end col-sm-4 &ndash;&gt;
+
+    <div class="col-sm-1">
+
+    </div>&lt;!&ndash; end col-sm-1 &ndash;&gt;
+
+  </div>&lt;!&ndash; end row &ndash;&gt;
+</div>&lt;!&ndash; end booking_container &ndash;&gt;-->
+
+
+
+<div class="container" >
+
+  <div class="row" id="wrapper">
+
+    <div class="col-sm-12" id="show_invitation_container">
+
+      <div class="col-sm-1">
+      </div><!-- end col-sm-1 -->
+
+      <div class="col-sm-10" >
+
+        <div class="list-group">
+          <div class="list-group-item">
+
+            <br>
+            <div class="head_image">
+              <p align="center"> <%= image_tag(@invitation.image.url(:large),:alt =>'invitation head image') %> </p>
+            </div>
+            <br>
+
+            <div class="invitation">
+              <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>INVITATION<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+            </div>
+
+
+            <div class="open_tag">
+              <p align="center"><%= @invitation.opening_tag_line%></p>
+            </div>
+
+            <div class="groom_tag">
+              <p align="center"><%=@invitation.groom_tag_line%></p>
+            </div>
+
+            <div class="groom_tag2">
+              <p align="center"><%= @invitation.groom_tagline2%></p>
+            </div>
+
+            <div class="connector">
+              <p align="center">&</p>
+            </div>
+
+            <div class="bride_tag">
+              <p align="center"><%= @invitation.bride_tag_line%></p>
+            </div>
+
+            <div class="bride_tag2">
+              <p align="center"><%= @invitation.bride_tagline2%></p>
+            </div>
+
+            <br>
+            <div class="mid_tag">
+              <p align="center"><%= @invitation.mid_tag_line%></p>
+            </div>
+
+            <div class="mid_tag2">
+              <p align="center"><%= @invitation.mid_tagline2%></p>
+            </div>
+
+            <div class="event_tag">
+              <p align="center"><%= @invitation.event_tag_line%></p>
+            </div>
+            <br>
+
+            <div class="image_divider">
+              <p align="center"><%= image_tag( "invitation/ganesha.jpg", :alt =>'invitation image divider') %></p>
+            </div>
+
+            <div class="event_container">
+
+              <div class="row">
+
+                <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>EVENTS<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+                <br>
+
+                <% if (@event_one!= nil) && (@event_two == nil) && (@event_three == nil)%>
+                    <style>#invitation_event_one{margin-left: 315px;} </style>
+                <% elsif (@event_one!= nil) && (@event_two!= nil) && (@event_three== nil)%>
+                    <style>#invitation_event_one{margin-left: 150px;} </style>
+                <% end%>
+
+
+                <% if @event_one!= nil %>
+                    <div class="col-sm-4" id="invitation_event_one">
+                      <div class="panel panel-info">
+
+                        <div class="panel-heading">
+                          <h3 class="panel-title" align="middle"><%= @event_one.event_name %></h3>
+                        </div>
+                        <%= image_tag(@event_one.image.url(:thumb),:alt =>'Venue image', :class =>"img-circle", :id => 'center_image_tag') %>
+                        <br>
+                        <div class="invitation_event_info">
+                          <p><%= @event_one.venue %></p>
+                          <p><%= @event_one.event_date.strftime('%A, %B %e, %Y') %></p>
+                          <p><%= @event_one.event_start_time.strftime('%I:%M %p') %> - <%= @event_one.event_end_time.strftime('%I:%M %p') %></p>
+                          <p><%= link_to 'View Details',event_details_path(event_id: @event_one.id), 'data-popup' => true, :class => 'btn btn-small btn-info', :remote => true %></p>
+                          <p><%#= link_to 'View Details',event_details_path(event_id: @event_one.id), 'data-toggle' => 'modal', 'data-target'=>'myModal', :class => 'btn btn-small btn-info', :remote => true %></p>
+
+                        </div>
+                      </div>
+                    </div>
+                <%end%>
+
+                <% if @event_two!= nil %>
+                    <div class="col-sm-4" id="invitation_event_two">
+                      <div class="panel panel-info">
+                        <div class="panel-heading">
+                          <h3 class="panel-title" align="middle"><%= @event_two.event_name %></h3>
+                        </div>
+                        <%= image_tag(@event_two.image.url(:thumb),:alt =>'Venue image', :class =>"img-circle", :id => 'center_image_tag') %>
+                        <br>
+                        <div class="invitation_event_info">
+                          <p><%= @event_two.venue %></p>
+                          <p><%= @event_two.event_date.strftime('%A, %B %e, %Y') %></p>
+                          <p><%= @event_two.event_start_time.strftime('%I:%M %p') %> - <%= @event_two.event_end_time.strftime('%I:%M %p') %></p>
+                          <p><%= link_to 'View Details',event_details_path(event_id: @event_two.id), 'data-popup' => true, :class => 'btn btn-small btn-info', :remote => true %></p>
+                        </div>
+                      </div>
+                    </div>
+                <%end%>
+
+                <% if @event_three!= nil %>
+                    <div class="col-sm-4" id="invitation_event_three">
+                      <div class="panel panel-info">
+
+                        <div class="panel-heading">
+                          <h3 class="panel-title" align="middle"><%= @event_three.event_name %></h3>
+                        </div>
+                        <%= image_tag(@event_three.image.url(:thumb),:alt =>'Venue image', :class =>"img-circle", :id => 'center_image_tag') %>
+                        <br>
+                        <div class="invitation_event_info">
+                          <p><%= @event_three.venue %></p>
+                          <p><%= @event_three.event_date.strftime('%A, %B %e, %Y') %></p>
+                          <p><%= @event_three.event_start_time.strftime('%I:%M %p') %> - <%= @event_three.event_end_time.strftime('%I:%M %p') %></p>
+                          <p><%= link_to 'View Details',event_details_path(event_id: @event_three.id), 'data-popup' => true, :class => 'btn btn-small btn-info', :remote => true %></p>
+                        </div>
+                      </div>
+                    </div>
+                <%end%>
+
+              </div>
+
+            </div>
+
+            <br>
+
+            <div class="image_divider">
+              <%#= image_tag( 'right_image.png', :alt =>'invitation  inage divider') %>
+            </div>
+
+            <div class="reservation_container">
+
+              <div class="row">
+                <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>RSVP<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+                <br>
+
+
+                <% if @event_one!= nil %>
+                    <div class="col-sm-4" id="invitation_event_one">
+                      <div class="panel panel-primary">
+
+                        <div class="panel-heading">
+                          <h3 class="panel-title" align="middle"><%= @event_one.event_name %></h3>
+                        </div>
+                        <br>
+                        <div class="invitation_event_info">
+                          <p><%= @event_one.event_date.strftime('%A, %B %e, %Y') %></p>
+                          <p><%= link_to( 'RSVP', new_event_reservation_path(event_id: @event_one.id), 'data-popup' => true, :class => 'btn btn-small btn-info' ) %></p>
+                        </div>
+                      </div>
+                    </div>
+                <%end%>
+
+                <% if @event_two!= nil %>
+                    <div class="col-sm-4" id="invitation_event_two">
+                      <div class="panel panel-primary">
+                        <div class="panel-heading">
+                          <h3 class="panel-title" align="middle"><%= @event_two.event_name %></h3>
+                        </div>
+                        <br>
+                        <div class="invitation_event_info">
+                          <p><%= @event_two.event_date.strftime('%A, %B %e, %Y') %></p>
+                          <p><%= link_to( 'RSVP', new_event_reservation_path(event_id: @event_two.id), 'data-popup' => true, :class => 'btn btn-small btn-info' ) %></p>
+                        </div>
+                      </div>
+                    </div>
+                <%end%>
+
+                <% if @event_three!= nil %>
+                    <div class="col-sm-4" id="invitation_event_three">
+                      <div class="panel panel-primary">
+
+                        <div class="panel-heading">
+                          <h3 class="panel-title" align="middle"><%= @event_three.event_name %></h3>
+                        </div>
+                        <br>
+                        <div class="invitation_event_info">
+                          <p><%= @event_three.event_date.strftime('%A, %B %e, %Y') %></p>
+                          <p><%= link_to( 'RSVP', new_event_reservation_path(event_id: @event_three.id), 'data-popup' => true, :class => 'btn btn-small btn-info' ) %></p>
+                        </div>
+                      </div>
+                    </div>
+                <%end%>
+
+              </div>
+
+
+            </div>
+
+            <br>
+
+            <div class="gift_container">
+
+              <div class="row">
+
+                <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>GIFTS<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+                <br>
+
+                <% if (@gift_one!= nil) && (@gift_two == nil) && (@gift_three == nil)%>
+                    <style>#invitation_gift_one{margin-left: 315px;} </style>
+                <% elsif (@gift_one!= nil) && (@gift_two!= nil) && (@gift_three== nil)%>
+                    <style>#invitation_gift_one{margin-left: 95px;} </style>
+                <% else%>
+                    <style>#invitation_gift_one{margin-left: 0px;} </style>
+                <% end%>
+
+                <br>
+
+                <% if @gift_one != nil %>
+                    <div class="col-sm-4" id="invitation_gift_one">
+                      <div class="panel panel-info" id="gift_panel">
+                        <div class="panel-heading">
+                          <h3 class="panel-title" align="middle"><%=@gift_one_name%></h3>
+                        </div>
+                        <br>
+                        <% if @gift_one_uri != 'no'%>
+                            <p align="middle"><%= link_to "Go to " + @gift_one_name,@gift_one, class: 'btn btn-small btn-info' %></p>
+                            <%#= link_to image_tag("invitation/gift_place_holder.png",:alt =>'Venue image', :class =>"img-circle", :id => "gift_circle1"), @gift_one  %>
+                            <!--<p id="gift_label"><%=@gift_one_name%></p>-->
+                        <%else%>
+                            <p align="middle" id="gift_label"><%=@gift_one_name%></p>
+                        <%end%>
+
+                        <br>
+                      </div>
+                    </div>
+                <%end%>
+
+
+                <% if @gift_two != nil %>
+                    <div class="col-sm-4" id="invitation_gift_two">
+                      <div class="panel panel-info" id="gift_panel">
+                        <div class="panel-heading">
+                          <h3 class="panel-title" align="middle"><%=@gift_two_name%></h3>
+                        </div>
+                        <br>
+                        <%if @gift_two_uri != 'no'%>
+                            <%#= link_to image_tag("invitation/gift_place_holder.png",:alt =>'Venue image', :class =>"img-circle", :id => "gift_circle1"), @gift_two  %>
+                            <p align="middle"><%= link_to "Go to " + @gift_two_name,@gift_two, class: 'btn btn-small btn-info' %></p>
+                            <!--<p id="gift_label"><%=@gift_two_name%></p>-->
+                        <%else%>
+                            <p></p>
+                            <%#= image_tag("invitation/gift_place_holder.png",:alt =>'Venue image', :class =>"img-circle", :id => "gift_circle1")  %>
+                            <p align="middle" id="gift_label"><%=@gift_two_name%></p>
+                        <%end%>
+
+                        <br>
+                      </div>
+                    </div>
+                <%end%>
+
+
+                <% if @gift_three != nil %>
+                    <div class="col-sm-4" id="invitation_gift_three">
+                      <div class="panel panel-info" id="gift_panel">
+                        <div class="panel-heading">
+                          <h3 class="panel-title" align="middle"><%=@gift_three_name%></h3>
+                        </div>
+                        <br>
+                        <%if @gift_three_uri != 'no'%>
+                            <p align="middle"><%= link_to "Go to " + @gift_three_name,@gift_three, class: 'btn btn-small btn-info' %></p>
+                            <%#= link_to image_tag("invitation/gift_place_holder.png",:alt =>'Venue image', :class =>"img-circle", :id => "gift_circle1"), @gift_three  %>
+                            <!--<p id="gift_label"><%=@gift_three_name%></p>-->
+                        <%else%>
+                            <%#= image_tag("invitation/gift_place_holder.png",:alt =>'Venue image', :class =>"img-circle", :id => "gift_circle1") %>
+                            <p align="middle" id="gift_label"><%=@gift_three_name%></p>
+                        <%end%>
+
+                        <br>
+                      </div>
+                    </div>
+                <%end%>
+
+              </div>
+
+            </div>
+            <br>
+
+            <div class="image_divider">
+              <p align="center"><%= image_tag( "invitation/ganesha.jpg", :alt =>'invitation image divider') %></p>
+            </div>
+
+            <div class="default_tag">
+              <p align="center">With Best Compliments</p>
+            </div>
+
+
+            <div class="close_tag">
+              <p align="center"><%= @invitation.closing_tag_line  %></p>
+            </div>
+
+          </div><!-- end list-group-item -->
+        </div><!-- end list-group -->
+      </div><!-- end col-sm-10 -->
+
+      <div class="col-sm-1">
+
+      </div><!-- end col-sm-1 -->
+    </div>
+
+  </div><!-- end row -->
+
+
+</div><!-- end booking_container -->
+
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2 align="middle">
+
+        <% if can? :destroy, Invitation%>
+            <%= link_to 'Destroy', invitation_path(@invitation.id), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-small btn-danger'%></td>
+        <% end %>
+
+        <% if can? :update, Invitation%>
+            <%= link_to 'Edit Invitation', edit_invitation_path(@invitation.id), :class => 'btn btn-large btn-info' %>
+        <% end %>
+
+      </h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
+
+
+
+<div class="script">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

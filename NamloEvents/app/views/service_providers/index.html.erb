@@ -1,6 +1,6 @@
 <div class="container" id="service_provider__index_container">
   <div class="page-header">
-    <h1> Service Provider Profiles</h1>
+    <h2> Service Provider Profiles</h2>
   </div>
 
   <div class="row" id="features">
@@ -27,22 +27,37 @@
             <% end %>
             <%#= image_tag(service_provider.image.url(:thumb),:alt =>"Wedding Event", :class =>"img-circle") %>
             <%#= image_tag("application/dinesh_dai1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
-            <p align="middle">Service: <%= service_provider.service_category %></p>
+            <p align="middle">Service(s):
+            <%  @service_provider_service = ServiceProviderService.where((' service_provider_id LIKE ? '), service_provider.id).first %>
+
+              <% if @service_provider_service != nil%>
+                  <%=Service.find( @service_provider_service.service_id).service_name%><br>
+              <%end%>
+
+            </p>
             <p align="middle">Business Phone: <%= service_provider.business_phone %>, Fax:  <%= service_provider.fax %> </p>
-            <p align="middle">Address: <%#= service_provider.user.profile.street_address %><%= Profile.find_by_user_id(service_provider.user_id).street_address %>, <%= Profile.find_by_user_id(service_provider.user_id).city %>, <%= Profile.find_by_user_id(service_provider.user_id).state_province%> <%= Profile.find_by_user_id(service_provider.user_id).zip_postal_code %> </p>
-            <p align="middle"><%= Profile.find_by_user_id(service_provider.user_id).country_region %>   </p>
+
+            <p align="middle">Address: <%#= service_provider.user.profile.street_address %><%= Profile.find_by_user_id(service_provider.user_id).street_address %> </p>
+            <p align="middle"><%= Profile.find_by_user_id(service_provider.user_id).city %>, <%= Profile.find_by_user_id(service_provider.user_id).state_province%> <%= Profile.find_by_user_id(service_provider.user_id).zip_postal_code %> </p>
+            <p align="middle"><%= Profile.find_by_user_id(service_provider.user_id).country_region %></p>
+
+            <% @portfolio = Portfolio.find_by_service_provider_id(service_provider.id)%>
+            <% if @portfolio.present? %>
+                <%= link_to 'Portfolio', service_provider_portfolio_path(service_provider.id, @portfolio.id), :class => 'btn btn-small btn-info' %>
+            <%end%>
+
+            <%= link_to 'Book', new_booking_path(:service_provider_id => service_provider.id), :class => 'btn btn-small btn-info' %>
+            <%= link_to 'Reviews', user_service_provider_path(service_provider.user_id, service_provider.id), :class => 'btn btn-large btn-info' %>
 
             <%#= link_to 'Profile', service_provider, :class => 'btn btn-large btn-info' %>
             <%#= link_to 'Edit', edit_service_provider_path(service_provider) , :class => 'btn btn-large btn-warning' %>
             <%#= link_to 'Destroy', service_provider, method: :delete, data: { confirm: 'Are you sure?' },:class => 'btn btn-large btn-danger' %>
-            <%= link_to 'Reviews', service_provider_reviews_path(service_provider.id), :class => 'btn btn-large btn-info' %>
-            <%= link_to 'Peer Reviews', service_provider_peer_reviews_path(service_provider.id), :class => 'btn btn-large btn-info' %>
+            <%#= link_to 'Reviews', service_provider_reviews_path(service_provider.id), :class => 'btn btn-small btn-info' %>
+            <%= link_to 'Peer Reviews', service_provider_peer_reviews_path(service_provider.id), :class => 'btn btn-small btn-info' %>
 
             <%#= link_to 'Book', service_provider,:class => 'btn btn-large btn-warning' %>
 
-
             <p></p>
-
           </div>
         </div>
 
@@ -57,7 +72,7 @@
 <div class="container">
   <div class="row">
     <div class="page-header">
-      <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h1>
+      <h2> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h2>
     </div>
   </div>
 </div>

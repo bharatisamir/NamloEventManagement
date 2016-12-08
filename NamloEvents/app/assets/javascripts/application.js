@@ -12,6 +12,33 @@
 //
 //= require jquery
 //= require bootstrap
+//= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
+//= require best_in_place
 //= require_tree .
+
+
+
+$('a[data-popup]').live('click', function(e) {
+
+    if($(this).attr('href').includes("event_details"))
+    {
+        window.open( $(this).attr('href'), "Popup", "toolbar=yes, scrollbars=yes,resizable=yes,top=500, left=400,height=600, width=800" );
+
+    }
+
+    else if($(this).attr('href').includes("invitation"))
+    {
+        window.open( $(this).attr('href'), "Popup", "toolbar=yes, scrollbars=yes,resizable=yes,top=500, left=400,height=1000, width=1400" );
+
+    }
+    else
+    {
+        window.open( $(this).attr('href'), "Popup", "toolbar=yes, scrollbars=yes,resizable=yes,top=500, left=500,height=600, width=500" );
+
+    }
+    e.preventDefault();
+
+});

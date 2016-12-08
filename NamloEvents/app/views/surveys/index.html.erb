@@ -1,0 +1,62 @@
+
+<div class="container" id="service_index_container">
+  <div class="page-header">
+    <h2> Surveys created by You </h2>
+  </div>
+
+
+  <div class="row" id="features">
+    <% @surveys.each do |survey| %>
+
+        <div class="col-sm-4 ">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= survey.name %></h3>
+            </div>
+            <p></p>
+            <%#= image_tag(menu.event.image.url(:thumb),:alt =>'Venue image', :class =>"img-circle") %>
+            <p align="middle"><%= survey.description%></p>
+
+            <% if can? :read, @survey%>
+                <%= link_to 'Survey Functions', survey_path(survey.id), :class => 'btn btn-small btn-info' %>
+            <% end %>
+
+            <% if can? :update, @survey%>
+                <%= link_to 'Edit', edit_survey_path(survey.id), :class => 'btn btn-small btn-warning' %>
+            <% end %>
+
+            <% if can? :destroy, @survey%>
+                <%= link_to 'Destroy', survey_path(survey.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+            <% end %>
+
+            <p></p>
+
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+</div><!-- end edit_password_container -->
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %>
+
+        <% if can? :create, @survey%>
+            <%= link_to 'New Survey', new_survey_path, :class => 'btn btn-large btn-info' %>
+        <% end %>
+
+      </h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
+
+<div class="script">
+
+</div>
+
+
+
+
+

@@ -1,0 +1,228 @@
+
+
+
+
+
+<%#= link_to 'New Event', new_event_path %>
+
+<div class="container" id="event_index_container">
+  <div class="page-header">
+
+    <% if params[:event_manager] != nil%>
+        <h2>Event Orders Managed by You </h2>
+    <%else%>
+        <h2>Event Orders created by You </h2>
+    <%end%>
+  </div>
+
+
+  <div class="row" id="features">
+
+    <% @event_orders.each do |event_order| %>
+
+        <div class="col-sm-4 ">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= event_order.event.event_name %></h3>
+            </div>
+            <p></p>
+            <%= image_tag(event_order.event.image.url(:thumb),:alt =>'Venue image', :class =>"img-circle") %>
+            <p align="middle">Date: <%= event_order.event.event_date %> --::::-- Time: <%= event_order.event.event_start_time.strftime('%H:%M') %> - <%= event_order.event.event_end_time.strftime('%H:%M') %></p>
+
+            <p align="middle">Event Order Placed:  <%= event_order.order_date %></p>
+            <p align="middle">Onsite Contacts:</p>
+            <p align="middle"><%= event_order.primary_onsite_contact %>(<%= event_order.primary_phone %>)</p>
+            <p align="middle"><%= event_order.secondary_onsite_contact %> (<%= event_order.primary_phone %>)</p>
+
+            <%= link_to 'Event Order Functions', event_order_path(event_order.id), :class => 'btn btn-small btn-info' %>
+            <%= link_to 'Edit', edit_event_order_path(event_order.id), :class => 'btn btn-small btn-warning' %>
+            <%= link_to 'Destroy', event_order_path(event_order.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+            <p></p>
+
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <%#= will_paginate @service_providers %>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h1>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%#= link_to 'New Event Order', new_event_order_path %>
+
+<!--
+<div class="container" id="event_order_index_container">
+  <div class="page-header">
+    <h1>Your Event Order </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Search Event by Host's email</h3>
+        </div>&lt;!&ndash; end panel-heading &ndash;&gt;
+        <br />
+        <div class="event_search">
+          <%= form_tag event_orders_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search, params[:search],placeholder: 'Enter email', :size => '30' %>
+                <%= submit_tag "Search", :name => nil %>
+              </p>
+          <% end %>
+        </div>
+        <hr>
+        <p>
+          <% if (@events == nil || @host == nil) %>
+              <% if params[:search]%>
+                <p align="center", class="error_message"> Sorry, no events found for host with email: <%= params[:search] %> </p>
+            <% end %>
+
+        <% else %>
+            <% @events.each do |event| %>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+                    <tr class="success">
+                      <td> <strong>Event ID:</strong></td>
+                      <td><em><strong><%= event.id %></strong></em></td>
+                      <td> <strong>Event Date:</strong></td>
+                      <td><em><strong><%= event.event_date %></strong></em></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+            <% end %>
+        <% end %>
+        </p>
+
+      </div>&lt;!&ndash; end panel &ndash;&gt;
+    </div>&lt;!&ndash; end col-sm-4 &ndash;&gt;
+
+    <div class="col-sm-4">
+      <div class="list-group">
+        <div class="list-group-item">
+
+          <p>
+            <% if (@event_orders == nil || @host == nil) %>
+                <% if params[:search2]%>
+                  <p align="center", class="error_message"> Sorry, no event order found for event with event id: <%= params[:search2] %> </p>
+              <% end %>
+
+          <% else %>
+              <% @event_orders.each do |event_order| %>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                      <tr class="info">
+                        <th>Order date</th>
+                        <th>Primary onsite contact</th>
+                        <th>Secondary onsite contact</th>
+                        <th>Primary phone</th>
+                        <th>Secondary phone</th>
+                        <th>Event</th>
+                        <th colspan="3"></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr class="success">
+                        <td><%= event_order.order_date %></td>
+                        <td><%= event_order.primary_onsite_contact %></td>
+                        <td><%= event_order.secondary_onsite_contact %></td>
+                        <td><%= event_order.primary_phone %></td>
+                        <td><%= event_order.secondary_phone %></td>
+                        <td><%= event_order.event %></td>
+                        <td><%#= link_to 'Show', event_order %></td>
+                        <td><%= link_to 'Edit', edit_event_order_path(event_order) %></td>
+                        <td><%= link_to 'Destroy', event_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+              <% end %>
+          <% end %>
+          </p>
+
+
+        </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+      </div>&lt;!&ndash; end list-group &ndash;&gt;
+    </div>&lt;!&ndash; end col-sm-4 &ndash;&gt;
+
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Search Event Order by Event ID</h3>
+        </div>&lt;!&ndash; end panel-heading &ndash;&gt;
+        <br />
+        <div class="event_search">
+          <%= form_tag event_orders_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search2, params[:search2],placeholder: 'Enter Event ID from Search result', :size => '30' %>
+                <%= submit_tag "Search", :name => nil %>
+              </p>
+          <% end %>
+        </div>
+        <hr>
+      </div>&lt;!&ndash; end panel &ndash;&gt;
+    </div>&lt;!&ndash; end col-sm-4 &ndash;&gt;
+  </div>&lt;!&ndash; end row &ndash;&gt;
+</div>&lt;!&ndash; end event_order_index_container &ndash;&gt;
+
+<br>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,134 @@
+
+<div class="container" id="offer_index_container">
+  <div class="page-header">
+    <h2> Your Offer Packages </h2>
+  </div>
+
+  <div class="row" id="features">
+    <% @offers.each do |offer| %>
+        <div class="col-sm-4">
+          <div id="offer-container">
+            <div class="thumbnail" id="offer-thumb">
+
+              <div class="label label-success price">
+                <span class="glyphicon glyphicon-tag"></span>
+                <sup>$</sup><%= offer.price %>
+              </div>
+              <h3 class="panel-title" align="middle" id="offer-panel-title"><%= offer.name %></h3>
+
+            <br>
+            <p align="middle" id="offer-panel-detail" style="white-space: pre-line"><%= offer.details %></p>
+            <div id="offer-price-index-container">
+              <p align="middle" id="original-price">Original Price | Offer Price </p>
+              <p align="middle" id="original-price">$<%= offer.original_price %>&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$<%= offer.price %>  </p>
+            </div>
+              <%= link_to 'View Offer', service_provider_offer_path(@service_provider.id, offer.id), :class => 'btn btn-large btn-info' %>
+
+              <% if can? :update, Offer%>
+                  <%= link_to 'Edit Offer', edit_service_provider_offer_path(@service_provider.id, offer.id), :class => 'btn btn-large btn-warning' %>
+              <% end %>
+
+              <% if can? :destroy, Offer%>
+                  <%= link_to 'Destroy', service_provider_offer_path(@service_provider.id, offer.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-large btn-danger' %>
+              <% end %>
+
+            <p></p>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+
+  <%= will_paginate @offers %>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %>
+
+        <% if can? :create, @offer%>
+            <%= link_to 'Create New Offer Package', new_service_provider_offer_path(@service_provider.id), :class => 'btn btn-large btn-info' %>
+        <% end %>
+
+      </h2>
+    </div>
+  </div>
+</div>
+
+
+
+<!--<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%#= offer.name %></h3>
+
+  </div>
+  <p></p>
+
+  <%#= image_tag(Profile.find_by_user_id(@service_provider.user_id).image.url(:thumb),:alt =>'Profile image', :class =>"img-circle") %>
+
+
+  <p align="middle">$<%#= offer.price %></p>
+  <p align="left"><strong>Offer Details</strong></p>
+  <p align="left" style="white-space: pre-line"><%#= offer.details %> </p>
+
+  <p align="left"><strong>Terms & Conditions</strong></p>
+  <p align="left" style="white-space: pre-line"><%#= offer.terms_conditions %></p>
+  <p align="left"><strong>Offer Expires</strong></p>
+  <p align="left"><%#= offer.expires.strftime('%A, %B %e, %Y') %></p>
+
+
+  <%#= link_to 'Book', new_booking_path(:service_provider_id => @service_provider.id), :class => 'btn btn-small btn-info' %>
+
+  <p></p>
+</div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Details</th>
+      <th>Terms conditions</th>
+      <th>Expires</th>
+      <th>Service provider</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @offers.each do |offer| %>
+      <tr>
+        <td><%= offer.name %></td>
+        <td><%= offer.price %></td>
+        <td><%= offer.details %></td>
+        <td><%= offer.terms_conditions %></td>
+        <td><%= offer.expires %></td>
+        <td><%= offer.service_provider %></td>
+        <td><%#= link_to 'Show', offer %></td>
+        <td><%#= link_to 'Edit', edit_offer_path(offer) %></td>
+        <td><%#= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+-->
+
+<br>
+
+<%#= link_to 'New Offer', new_offer_path %>

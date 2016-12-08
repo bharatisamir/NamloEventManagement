@@ -1,0 +1,83 @@
+
+<div class="container" id="mail_event_container">
+  <div class="page-header">
+    <h2>New Message</h2>
+  </div>
+
+  <div class="row" id="features">
+    <div class="col-sm-2">
+
+    </div>
+
+    <div class="col-sm-8">
+      <div class="thumbnail">
+        <div align="center">
+          <%= simple_form_for @email, :url => email_index_path do |f| %>
+              <% if @email.errors.any? %>
+                  <div id="error_explanation">
+                    <h4><%= pluralize(@email.errors.count, "error") %> prohibited this message from being sent</h4>
+
+                    <ul>
+                      <% @email.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <br>
+              <div class="form-group">
+                <%#= f.label 'Recipient Name'  %>
+                <%= f.text_field :name, size:30, placeholder:'Recipient Name',required: true, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%#= f.label 'To' %>
+                <%= f.text_field :email,placeholder:'To', size:40, required: true, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%#= f.label 'Subject' %>
+                <%= f.text_field :subject, size:50,placeholder:'Subject', required: true, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%#= f.label 'Message' %><br>
+                <%= f.text_area :message, cols:80, rows:15, required: true, class:'form-control' %>
+              </div>
+
+              <div class= "hidden">
+                <div class="field">
+                  <%= f.label :nickname %><br>
+                  <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+                </div>
+              </div>
+
+              <div>
+                </br>
+                <%= f.button :submit, 'Send', :class=> "btn btn-primary" %>
+              </div><br>
+          <% end %>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-sm-2">
+
+    </div>
+
+  </div>
+</div>
+
+<hr>
+<div class="script">
+
+</div>
+
+
+
+
+
+

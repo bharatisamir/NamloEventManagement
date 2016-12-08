@@ -35,10 +35,16 @@
 }
 
 
+
 #contact
 {
   margin-left: 15px;
   display:block;
+}
+
+
+.provider_search{
+  margin-left: 100px;
 }
 
 
@@ -75,6 +81,11 @@
   margin-top: 10px;
 }
 
+#center_image_tag{
+  margin-left: 35px;
+  margin-bottom: 5px;
+}
+
 footer {
   background: #333;
   color: #eee;
@@ -87,6 +98,10 @@ footer {
   float: left;
   width: 10%;
 
+}
+
+p.event_info {
+  color: crimson;
 }
 
 .to_do_item {
@@ -105,6 +120,338 @@ footer {
 
 }
 
+.event_search{
+  margin-left: 30px ;
+}
+
+.purr {
+  position: fixed;
+  top: 30px;
+  right: 100px;
+  width: 250px;
+  padding: 20px;
+  background-color: #FCC;
+  border: solid 2px #C66;
+  &:first-letter { text-transform: uppercase; }
+}
+
+#script{
+  //margin-bottom: 20px;
+}
+
+#head_nav{
+  margin-top: 5px;
+  margin-left: 140px;
+  z-index:1;
+}
+
+#gift_panel{
+
+
+}
+
+
+
+#reservation_form h2,
+h2#event_detail
+{
+  margin-top: -100px;
+}
+
+/*#gift_label{
+  margin-top: -145px;
+  margin-left: 75px;
+  z-index:1;
+  font-size: medium;
+
+}*/
+
+/*#gift_circle{
+  margin-top: -115px;
+  margin-bottom: 100px;
+}
+
+#gift_circle1{
+margin-top: -10px;
+  margin-left: 51px;
+margin-bottom: 60px;
+}*/
+
+
+#map-container {
+  height: 400px;
+  border-radius: 16px 16px;
+  border-color: #fff;
+  border-style: solid;
+  box-shadow: 2px 2px 10px #B1B1B1;
+  margin-top: 25px;
+  border-width: 7px;
+}
+
+
+#map-canvas {
+  height: 384px;
+  width: 100%;
+}
+
+#gallery-canvas {
+  height: 500px;
+  width: 100%;
+}
+
+#search-container{
+  height: 50px;
+  width: 520px;
+  border-radius: 16px 16px;
+  border-color: #fff;
+  border-style: solid;
+  box-shadow: 2px 2px 10px blue;
+  margin-top: 5px;
+  border-width: 7px;
+
+}
+
+.search-canvas {
+  height: 100px;
+  width: 100%;
+
+}
+
+#offer-container {
+  height: 350px;
+  width: 350px;
+  border-radius: 16px 16px;
+  border-color: #fff;
+  border-style: solid;
+  box-shadow: 2px 2px 10px #B1B1B1;
+  margin-top: 25px;
+  border-width: 7px;
+}
+
+#offer-price-index-container {
+  height: 100px;
+  width: 300px;
+  border-radius: 16px 16px;
+  border-color: #fff;
+  border-style: solid;
+  box-shadow: 2px 2px 10px #B1B1B1;
+  margin-top: 25px;
+  padding-top: 15px;
+  margin-left: 15px;
+  margin-bottom: 30px;
+  border-width: 7px;
+  background-color: #2dbe60;
+}
+
+.offer_market_container{
+  margin-left: 15px;
+}
+
+#offer-market-container {
+  height: 380px;
+  width: 350px;
+  border-radius: 16px 16px;
+  border-color: #fff;
+  border-style: solid;
+  box-shadow: 2px 2px 10px #B1B1B1;
+  margin-top: 25px;
+  border-width: 7px;
+}
+
+#offer-price-market-container {
+  height: 100px;
+  width: 300px;
+  border-radius: 16px 16px;
+  border-color: #fff;
+  border-style: solid;
+  box-shadow: 2px 2px 10px #B1B1B1;
+  margin-top: 25px;
+  padding-top: 15px;
+  margin-left: 12px;
+  margin-bottom: 30px;
+  border-width: 7px;
+  background-color: #2dbe60;
+}
+
+#offer-panel-title{
+  font-weight: bolder;
+  font-size: x-large;
+  margin-top: 15px;
+  color: #d58512;
+}
+
+#offer-panel-detail{
+  font-weight: bolder;
+  font-size: larger;
+  margin-top: 10px;
+}
+
+
+#offer-price-container {
+  height: 150px;
+  width: 400px;
+  border-radius: 16px 16px;
+  border-color: #fff;
+  border-style: solid;
+  box-shadow: 2px 2px 10px #B1B1B1;
+  margin-top: 25px;
+  padding-top: 30px;
+  margin-left: 70px;
+  margin-bottom: 30px;
+  border-width: 7px;
+  background-color: #2dbe60;
+}
+
+#offer-price{
+  color: white;
+  font-weight: bolder;
+  font-size: x-large;
+}
+
+#original-price{
+  color: white;
+  font-weight: bolder;
+  font-size: large;
+}
+
+#original-market-price{
+  color: white;
+  font-weight: bolder;
+  font-size: large;
+  margin-left: -10px;
+}
+
+.market-span{
+  margin-left: 65px;
+}
+
+
+#offer-thumb{
+  margin-top: 10px;
+}
+
+#offer-canvas {
+  height: 320px;
+  width: 100%;
+  //background-color: royalblue;
+}
+
+.label {
+  font-size: 75%;
+  font-weight: 500;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.thumbnail .price {
+  font-size: 22px;
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  padding: 10px;
+}
+
+#market-price {
+  font-size: 22px;
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  padding: 10px;
+}
+
+.thumbnail span.glyphicon {
+  margin-right: 5px;
+}
+
+.offer_show_details{
+  margin-left: 10px;
+}
+
+#footer_container{
+    margin-top: 30px;
+   // margin-left: 150px;
+}
+
+/* navbar */
+
+.navbar-collapse{
+  background-color: #9b59b6;
+}
+
+.container-fluid{
+  background-color: #9b59b6;
+}
+
+.navbar-default .navbar-nav {
+  background-color: #9b59b6;
+  border-color: #E7E7E7;
+}
+
+.navbar-text > p,
+.navbar-text > ul > li > a,
+.navbar-text > ul > a > i{
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-text > ul > a > i{
+ margin-right: 10px;
+}
+
+
+/* link */
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: seagreen;
+}
+
+.navbar-default .navbar-nav > li > .dropdown-menu{
+  padding-left: 10px;
+  color: white;
+  background-color: #e74c3c;
+}
+
+.navbar-collapse a:hover,
+.navbar-collapse a:focus
+{
+  color: #9b59b6;
+}
+
+.navbar-collapse a
+{
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-collapse a:link{
+  text-decoration:none;
+}
+
+.navbar-collapse .navbar-nav > li > a {
+  color: white;
+}
+
+
+/* caret */
+.navbar-default .navbar-nav > .dropdown > a .caret {
+  border-top-color: #e74c3c;
+  border-bottom-color: #e74c3c;
+}
 
 /* --------------------------------------
    Typography
@@ -114,8 +461,120 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
   padding-top: 70px;
-  padding-bottom: 70px;
 
+
+}
+
+
+.custom_error{
+  font-size: x-large;
+  text-align: center;
+  font-weight: bold;
+}
+
+#form_error_message > li  {
+  font-size: larger;
+  text-align: center;
+  font-weight: bold;
+
+}
+
+.second_error {
+  margin-left: 50px;
+  font-size: larger;
+  font-weight: bold;
+}
+
+
+#event_one{
+  margin-left: auto;
+}
+
+#wrapper{
+  padding-top: 60px;
+  padding-bottom: 50px;
+  background-color: goldenrod;
+}
+.invitation_event_info > p {
+  text-align: center;
+  font-weight: bold;
+  color: red;
+}
+
+#invitation_form{
+  margin-left: 370px;
+  font-size: medium;
+  font-weight: bold;
+
+}
+
+#invitation_line {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bolder;
+  font-size: x-large;
+  color: red;
+}
+
+#invitation{
+  font-size: medium;
+  font-weight: bold;
+  color: black;
+}
+
+.invitation > p,
+.event_container > p,
+.reservation_container > p,
+.gift_container
+{
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bolder;
+  font-size: x-large;
+  color: red;
+
+}
+
+.open_tag > p,
+.groom_tag2 > p,
+.connector > p,
+.bride_tag2 > p,
+.mid_tag > p,
+.mid_tag2 > p,
+.event_tag > p,
+.default_tag > p
+
+{
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bolder;
+  font-size: larger;
+  font-style: italic;
+
+}
+
+
+.groom_tag2 > p,
+.bride_tag2 > p
+{
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: medium;
+  font-style: italic;
+
+}
+
+
+.groom_tag > p,
+.bride_tag > p,
+.close_tag > p
+{
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: large;
+
+}
+
+
+.message_row{
+  margin-top: 25px;
 }
 
 .well .page-header {
@@ -129,8 +588,23 @@ body {
 ul.unstyled {
   list-style: none;
   padding: 0;
+  color: white;
 }
 
+#booking_heading {
+  color: crimson;
+}
+
+#submit_button{
+  margin-left: 100px;
+}
+
+
+.logo-wrapper{ display: inline-block;
+  margin-left: 12px;
+  width: 300px;
+  .logo{width:180px; height: 139px; position:absolute; left:30px; top:30px; }
+}
 
 /* --------------------------------------
    Carousel
@@ -167,6 +641,13 @@ ul.unstyled {
 #home_jumbotron{
   background-color: #2dbe60;
   color: white;
+  margin-bottom: 100px;
+
+}
+
+.script{
+ // margin-top: 100px;
+ // margin-bottom: 100px;
 }
 
 

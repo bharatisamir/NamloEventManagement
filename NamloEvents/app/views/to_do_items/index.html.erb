@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
 
+
+<!--
 <h1>To Do Items</h1>
 
 <table>
@@ -15,12 +16,12 @@
   <tbody>
     <% @to_do_items.each do |to_do_item| %>
       <tr>
-        <td><%= to_do_item.todo_item %></td>
-        <td><%= to_do_item.completed_at %></td>
-        <td><%= to_do_item.to_do_list %></td>
-        <td><%= link_to 'Show', to_do_item %></td>
-        <td><%= link_to 'Edit', edit_to_do_item_path(to_do_item) %></td>
-        <td><%= link_to 'Destroy', to_do_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= to_do_item.todo_item %></td>
+        <td><%#= to_do_item.completed_at %></td>
+        <td><%#= to_do_item.to_do_list %></td>
+        <td><%#= link_to 'Show', to_do_item %></td>
+        <td><%#= link_to 'Edit', edit_to_do_item_path(to_do_item) %></td>
+        <td><%#= link_to 'Destroy', to_do_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +29,5 @@
 
 <br>
 
-<%= link_to 'New To Do Item', new_to_do_item_path %>
+<%#= link_to 'New To Do Item', new_to_do_item_path %>
+-->

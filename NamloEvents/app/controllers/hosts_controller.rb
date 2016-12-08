@@ -37,7 +37,18 @@ class HostsController < ApplicationController
 
     respond_to do |format|
       if @host.save
-        #$host_status = 'success'
+
+        @user_id = @user.id
+        @host_id = Host.where(('user_id LIKE ?'),@user_id)
+        if @host_id != nil
+          @role = Role.find_by_name('Host')
+          @role_id =@role.id
+          if @role_id != nil
+            sql = "INSERT INTO roles_users(user_id, role_id) VALUES( #{@user_id }, #{@role_id})"
+            ActiveRecord::Base.connection.execute(sql)
+          end
+        end
+
         format.html { redirect_to dashboard_index_path, notice: 'Host was successfully created.' }
         format.json { render :show, status: :created, location: @host }
       else

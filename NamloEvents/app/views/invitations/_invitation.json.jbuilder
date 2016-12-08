@@ -1,0 +1,2 @@
+json.extract! invitation, :id, :opening_tag_line, :groom_tag_line, :mid_tag_line, :bride_tag_line, :event_tag_line, :gift_tag_line, :closing_tag_line, :event_id, :created_at, :updated_at
+json.url invitation_url(invitation, format: :json)

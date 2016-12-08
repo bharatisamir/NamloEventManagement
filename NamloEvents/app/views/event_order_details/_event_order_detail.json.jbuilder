@@ -1,0 +1,2 @@
+json.extract! event_order_detail, :id, :service_date, :service_start_time, :service_end_time, :function, :service_location, :service_setup_requirements, :event_order_id, :service_id, :service_provider_id, :created_at, :updated_at
+json.url event_order_detail_url(event_order_detail, format: :json)

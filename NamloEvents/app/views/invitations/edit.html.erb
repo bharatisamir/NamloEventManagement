@@ -1,0 +1,19 @@
+<%#= link_to 'Show', @invitation %>
+<%#= link_to 'Back', invitations_path %>
+
+<div class="container">
+  <div class="page-header">
+    <h2>Please, edit your invitation</h2>
+  </div><!-- end page-header -->
+</div>
+
+<%= render 'form', invitation: @invitation %>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
+

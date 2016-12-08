@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  todo_list_title: MyString
-  todo_list_description: MyText
-  user: one
+  todo_list_title: "RubyRailsWedding2016"
+  todo_list_description: 'List of Stuffs'
+  user: 13
 
 two:
-  todo_list_title: MyString
-  todo_list_description: MyText
-  user: two
+  todo_list_title: "RubyWedding2016"
+  todo_list_description: 'List of Stuffs to do'
+  user: 12

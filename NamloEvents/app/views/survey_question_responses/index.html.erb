@@ -1,0 +1,113 @@
+
+
+<div class="container" id="event_order_show_container">
+  <div class="page-header">
+    <h2>Survey Responses</h2>
+  </div><!-- end page-header -->
+
+  <div class="row" id="features">
+    <div class="col-sm-2 feature">
+
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-8">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @survey.name %></h3>
+        </div>
+        <br>
+        <strong><p align="middle" class= "event_info"> <%= @survey.description %></p></strong>
+      </div>
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-2">
+
+    </div><!-- end col-sm-4 -->
+  </div>
+
+  <hr>
+
+  <div class="container" >
+
+    <div id="more_info" class="row">
+
+      <div class="">
+
+      </div><!-- end class -->
+
+        <div class="col-sm-12">
+          <div class="list-group">
+            <div class="list-group-item">
+              <div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr class="info">
+                        <th><%=@survey.survey_questions[0].question %></th>
+                        <th><%=@survey.survey_questions[1].question %></th>
+                        <th><%=@survey.survey_questions[2].question %></th>
+                        <th><%=@survey.survey_questions[3].question %></th>
+                        <th><%=@survey.survey_questions[4].question %></th>
+                        <th><%=@survey.survey_questions[5].question %></th>
+                        <th><%=@survey.survey_questions[6].question %></th>
+                        <th><%=@survey.survey_questions[7].question %></th>
+                        <th><%=@survey.survey_questions[8].question %></th>
+                        <th><%=@survey.survey_questions[9].question %></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                      <tr class="">
+                        <% @@counter = 0 %>
+
+                      <% @survey_question_responses.each do |survey_question_response| %>
+
+                            <% if survey_question_response != nil %>
+
+                                <td><%= survey_question_response.response %></td>
+
+                                <% @@counter = @@counter + 1 %>
+
+
+                                <% if @@counter > 10 %>
+                                    <tr class="success">
+
+                                    </tr>
+                                    <% @@counter = 0 %>
+                                <%end%>
+
+
+                            <%end%>
+
+
+                      <% end %>
+                      </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <br>
+              </div>
+            </div><!-- end list-group-item -->
+          </div><!-- end list-group -->
+        </div><!-- end col-sm-12 -->
+    </div><!-- end row -->
+  </div><!-- end container -->
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', surveys_path, :class => 'btn btn-large btn-info' %></h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
+
+<div class="script">
+
+</div>
+
+
+
+

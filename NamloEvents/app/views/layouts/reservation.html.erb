@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NamloEvents</title>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= yield(:head) %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= csrf_meta_tags %>
+
+
+  </head>
+
+  <body>
+
+  <div id="header">
+
+  </div>
+
+  <div class="container">
+    <div class="message_row">
+      <div class="col-sm-12" >
+        <% flash.each do |key, value| %>
+            <% alert_class = case key
+                               when 'notice' then 'success'
+                               when 'alert' then 'danger'
+                               else key
+                             end %>
+
+            <%= content_tag :div, class: "alert alert-#{alert_class}" do %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <%= value %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <%= yield %>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="footer">
+
+  </div>
+
+  </body>
+</html>

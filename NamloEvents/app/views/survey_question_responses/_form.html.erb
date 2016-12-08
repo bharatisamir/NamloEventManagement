@@ -1,0 +1,143 @@
+
+
+
+<%= form_for(@survey_question_response) do |f| %>
+  <% if @survey_question_response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@survey_question_response.errors.count, "error") %> prohibited this survey_question_response from being saved:</h2>
+
+      <ul>
+      <% @survey_question_response.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <div class="form-group">
+      <%@label_name = @survey_questions.first.question%>
+      <%= f.label @survey_questions.first.id,@label_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag @survey_questions.first.id %>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <%@label_name = @survey_questions.second.question%>
+      <%= f.label @survey_questions.second.id,@label_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= text_area_tag @survey_questions.second.id,'', rows: 5 , cols: 60 %>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <%@label_name = @survey_questions.third.question%>
+      <%= f.label @survey_questions.third.id,@label_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag @survey_questions.third.id, '', size: 100 %>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <%@label_name = @survey_questions.fourth.question%>
+      <%= f.label @survey_questions.fourth.id,@label_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag @survey_questions.fourth.id%>
+      </div>
+    </div><br>
+
+
+    <div class="form-group">
+      <%@label_name = @survey_questions.fifth.question%>
+      <%= f.label @survey_questions.fifth.id,@label_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= radio_button_tag @survey_questions.fifth.id, 'Strongly agree', true %> Strongly agree<br>
+        <%= radio_button_tag @survey_questions.fifth.id, 'Somewhat agree' %> Somewhat agree<br>
+        <%= radio_button_tag @survey_questions.fifth.id, 'Neither agree nor disagree'%> Neither agree nor disagree<br>
+        <%= radio_button_tag @survey_questions.fifth.id, 'Somewhat disagree' %> Somewhat disagree<br>
+        <%= radio_button_tag @survey_questions.fifth.id, 'Strongly disagree'%> Strongly disagree<br>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <%@label_name = @survey_questions[5].question%>
+      <%= f.label @survey_questions[5].id,@label_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= radio_button_tag @survey_questions[5].id, 'Strongly agree', true %> Strongly agree<br>
+        <%= radio_button_tag @survey_questions[5].id, 'Somewhat agree' %> Somewhat agree<br>
+        <%= radio_button_tag @survey_questions[5].id, 'Neither agree nor disagree'%> Neither agree nor disagree<br>
+        <%= radio_button_tag @survey_questions[5].id, 'Somewhat disagree' %> Somewhat disagree<br>
+        <%= radio_button_tag @survey_questions[5].id, 'Strongly disagree'%> Strongly disagree<br>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <%@label_name = @survey_questions[6].question%>
+      <%= f.label @survey_questions[6].id,@label_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= radio_button_tag @survey_questions[6].id, 'Strongly agree', true %> Strongly agree<br>
+        <%= radio_button_tag @survey_questions[6].id, 'Somewhat agree' %> Somewhat agree<br>
+        <%= radio_button_tag @survey_questions[6].id, 'Neither agree nor disagree' %> Neither agree nor disagree<br>
+        <%= radio_button_tag @survey_questions[6].id, 'Somewhat disagree' %> Somewhat disagree<br>
+        <%= radio_button_tag @survey_questions[6].id, 'Strongly disagree' %> Strongly disagree<br>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <%@label_name = @survey_questions[7].question%>
+      <%= f.label @survey_questions[7].id,@label_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= radio_button_tag @survey_questions[7].id, 'Strongly agree', true %> Strongly agree<br>
+        <%= radio_button_tag @survey_questions[7].id, 'Somewhat agree' %> Somewhat agree<br>
+        <%= radio_button_tag @survey_questions[7].id, 'Neither agree nor disagree' %> Neither agree nor disagree<br>
+        <%= radio_button_tag @survey_questions[7].id, 'Somewhat disagree' %> Somewhat disagree<br>
+        <%= radio_button_tag @survey_questions[7].id, 'Strongly disagree' %> Strongly disagree<br>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <%@label_name = @survey_questions[8].question%>
+      <%= f.label @survey_questions[8].id,@label_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= radio_button_tag @survey_questions[8].id, 'Strongly agree', true %> Strongly agree<br>
+        <%= radio_button_tag @survey_questions[8].id, 'Somewhat agree' %> Somewhat agree<br>
+        <%= radio_button_tag @survey_questions[8].id, 'Neither agree nor disagree' %> Neither agree nor disagree<br>
+        <%= radio_button_tag @survey_questions[8].id, 'Somewhat disagree' %> Somewhat disagree<br>
+        <%= radio_button_tag @survey_questions[8].id, 'Strongly disagree' %> Strongly disagree<br>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <%@label_name = @survey_questions[9].question%>
+      <%= f.label @survey_questions[9].id,@label_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= radio_button_tag @survey_questions[9].id, 'Extremely likely', true %> Extremely likely<br>
+        <%= radio_button_tag @survey_questions[9].id, 'Very likely' %> Very likely<br>
+        <%= radio_button_tag @survey_questions[9].id, 'Somewhat likely' %> Somewhat likely<br>
+        <%= radio_button_tag @survey_questions[9].id, 'Not so likely' %> Not so likely<br>
+        <%= radio_button_tag @survey_questions[9].id, 'Not at all likely' %> Not at all likely<br>
+      </div>
+    </div><br>
+
+
+
+    <!--<div class="hidden">
+      <%= f.label :response %>
+      <%= f.text_field :response %>
+    </div>
+
+    <div class="hidden">
+      <%= f.label :survey_id %>
+      <%= f.text_field :survey_id %>
+    </div>
+
+    <div class="hidden">
+      <%= f.label :survey_question_id %>
+      <%= f.text_field :survey_question_id %>
+    </div>
+- -->
+  <div class="actions" id="submit_button">
+    <%= f.submit %>
+  </div>
+<% end %>

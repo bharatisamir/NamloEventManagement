@@ -1,0 +1,17 @@
+
+
+<% if event_order_detail != nil %>
+    <tr class="success">
+    <td><%= event_order_detail.service_date %></td>
+    <td><%= Service.find(event_order_detail.service_id).service_name %></td>
+    <td><%= event_order_detail.service_start_time.strftime('%H:%M') %></td>
+    <td><%= event_order_detail.service_end_time.strftime('%H:%M') %></td>
+    <td><%= User.find(ServiceProvider.find(event_order_detail.service_provider_id)).first_name %> <%= User.find(ServiceProvider.find(event_order_detail.service_provider_id)).last_name %></td>
+    <td><%= event_order_detail.function %></td>
+    <td><%= event_order_detail.service_location %></td>
+    <td><%= event_order_detail.service_setup_requirements %></td>
+    <td><%#= link_to 'Show', event_order_detail %></td>
+    <td><%#= link_to 'Edit', edit_event_order_detail_path(event_order_detail) %></td>
+    <td><%#= link_to 'Destroy', event_order_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+<% end %>

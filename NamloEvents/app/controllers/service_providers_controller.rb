@@ -9,19 +9,35 @@ class ServiceProvidersController < ApplicationController
 
   end
 
+
+
   #GET id of current user
   def user
     @user = current_user
+    @user_host = Host.find_by_user_id(@user.id)
 
+   if (params[:id])!=nil
+     @provider_user= User.find(ServiceProvider.find(params[:id]).user_id)
+     @provider_profile = Profile.find_by_user_id(@provider_user.id)
+   end
 
-    #@user_id= current_user.id
-   # @profile_id = Profile.find_by_user_id(@user_id).id
+    @service_options = Service.all.map{ |u| [u.service_name, u.id]}
+
   end
-
 
   # GET /service_providers/1
   # GET /service_providers/1.json
   def show
+    @reviews = Review.where(serviceprovider_id: @service_provider.id ).order('created_at DESC')
+
+
+    #@reviews = Review.all
+
+    if @reviews.blank?
+      @avg_review = 0
+    else
+      @avg_review = @reviews.average(:rating_score).round(2,1)
+    end
   end
 
   # GET /service_providers/new
@@ -40,7 +56,27 @@ class ServiceProvidersController < ApplicationController
     @service_provider.user_id = params[:user_id]
     respond_to do |format|
       if @service_provider.save
-        #$provider_status = 'success'
+
+        @user_id = @user.id
+        @service_provider_id=ServiceProvider.where(('user_id LIKE ?'),@user_id)
+        if @service_provider_id != nil
+          @role = Role.find_by_name('Service_Provider')
+          @role_id =@role.id
+          if @role_id != nil
+            sql = "INSERT INTO roles_users(user_id, role_id) VALUES( #{@user_id }, #{@role_id})"
+            ActiveRecord::Base.connection.execute(sql)
+          end
+
+          if params[:service_id] != nil
+            @services = params[:service_id]
+            @services.each do |service|
+              sql = "INSERT INTO service_provider_services(service_provider_id, service_id) VALUES( #{@user_id }, #{service})"
+              ActiveRecord::Base.connection.execute(sql)
+            end
+          end
+
+        end
+
         format.html { redirect_to dashboard_index_path, notice: 'Service provider was successfully created.' }
         format.json { render :show, status: :created, location: @service_provider }
       else
@@ -82,6 +118,6 @@ class ServiceProvidersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_provider_params
-      params.require(:service_provider).permit(:service_category, :company, :business_phone, :fax, :user_id)
+      params.require(:service_provider).permit(:service_id, :company, :business_phone, :fax, :user_id)
     end
 end

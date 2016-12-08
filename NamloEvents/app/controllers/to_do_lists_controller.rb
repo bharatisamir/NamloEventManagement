@@ -1,12 +1,13 @@
 class ToDoListsController < ApplicationController
-  before_action :set_to_do_list, only: [:show, :edit, :update, :destroy]
+  #before_action :set_to_do_list, only: [:show, :edit, :update, :destroy]
   before_action :user
   #before_action :check_permissions
 
-  #load_and_authorize_resource
+  load_and_authorize_resource
 
 
   def check_permissions
+    #authorize! :index, @to_do_list
     authorize! :crud, @to_do_list
   end
 
@@ -14,6 +15,10 @@ class ToDoListsController < ApplicationController
   # GET /to_do_lists.json
   def index
     @to_do_lists = ToDoList.all.order("created_at desc").paginate(page: params[:page], per_page:12)
+
+    #@to_do_lists = ToDoList.select('*').where(('user_id LIKE ?'), params[:user_id]).all.order("created_at desc").paginate(page: params[:page], per_page:12)
+
+    #authorize! :index, @to_do_list
 
   end
 
@@ -26,23 +31,28 @@ class ToDoListsController < ApplicationController
   # GET /to_do_lists/1
   # GET /to_do_lists/1.json
   def show
+    @no_of_to_do = ToDoItem.select('*').where(('to_do_list_id LIKE ?'), params[:id]).distinct.count('id')
+    @no_of_to_do_completed = ToDoItem.select('*').where(('to_do_list_id LIKE ?'), params[:id]).distinct.count ('completed_at')
+    @no_of_to_do_remaining = @no_of_to_do - @no_of_to_do_completed
+    @percentage_to_do_remaining = (( @no_of_to_do_remaining.to_f / @no_of_to_do)* 100)
+    @percentage_to_do_completed = (( @no_of_to_do_completed.to_f / @no_of_to_do)* 100)
   end
 
   # GET /to_do_lists/new
   def new
-    @to_do_list = ToDoList.new
+    #@to_do_list = ToDoList.new
   end
 
   # GET /to_do_lists/1/edit
   def edit
-    authorize! :update, @to_do_list
+    #authorize! :update, @to_do_list
   end
 
   # POST /to_do_lists
   # POST /to_do_lists.json
   def create
 
-    @to_do_list = ToDoList.new(to_do_list_params)
+    #@to_do_list = ToDoList.new(to_do_list_params)
     @to_do_list.user_id = params[:user_id]
 
     respond_to do |format|
@@ -83,7 +93,7 @@ class ToDoListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_to_do_list
-      @to_do_list = ToDoList.find(params[:id])
+      #@to_do_list = ToDoList.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

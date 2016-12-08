@@ -1,0 +1,21 @@
+## Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+#one:
+#  opening_tag_line: MyString
+#  groom_tag_line: MyString
+#  mid_tag_line: MyString
+#  bride_tag_line: MyString
+#  event_tag_line: MyString
+#  gift_tag_line: MyString
+#  closing_tag_line: MyString
+#  event: one
+#
+#two:
+#  opening_tag_line: MyString
+#  groom_tag_line: MyString
+#  mid_tag_line: MyString
+#  bride_tag_line: MyString
+#  event_tag_line: MyString
+#  gift_tag_line: MyString
+#  closing_tag_line: MyString
+#  event: two

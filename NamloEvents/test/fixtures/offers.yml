@@ -1,0 +1,17 @@
+## Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+#one:
+#  name: MyString
+#  price: 1.5
+#  details: MyText
+#  terms_conditions: MyText
+#  expires: 2016-11-20
+#  service_provider: one
+#
+#two:
+#  name: MyString
+#  price: 1.5
+#  details: MyText
+#  terms_conditions: MyText
+#  expires: 2016-11-20
+#  service_provider: two

@@ -1,0 +1,99 @@
+
+
+  <%= form_for([@event_order, @event_order.event_order_details.build],:url => event_order_event_order_details_path(event_order_id: @event_order.id)) do |f| %>
+              <% if @event_order.event_order_details.build.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@event_order.event_order_details.build.errors.count, "error") %> prohibited this event_order_detail from being saved:</h2>
+
+                    <ul>
+                      <% @event_order.event_order_details.build.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <!--<div class="form-group">
+                <%= f.label :service_date %>
+                <%= f.date_select :service_date, class:'form-control' %>
+              </div>-->
+
+              <% if @event_bookings_options!= nil %>
+                 <div class="form-group">
+                    <%= f.label :service_provider_id, 'Service Provider' %>
+                    <%= f.select :service_provider_id, options_for_select(@event_bookings_options), {:include_blank => 'Select service provider id', :selected => 'Select service provider id'}, id: 'provider_select'  %>
+                  </div>
+                <%end%>
+              <br>
+              <% if @event_bookings_options!= nil %>
+                  <div class="form-group">
+                     <%= f.label :service_id, 'Services' %>
+                     <%= f.select :service_id, options_for_select(@service_options), {:include_blank => 'Select service'}, id: 'provider_select' %>
+                  </div>
+              <%end%>
+              <br>
+
+              <div class="hidden">
+                <%= hidden_field_tag 'service_date', @event_order.event.event_date %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :service_start_time %>
+                <%= f.time_select :service_start_time, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :service_end_time %>
+                <%= f.time_select :service_end_time, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :function %>
+                <%= f.text_field :function, class:'form-control' %>
+              </div>
+
+              <!--<div class="form-group">
+                <%= f.label :service_location %>
+                <%= f.text_field :service_location, class:'form-control' %>
+              </div>-->
+
+
+              <div class="hidden">
+                <%= hidden_field_tag 'service_location', @event_order.event.venue %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :service_setup_requirements %>
+                <%= f.text_area :service_setup_requirements, class:'form-control' %>
+              </div>
+
+              <!--<div class="form-group">
+                <%= f.label :event_order_id, 'Event Order ID' %>
+                <%= f.text_field :event_order_id, class:'form-control' %>
+              </div>-->
+
+
+              <div class="hidden">
+                 <%= hidden_field_tag 'event_order_id', @event_order.id %>
+              </div>
+
+              <% if @event_order!= nil %>
+                  <div class="form-group">
+                    <%#= f.label :event_order_id, 'Event Order ID' %>
+                    <%#S= f.select :event_order_id, options_for_select(@event_order), prompt: 'Select event order id', id: 'provider_select'  %>
+                  </div>
+              <%end%>
+
+              <!--<div class="form-group">
+                <%= f.label :service_id, 'Service ID' %>
+                <%= f.text_field :service_id, class:'form-control' %>
+              </div>-->
+
+
+
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          <% end %>
+
+

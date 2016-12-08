@@ -1,0 +1,50 @@
+
+<%#= link_to 'Back', survey_questions_path %>
+
+<div class="container" id="service_container">
+
+  <div class="page-header">
+    <h2>Create New Survey Question</h2>
+  </div><!-- end page-header -->
+
+  <div class="row">
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Photographer :: Nadim</h3>
+        </div>
+        <%= image_tag("application/nadim1.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+        <p></p>
+        <p align="center">"Photos are windows to past. Make every moments of your past memorable by hiring the right photographer"</p>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="list-group">
+        <div class="list-group-item">
+          <%= render 'form', survey_question: @survey_question %>
+        </div><!-- end list-group-item -->
+      </div><!-- end list-group -->
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Editor :: Sushan</h3>
+        </div><!-- end panel-heading -->
+        <%= image_tag("application/sushan-200x200.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+        <p></p>
+        <p align="center">"World is full of imperfections, and only true professional editor can beautifully mask the blemishes of natural world"</p>
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+  </div><!-- end row -->
+</div><!-- end service_container -->
+
+
+<div class="container">
+<div class="row">
+  <div class="page-header">
+    <h2> <%= link_to 'Go Back', survey_path(@survey.id), :class => 'btn btn-large btn-info' %></h2>
+  </div><!-- end page-header -->
+</div><!-- end row -->
+</div><!-- end container -->

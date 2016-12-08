@@ -1,6 +1,6 @@
 <div class="container" id="quotation_index_container">
   <div class="page-header">
-    <h1> Request For Quotes </h1>
+    <h2> Request For Quotes </h2>
   </div>
 
   <div class="row" id="features">
@@ -64,14 +64,13 @@
                 </table>
                 <hr>
                 <%#= link_to 'Show', event_quotation_path(@event,quotation) %>
-                <% if can? :update, quotation%>
+                <% if can? :update, Quotation%>
                 <%= link_to 'Edit', edit_event_quotation_path(@event,quotation), :class => 'btn btn-large btn-warning' %>
                 <%end%>
 
-                <% if can? :destroy, quotation%>
+                <% if can? :destroy, Quotation%>
                 <%= link_to 'Destroy', event_quotation_path(@event,quotation), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-large btn-danger' %>
                 <%end%>
-                <hr>
               </div>
     </div>
 

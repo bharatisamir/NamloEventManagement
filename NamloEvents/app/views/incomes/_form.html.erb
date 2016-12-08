@@ -1,0 +1,69 @@
+
+<%= form_for [@event, @income] do |f| %>
+    <% if @income.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@income.errors.count, "error") %> prohibited this income from being saved:</h2>
+
+          <ul>
+            <% @income.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :income_date %>
+      <%= f.date_select :income_date, class:'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :income_source %>
+      <%= f.text_field :income_source, class:'form-control' %>
+    </div>
+
+
+    <div class="form-group">
+      <%= f.label :expected_amount %>
+      <%= f.text_field :expected_amount, class:'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :actual_amount %>
+      <%= f.text_field :actual_amount, class:'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :notes %>
+      <%= f.text_area :notes, class:'form-control' %>
+    </div>
+
+   <!-- <div class="form-group">
+      <%= f.label :event_id,' Event ID' %>
+      <%= f.text_field :event_id,placeholder: 'Enter id of the event from search result', class:'form-control' %>
+    </div>-->
+
+    <div class="hidden">
+      <%= hidden_field_tag 'event_id', @event.id %>
+    </div>
+
+    <div class="actions" id="submit_button">
+      <%= f.submit %>
+    </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

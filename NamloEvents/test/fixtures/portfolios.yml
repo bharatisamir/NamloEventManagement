@@ -1,0 +1,23 @@
+## Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+#one:
+#  tag_line: MyString
+#  bio: MyText
+#  website: MyString
+#  work_experience: MyText
+#  achievements: MyText
+#  area_of_expertise: MyText
+#  services_offered: MyText
+#  works_projects: MyText
+#  service_provider: one
+#
+#two:
+#  tag_line: MyString
+#  bio: MyText
+#  website: MyString
+#  work_experience: MyText
+#  achievements: MyText
+#  area_of_expertise: MyText
+#  services_offered: MyText
+#  works_projects: MyText
+#  service_provider: two

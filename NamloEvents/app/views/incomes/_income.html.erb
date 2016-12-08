@@ -1,0 +1,35 @@
+
+          <% if income != nil %>
+                      <tr class="success">
+                        <td><%= income.income_date %></td>
+                        <td><%= income.income_source %></td>
+                        <td><%= income.expected_amount %></td>
+                        <td><%= income.actual_amount %></td>
+                        <td><%= income.notes %></td>
+
+                        <% if can? :update, Income%>
+                            <td><%= link_to 'Edit', edit_event_income_path(params[:id], expense), :class => 'btn btn-small btn-warning'%></td>
+                        <% end %>
+
+                        <% if can? :destroy, Income%>
+                            <td><%= link_to 'Destroy', event_income_path(params[:id], expense), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-small btn-danger'%></td>
+                        <% end %>
+
+
+                        <td><%#= link_to 'Show', expense %></td>
+
+                      </tr>
+          <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+

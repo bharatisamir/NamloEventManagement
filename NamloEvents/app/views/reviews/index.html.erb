@@ -1,4 +1,4 @@
-
+<% javascript 'jquery.raty' %>
 
 <div class="container" id="reviews_container">
   <div class="page-header">
@@ -17,9 +17,9 @@
 
         </div>
 
-        <% if @review != nil %>
+        <% if @reviews != nil %>
 
-        <div class="star-rating" data-score=" <%= @avg_review %>">
+        <div class="star-rating" data-score =  <%= @avg_review %> >
 
         </div>
         <em><%= "#{@reviews.length} reviews"%></em>
@@ -29,13 +29,29 @@
         <div class="list-group">
           <% @reviews.each do |review| %>
               <div class="list-group-item">
+                <div class="reviews">
+                  <p class="list-group-item-text"><%= review.rating_score %></p>
                 <div class="star-rating" data-score= <%= review.rating_score %> >
 
                 </div>
 
-                <h5>- <%=User.find(review.reviewer_id).first_name %> <%=User.find(review.reviewer_id).last_name %>| <%= review.created_at %></h5>
+                <h5>- <%=User.find(review.reviewer_id).first_name %> <%=User.find(review.reviewer_id).last_name %> | <%= review.created_at.strftime('%H:%M:%S')  %></h5>
                 <p></p>
                 <p class="list-group-item-text"><%= review.comments %></p>
+                  <br>
+                  <p align="middle">
+
+                    <% if can? :update, Review%>
+                        <%= link_to 'Edit Review',  edit_service_provider_review_path(review.serviceprovider_id, review), :class => 'btn btn-large btn-warning'%>
+                    <% end %>
+
+                    <% if can? :destroy, Review%>
+                        <%= link_to 'Destroy Review', service_provider_review_path(review.serviceprovider_id,review), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-large btn-danger' %>
+                    <% end %>
+
+                  </p>
+
+                </div>
               </div>
           <% end %>
         </div>
@@ -53,10 +69,10 @@
 <div class="container">
   <div class="row">
     <div class="page-header">
-      <% if @provider_user.id == @user.id %>
-          <h1> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %> </h1>
+      <% if (@provider_user.id == @user.id) && ( @user_host == nil) %>
+          <h2> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %> </h2>
       <% else %>
-          <h1> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %>  <%= link_to 'Write Review', new_service_provider_review_path(@provider_user.id), :class => 'btn btn-large btn-info' %> </h1>
+          <h2> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %>  <%= link_to 'Write Review', new_service_provider_review_path(@provider_user.id), :class => 'btn btn-large btn-info' %> </h2>
       <% end %>
     </div>
   </div>
@@ -64,16 +80,17 @@
 
 
 <script>
-  $('.star-rating').raty({
+  $(document).ready(function(){
+  $('#star-rating').raty({
     path: '/assets',
     readOnly: true,
+    half: true,
+    number: 5,
     score: function() {
       return $(this).attr('data-score');
     }
-  });
+  })});
 </script>
-
-
 
 
 

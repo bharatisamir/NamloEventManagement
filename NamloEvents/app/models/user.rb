@@ -21,14 +21,20 @@ class User < ApplicationRecord
 
   #--------------------- ASSOCIATIONS -------------------------
   belongs_to :profile, polymorphic: true, dependent: :destroy
-  has_many :to_do_lists
-  has_and_belongs_to_many :roles
+
+  has_one :service_provider, dependent: :destroy
+  has_one :host, dependent: :destroy
+  has_many :to_do_lists, dependent: :destroy
+  has_and_belongs_to_many :roles, dependent: :destroy
 
   #--------------------- End of ASSOCIATIONS -------------------------
 
 
   def role?(role)
+    val= !!self.roles.find_by_name(role.to_s)
+
     return !!self.roles.find_by_name(role.to_s)
+
   end
 
   def has_role?(role_sym)

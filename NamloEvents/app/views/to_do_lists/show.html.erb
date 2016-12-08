@@ -12,7 +12,11 @@
             <div class="col-sm-12 ">
               <div class="panel panel-primary">
                 <div class="panel-heading">
-                  <h3 class="panel-title"><%= @to_do_list.todo_list_title %></h3>
+                  <h3 class="panel-title" align="middle"><%= @to_do_list.todo_list_title %>
+                  <% if @percentage_to_do_completed != nil %>
+                  [<%= number_with_precision(@percentage_to_do_completed, :precision => 2) %>%] Completed
+                  <% end %>
+                  </h3>
                 </div>
 
                 <p></p>
@@ -29,13 +33,14 @@
                         <%= render 'to_do_items/form' %>
                       </div>
                     </div>
-
-                    <% if can? :update, @to_do_list%>
-                    <%= link_to 'Edit', edit_user_to_do_list_path(@to_do_list) %> |
+                    <br>
+                    <% if can? :update, ToDoList%>
+                    <%= link_to 'Edit', edit_user_to_do_list_path(@to_do_list),:class => 'btn btn-large btn-warning' %>
                     <% end %>
-                    <% if can? :index, @to_do_list%>
-                    <%= link_to 'Back', user_to_do_lists_path %>
+                    <% if can? :index, ToDoList%>
+                    <%= link_to 'Back', user_to_do_lists_path,:class => 'btn btn-large btn-info' %>
                     <% end %>
+                    <br>
                   </div><!-- end list-group-item -->
                 </div><!-- end list-group -->
 

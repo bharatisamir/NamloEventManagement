@@ -1,0 +1,19 @@
+
+
+<% if survey_question != nil %>
+    <tr class="success">
+    <td><%= survey_question.survey_id %></td>
+    <td><%= survey_question.id %></td>
+    <td><%= survey_question.question %></td>
+
+      <% if can? :update, @survey_question%>
+          <td><%= link_to 'Edit', edit_survey_survey_question_path(params[:id], survey_question), :class => 'btn btn-small btn-warning'%></td>
+      <% end %>
+
+      <% if can? :destroy, @survey_question%>
+          <td><%= link_to 'Destroy', survey_survey_question_path(params[:id], survey_question), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-small btn-danger'%></td>
+      <% end %>
+
+    <td><%#= link_to 'Show', event_order_detail %></td>
+            </tr>
+<% end %>

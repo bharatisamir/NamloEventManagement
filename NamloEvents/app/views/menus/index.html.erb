@@ -1,0 +1,66 @@
+
+
+<%#= link_to 'New Menu', new_menu_path %>
+
+<div class="container" id="menu_index_container">
+  <div class="page-header">
+    <h2>Event Menus created by You </h2>
+  </div>
+
+
+  <div class="row" id="features">
+
+
+    <% @menus.each do |menu| %>
+
+        <div class="col-sm-4 ">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= menu.event.event_name %></h3>
+            </div>
+            <p></p>
+            <%= image_tag(menu.event.image.url(:thumb),:alt =>'Venue image', :class =>"img-circle") %>
+            <p align="middle">Date: <%= menu.event.event_date %> --::::-- Time: <%= menu.event.event_start_time.strftime('%H:%M') %> - <%= menu.event.event_end_time.strftime('%H:%M') %></p>
+
+            <p align="middle">Menu Name:  <%= menu.name %></p>
+            <p align="middle">Menu Service Type:  <%= menu.service_type %></p>
+            <p align="middle">Reservation Required:  <%= menu.require_reservation %></p>
+
+            <% if can? :show, Menu%>
+                <%= link_to 'Menu Functions', menu_path(menu.id), :class => 'btn btn-small btn-info' %>
+            <% end %>
+
+            <% if can? :update, Menu%>
+                <%= link_to 'Edit', edit_menu_path(menu.id), :class => 'btn btn-small btn-warning' %>
+            <% end %>
+
+            <% if can? :destroy, Menu%>
+                <%= link_to 'Destroy', menu_path(menu.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+            <% end %>
+
+            <p></p>
+
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+  <%= will_paginate @menus %>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %>
+
+        <% if can? :create, @menu%>
+            <%= link_to 'Create New Menu', new_menu_path, :class => 'btn btn-large btn-info' %>
+        <% end %>
+
+
+      </h2>
+    </div>
+  </div>
+</div>

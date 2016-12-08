@@ -2,10 +2,12 @@ class ToDoItemsController < ApplicationController
   #before_action :set_to_do_item, only: [:show, :edit, :update, :destroy]
   before_action :set_to_do_list
   before_action :set_to_do_item, except: [:create]
+  #before_action :check_permissions
 
-  before_action :check_permissions
 
   def check_permissions
+    #authorize! :index, @to_do_list
+    #authorize! :manage, @to_do_list
     authorize! :crud, @to_do_list
   end
 
@@ -39,6 +41,10 @@ class ToDoItemsController < ApplicationController
   # GET /to_do_items/1/edit
   def edit
     #authorize! :update, @to_do_item
+    @to_do_list = ToDoList.find(params[:to_do_list_id])
+    @to_do_item = @to_do_list.to_do_items.find(params[:id])
+
+
   end
 
   # POST /to_do_items
@@ -98,12 +104,12 @@ class ToDoItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
 
-
     def set_to_do_list
      #@to_do_list = ToDoList.find(params[:id])
      @to_do_list = ToDoList.find(params[:to_do_list_id])
      @user = current_user
      @to_do_list_id = @to_do_list.id
+
     end
 
     def set_to_do_item

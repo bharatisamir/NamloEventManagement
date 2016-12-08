@@ -1,29 +1,130 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Roles</h1>
+<div class="container" id="roles_index_container">
+  <div class="page-header">
+    <h2> List of Roles </h2>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="row">
 
-  <tbody>
-    <% @roles.each do |role| %>
-      <tr>
-        <td><%= role.name %></td>
-        <td><%= role.description %></td>
-        <td><%= link_to 'Show', role %></td>
-        <td><%= link_to 'Edit', edit_role_path(role) %></td>
-        <td><%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="col-sm-2 feature">
+      <!--<div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Cinematographer :: Anoj</h3>
+        </div>&lt;!&ndash; end panel-heading &ndash;&gt;
+        <%= image_tag("application/anoj-200x200.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+        <p></p>
+        <p align="center">"With today's technology anyone can point and shoot a video. But, the true magic of cinema can only be delivered by professional cinematographer"</p>
+      </div>&lt;!&ndash; end panel &ndash;&gt;-->
+    </div><!-- end col-sm-4 -->
 
-<br>
+    <div class="col-sm-8">
+      <div class="list-group">
+        <div class="list-group-item">
+          <div class="table-responsive">
+            <table class="table">
 
-<%= link_to 'New Role', new_role_path %>
+              <thead>
+              <tr class="info">
+                <th>Role Name</th>
+                <th>Role Description</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <br>
+              <% @roles.each do |role| %>
+                  <tr class="success">
+                    <td><%= role.name %></td>
+                    <td><%= role.description %></td>
+
+                    <% if can? :update, @role%>
+                        <td><%= link_to 'Edit', edit_role_path(role), :class => 'btn btn-small btn-warning' %></td>
+                    <% end %>
+
+                    <% if can? :destroy, @role%>
+                        <td><%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %></td>
+                    <% end %>
+
+                    <td><%#= link_to 'Show', role , :class => 'btn btn-small btn-info' %></td>
+                  </tr>
+              <% end %>
+
+              </tbody>
+            </table>
+            <br>
+          </div>
+
+        </div><!-- end list-group-item -->
+      </div><!-- end list-group -->
+
+    </div><!-- end col-sm-4 -->
+
+
+    <div class="col-sm-2">
+      <!--<div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Artist :: Amy</h3>
+        </div>&lt;!&ndash; end panel-heading &ndash;&gt;
+        <%= image_tag("application/amy-200x200.jpg", :alt =>"Wedding Event", :class =>"img-circle") %>
+        <p></p>
+        <p align="center">"Capturing beauty of the natural world in canvas is an art and only true artist can capture it beautifully"</p>
+      </div>-->
+    </div>
+
+  </div><!-- end row -->
+
+</div><!-- end edit_password_container -->
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %>
+
+        <% if can? :create, @role%>
+            <%= link_to 'Add New Role', new_role_path , :class => 'btn btn-large btn-info' %>
+        <% end %>
+
+      </h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
+
+<div class="script">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

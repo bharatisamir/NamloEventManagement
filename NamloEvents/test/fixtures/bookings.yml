@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#one:
+#  booked_date: 2016-11-04
+#  event: one
+#  service_provide: one
+#
+#two:
+#  booked_date: 2016-11-04
+#  event: two
+#  service_provider: two

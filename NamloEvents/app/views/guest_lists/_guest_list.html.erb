@@ -1,0 +1,29 @@
+
+          <% if guest_list != nil%>
+
+                  <tr class="success">
+                    <td><%= guest_list.first_name %></td>
+                    <td><%= guest_list.last_name %></td>
+                    <td><%= guest_list.email %></td>
+                    <td><%= guest_list.total_attendees_expected %></td>
+                    <td><%= guest_list.seating_arrangement %></td>
+                    <td><%= guest_list.notes %></td>
+                    <td><%#= link_to 'Show', guest_list %></td>
+                    <% if can? :update, GuestList%>
+                        <td><%= link_to 'Edit', edit_event_guest_list_path(params[:id], guest_list), :class => 'btn btn-small btn-warning'%></td>
+                    <% end %>
+
+                    <% if can? :destroy, GuestList%>
+                        <td><%= link_to 'Destroy', event_guest_list_path(params[:id], guest_list), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-small btn-danger'%></td>
+                    <% end %>
+
+                  </tr>
+
+          <% end %>
+
+
+
+
+
+
+

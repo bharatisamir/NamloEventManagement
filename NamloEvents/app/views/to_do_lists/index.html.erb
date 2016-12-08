@@ -16,12 +16,18 @@
             <p></p>
             <p align="middle"><%= to_do_list.todo_list_description %></p>
 
+            <% if can? :show, ToDoList%>
+                <%= link_to 'Show', user_to_do_list_path(to_do_list.user_id,to_do_list.id), :class => 'btn btn-small btn-info' %>
+          <% end %>
 
-            <%= link_to 'Show', user_to_do_list_path(to_do_list.user_id,to_do_list.id), :class => 'btn btn-small btn-info' %>
+            <% if can? :update, ToDoList%>
+                <%= link_to 'Edit', edit_user_to_do_list_path(to_do_list.user_id,to_do_list.id), :class => 'btn btn-small btn-warning' %>
+          <% end %>
 
-            <%= link_to 'Edit', edit_user_to_do_list_path(to_do_list.user_id,to_do_list.id), :class => 'btn btn-small btn-warning' %>
+            <% if can? :destroy, ToDoList%>
+                <%= link_to 'Destroy', user_to_do_list_path(to_do_list.user_id,to_do_list.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
+          <% end %>
 
-            <%= link_to 'Destroy', user_to_do_list_path(to_do_list.user_id,to_do_list.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-small btn-danger' %>
             <p></p>
           </div>
         </div>

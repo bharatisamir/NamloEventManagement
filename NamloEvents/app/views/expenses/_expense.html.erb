@@ -1,0 +1,34 @@
+
+          <% if expense != nil %>
+                      <tr class="success">
+                        <td><%= expense.expense_date %></td>
+                        <td><%= expense.expense_source %></td>
+                        <td><%= expense.budgeted_amount %></td>
+                        <td><%= expense.actual_amount %></td>
+                        <td><%= expense.notes %></td>
+
+                        <% if can? :update, Expense%>
+                            <td><%= link_to 'Edit', edit_event_expense_path(params[:id], expense), :class => 'btn btn-small btn-warning'%></td>
+                        <% end %>
+
+                        <% if can? :destroy, Expense%>
+                            <td><%= link_to 'Destroy', event_expense_path(params[:id], expense), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-small btn-danger'%></td>
+                        <% end %>
+
+                        <td><%#= link_to 'Show', expense %></td>
+
+                      </tr>
+          <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+

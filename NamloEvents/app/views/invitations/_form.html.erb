@@ -1,0 +1,733 @@
+<div class="container" id="invitation_container">
+  <div class="row">
+
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Your Name :: Here</h3>
+        </div>
+        <%= image_tag( 'missing.png', :alt =>'Default image', :class =>'img-circle') %>
+        <p></p>
+        <p align="center">"Advertise your self with us. Please contact us for further details"</p>
+      </div>
+    </div>
+
+
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Search Event by Host's email</h3>
+        </div><!-- end panel-heading -->
+        <br />
+        <div class="event_search">
+          <%= form_tag new_invitation_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search, params[:search],placeholder: 'Enter email', :size => '30' %>
+                <%= submit_tag "Search", :name => nil %>
+              </p>
+          <% end %>
+        </div>
+        <hr>
+        <p>
+          <% if (@events == nil || @host == nil) %>
+              <% if params[:search]%>
+                <p align="center", class="error_message"> Sorry, no event found for host with email: <%= params[:search] %> </p>
+            <% end %>
+
+        <% else %>
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                <tr class="info">
+                  <th>Event Name</th>
+                  <th>Event ID</th>
+                  <th>Event Date</th>
+                  <th colspan="3"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @events.each do |event| %>
+                    <tr class="success">
+                      <td><%= event.event_name %></td>
+                      <td><%= event.id %></td>
+                      <td><%= event.event_date %></td>
+                      <td></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+
+        <% end %>
+        </p>
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+
+    <!--<div class="col-sm-8">
+      <div class="list-group">
+        <div class="list-group-item">
+
+          <%= form_for(@invitation) do |f| %>
+              <% if @invitation.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+
+                    <ul>
+                      <% @invitation.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <div class="head_image">
+
+              </div>
+
+              <div class="invitation">
+                <p align="center"><strong>INVITATION</strong></p>
+              </div>
+
+              <div class="open_tag">
+                <p align="center"><%= f.text_field :opening_tag_line,placeholder: 'Together with their families', class: 'form-control'%></p>
+              </div>
+
+              <div class="groom_tag">
+                <p align="center"><%= f.text_field :groom_tag_line,placeholder: 'Shree Ram Shrestha', class: 'form-control'%></p>
+              </div>
+
+              <div class="groom_tag2">
+                <p align="center"><%= f.text_field :groom_tagline2,placeholder: '(Son of Padma Krishna Shrestha & Baba Kumari Shrestha)', class: 'form-control'%></p>
+              </div>
+
+              <div class="connector">
+                <p align="center">&</p>
+              </div>
+
+              <div class="bride_tag">
+                <p align="center"><%= f.text_field :bride_tag_line,placeholder: 'Mishu Joshi', class: 'form-control' %></p>
+              </div>
+
+              <div class="bride_tag2">
+                <p align="center"><%= f.text_field :bride_tagline2,placeholder: '(Daughter of Murari Mohan Joshi & Suchita Joshi)', class: 'form-control' %></p>
+              </div>
+
+              <br>
+              <div class="mid_tag">
+                <p align="center"><%= f.text_field :mid_tag_line,placeholder: 'Request the honor of your presence', class: 'form-control' %></p>
+              </div>
+
+              <div class="mid_tag2">
+                <p align="center"><%= f.text_field :mid_tagline2,placeholder: 'on the auspicious occasion of their', class: 'form-control' %></p>
+              </div>
+
+              <div class="event_tag">
+                <p align="center"><%= f.text_field :event_tag_line,placeholder: 'Marriage Ceremony', class: 'form-control' %></p>
+              </div>
+              <br>
+
+              <div class="image_divider">
+                <p align="center"><%= image_tag( "invitation/ganesha.jpg", :alt =>'invitation image divider') %></p>
+              </div>
+
+              <div class="event_container">
+                <p align="center"><strong>Select Events to include</strong></p>
+
+                <% if @event_options!= nil %>
+                    <div class="form-group">
+                      <%= f.label :event_id, 'First Event (required)' %><br>
+                      <%= f.select :event_id, options_for_select(@event_options), prompt: 'Select First Event id', id: 'event_select'  %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.label :event_two_id, 'Second Event (optional)' %><br>
+                      <%= f.select :event_two_id, options_for_select(@event_options), prompt: 'Select Second Event id', id: 'event2_select' %>
+                    </div>
+
+                    <div class="field">
+                      <%= f.label :event_three_id, 'Third Event (optional)' %><br>
+                      <%= f.select :event_three_id, options_for_select(@event_options), prompt: 'Select Third Event id', id: 'event3_select' %>
+                    </div>
+
+                <%end%>
+
+               &lt;!&ndash; <div class="field">
+                  <%= f.label :event_id, 'First Event (required)' %>
+                  <%= f.text_field :event_id, class: 'form-control' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :event_two_id, 'Second Event (optional)' %>
+                  <%= f.text_field :event_two_id, class: 'form-control' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :event_three_id, 'Third Event (optional)' %>
+                  <%= f.text_field :event_three_id, class: 'form-control' %>
+                </div>&ndash;&gt;
+
+              </div>
+
+              <br>
+
+              <div class="image_divider">
+
+              </div>
+
+              <div class="reservation_container">
+                <p align="center"><strong>Select Events that need RSVP</strong></p>
+
+
+                <% if @event_options!= nil %>
+                    <div class="form-group">
+                      <%= f.label :event_id, 'First Event (required)' %><br>
+                      <%= f.select :event_id, options_for_select(@event_options), prompt: 'Select First Event id', id: 'event_select'  %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.label :event_two_id, 'Second Event (optional)' %><br>
+                      <%= f.select :event_two_id, options_for_select(@event_options), prompt: 'Select Second Event id', id: 'event2_select' %>
+                    </div>
+
+                    <div class="field">
+                      <%= f.label :event_three_id, 'Third Event (optional)' %><br>
+                      <%= f.select :event_three_id, options_for_select(@event_options), prompt: 'Select Third Event id', id: 'event3_select' %>
+                    </div>
+
+                <%end%>
+
+                &lt;!&ndash;<div class="field">
+                  <%= f.label :event_id, 'First Event (required)' %>
+                  <%= f.text_field :event_id, class: 'form-control' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :event_id, 'Second Event (optional)' %>
+                  <%= f.text_field :event_two_id, class: 'form-control' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :event_id, 'Third Event (optional)' %>
+                  <%= f.text_field :event_three_id, class: 'form-control' %>
+                </div>&ndash;&gt;
+
+              </div>
+
+              <br>
+
+              <div class="gift_container">
+                <p align="center"><strong>Enter Gift Information or Gift Registry Links</strong></p>
+
+                <div class="field">
+                  <%= f.label :gift_tag_line,'Gift Registry One (optional)' %>
+                  <%= f.text_field :gift_tag_line, class: 'form-control' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :gift_tagline2,'Gift Registry Two (optional)' %>
+                  <%= f.text_field :gift_tagline2, class: 'form-control' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :gift_tagline3, 'Gift Registry Three (optional)' %>
+                  <%= f.text_field :gift_tagline3, class: 'form-control' %>
+                </div>
+
+              </div>
+              <br>
+
+              <div class="image_divider">
+                <p align="center"><%= image_tag( "invitation/ganesha.jpg", :alt =>'invitation image divider') %></p>
+              </div>
+
+              <div class="default_tag">
+                <p align="center">With Best Compliments</p>
+              </div>
+
+
+              <div class="close_tag">
+                <p align="center"><%= f.text_field :closing_tag_line,placeholder: 'Shrestha & Joshi Family', class: 'form-control'  %></p>
+              </div>
+
+              &lt;!&ndash;<div class="field">
+                <%= f.label :opening_tag_line %>
+                <%= f.text_field :opening_tag_line %>
+              </div>
+
+              <div class="field">
+                <%= f.label :groom_tag_line %>
+                <%= f.text_field :groom_tag_line %>
+              </div>
+
+              <div class="field">
+                <%= f.label :mid_tag_line %>
+                <%= f.text_field :mid_tag_line %>
+              </div>
+
+              <div class="field">
+                <%= f.label :bride_tag_line %>
+                <%= f.text_field :bride_tag_line %>
+              </div>
+
+              <div class="field">
+                <%= f.label :event_tag_line %>
+                <%= f.text_field :event_tag_line %>
+              </div>&ndash;&gt;
+
+
+
+              &lt;!&ndash;<div class="field">
+                <%= f.label :closing_tag_line %>
+                <%= f.text_field :closing_tag_line %>
+              </div>&ndash;&gt;
+
+              <div class="event_ids_container">
+
+
+
+
+
+                <div class="field">
+                  <%= f.label :event_id, 'Event ID' %>
+                  <%= f.text_field :event_id , class: 'form-control'%>
+                </div>
+
+                <div class="field">
+                  <%= f.label :event_id, 'Event2 ID' %>
+                  <%= f.text_field :event_two_id, class: 'form-control' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :event_id, 'Event3 ID' %>
+                  <%= f.text_field :event_three_id, class: 'form-control' %>
+                </div>
+              </div>
+
+              <br>
+
+              <div class="field">
+                <%= f.label :image %><br>
+                <%= f.file_field :image %>
+              </div>
+
+
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          <% end %>
+
+
+        </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+      </div>&lt;!&ndash; end list-group &ndash;&gt;
+    </div>&lt;!&ndash; end col-sm-8 &ndash;&gt;-->
+
+
+    <!--<div class="col-sm-10" >
+
+      <div class="list-group">
+        <div class="list-group-item">
+
+          <br>
+          <div class="head_image">
+            <p align="center"> <%= image_tag("invitation/invitation_head_default.jpg",:alt =>'invitation head image') %> </p>
+          </div>
+          <br>
+
+          <%= form_for(@invitation) do |f| %>
+              <% if @invitation.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+
+                    <ul>
+                      <% @invitation.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+          <div class="invitation">
+            <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>INVITATION<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+          </div>
+
+
+          <div class="open_tag">
+            <p align="center"><%= f.text_field :opening_tag_line,placeholder: 'Together with their families', class: 'form-control'%></p>
+          </div>
+
+          <div class="groom_tag">
+            <p align="center"><%= f.text_field :groom_tag_line,placeholder: 'Shree Ram Shrestha', class: 'form-control'%></p>
+          </div>
+
+          <div class="groom_tag2">
+            <p align="center"><%= f.text_field :groom_tagline2,placeholder: '(Son of Padma Krishna Shrestha & Baba Kumari Shrestha)', class: 'form-control'%></p>
+          </div>
+
+          <div class="connector">
+            <p align="center">&</p>
+          </div>
+
+          <div class="bride_tag">
+            <p align="center"><%= f.text_field :bride_tag_line,placeholder: 'Mishu Joshi', class: 'form-control' %></p>
+          </div>
+
+          <div class="bride_tag2">
+            <p align="center"><%= f.text_field :bride_tagline2,placeholder: '(Daughter of Murari Mohan Joshi & Suchita Joshi)', class: 'form-control' %></p>
+          </div>
+
+          <br>
+          <div class="mid_tag">
+            <p align="center"><%= f.text_field :mid_tag_line,placeholder: 'Request the honor of your presence', class: 'form-control' %></p>
+          </div>
+
+          <div class="mid_tag2">
+            <p align="center"><%= f.text_field :mid_tagline2,placeholder: 'on the auspicious occasion of their', class: 'form-control' %></p>
+          </div>
+
+          <div class="event_tag">
+            <p align="center"><%= f.text_field :event_tag_line,placeholder: 'Marriage Ceremony', class: 'form-control' %></p>
+          </div>
+          <br>
+
+          <div class="image_divider">
+            <p align="center"><%= image_tag( "invitation/ganesha.jpg", :alt =>'invitation image divider') %></p>
+          </div>
+
+          <div class="event_container">
+
+            <div class="row">
+
+              <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>EVENTS<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+              <br>
+
+              <% if @event_options!= nil %>
+                  <div class="form-group">
+                    <%= f.label :event_id, 'First Event (required)' %><br>
+                    <%= f.select :event_id, options_for_select(@event_options), prompt: 'Select First Event id', id: 'event_select'  %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :event_two_id, 'Second Event (optional)' %><br>
+                    <%= f.select :event_two_id, options_for_select(@event_options), prompt: 'Select Second Event id', id: 'event2_select' %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.label :event_three_id, 'Third Event (optional)' %><br>
+                    <%= f.select :event_three_id, options_for_select(@event_options), prompt: 'Select Third Event id', id: 'event3_select' %>
+                  </div>
+
+              <%end%>
+
+            </div>
+
+          </div>
+
+          <br>
+
+
+          <div class="reservation_container">
+
+            <div class="row">
+              <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>RSVP<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+              <br>
+
+              <% if @event_options!= nil %>
+                  <div class="form-group">
+                    <%= f.label :event_id, 'First Event (optional)' %><br>
+                    <%= f.select :event_id, options_for_select(@event_options), prompt: 'Select First Event id', id: 'event_select'  %>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :event_two_id, 'Second Event (optional)' %><br>
+                    <%= f.select :event_two_id, options_for_select(@event_options), prompt: 'Select Second Event id', id: 'event2_select' %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.label :event_three_id, 'Third Event (optional)' %><br>
+                    <%= f.select :event_three_id, options_for_select(@event_options), prompt: 'Select Third Event id', id: 'event3_select' %>
+                  </div>
+
+              <%end%>
+
+            </div>
+
+
+          </div>
+
+          <br>
+
+          <div class="gift_container">
+
+            <div class="row">
+
+              <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>GIFTS<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+              <br>
+
+              <div class="field">
+                <%= f.label :gift_tag_line,'Gift Registry One (optional)' %>
+                <%= f.text_field :gift_tag_line,placeholder: 'Enter link to gift registry or gift instructions ', class: 'form-control' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :gift_tagline2,'Gift Registry Two (optional)' %>
+                <%= f.text_field :gift_tagline2,placeholder: 'Enter link to gift registry or gift instructions ', class: 'form-control' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :gift_tagline3, 'Gift Registry Three (optional)' %>
+                <%= f.text_field :gift_tagline3,placeholder: 'Enter link to gift registry or gift instructions ', class: 'form-control' %>
+              </div>
+
+            </div>
+          </div>
+          <br>
+
+          <div class="image_divider">
+            <p align="center"><%= image_tag( "invitation/ganesha.jpg", :alt =>'invitation image divider') %></p>
+          </div>
+
+          <div class="default_tag">
+            <p align="center">With Best Compliments</p>
+          </div>
+
+
+          <div class="close_tag">
+            <p align="center"><%= @invitation.closing_tag_line  %></p>
+          </div>
+
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          <% end %>
+
+        </div>&lt;!&ndash; end list-group-item &ndash;&gt;
+      </div>&lt;!&ndash; end list-group &ndash;&gt;
+    </div>&lt;!&ndash; end col-sm-10 &ndash;&gt;-->
+
+
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Your Name :: Here</h3>
+        </div>
+        <%= image_tag( 'missing.png', :alt =>'Default image', :class =>'img-circle') %>
+        <p></p>
+        <p align="center">"Advertise your self with us. Please contact us for further details"</p>
+      </div>
+    </div>
+
+
+  </div><!-- end row -->
+</div><!-- end invitation_container -->
+
+
+
+<div class="container" >
+  <div class="row" id="wrapper">
+    <div class="col-sm-12" id="invitation_container">
+
+      <div class="col-sm-1">
+      </div><!-- end col-sm-1 -->
+
+      <div class="col-sm-10" >
+        <div class="list-group">
+          <div class="list-group-item">
+            <br>
+            <div class="head_image">
+              <p align="center"> <%= image_tag("invitation/invitation_head_default.jpg",:alt =>'invitation head image') %> </p>
+            </div>
+            <br>
+            <%= form_for(@invitation) do |f| %>
+                <% if @invitation.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+
+                      <ul>
+                        <% @invitation.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                <% end %>
+
+                <div class="field" id="invitation_form">
+                  <%= f.label :image, 'Select invitation head image' %><br>
+                  <%= f.file_field :image %>
+                </div>
+
+                <div class="invitation">
+                  <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>INVITATION<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+                </div>
+
+                <div class="open_tag">
+                  <p align="center"><%= f.text_field :opening_tag_line,placeholder: 'Together with their families', class: 'form-control'%></p>
+                </div>
+
+                <div class="groom_tag">
+                  <p align="center"><%= f.text_field :groom_tag_line,placeholder: 'Shree Ram Shrestha', class: 'form-control'%></p>
+                </div>
+
+                <div class="groom_tag2">
+                  <p align="center"><%= f.text_field :groom_tagline2,placeholder: '(Son of Padma Krishna Shrestha & Baba Kumari Shrestha)', class: 'form-control'%></p>
+                </div>
+
+                <div class="connector">
+                  <p align="center">&</p>
+                </div>
+
+                <div class="bride_tag">
+                  <p align="center"><%= f.text_field :bride_tag_line,placeholder: 'Mishu Joshi', class: 'form-control' %></p>
+                </div>
+
+                <div class="bride_tag2">
+                  <p align="center"><%= f.text_field :bride_tagline2,placeholder: '(Daughter of Murari Mohan Joshi & Suchita Joshi)', class: 'form-control' %></p>
+                </div>
+
+                <br>
+                <div class="mid_tag">
+                  <p align="center"><%= f.text_field :mid_tag_line,placeholder: 'Request the honor of your presence', class: 'form-control' %></p>
+                </div>
+
+                <div class="mid_tag2">
+                  <p align="center"><%= f.text_field :mid_tagline2,placeholder: 'on the auspicious occasion of their', class: 'form-control' %></p>
+                </div>
+
+                <div class="event_tag">
+                  <p align="center"><%= f.text_field :event_tag_line,placeholder: 'Marriage Ceremony', class: 'form-control' %></p>
+                </div>
+                <br>
+
+                <div class="image_divider">
+                  <p align="center"><%= image_tag( "invitation/ganesha.jpg", :alt =>'invitation image divider') %></p>
+                </div>
+
+                <div class="event_container">
+
+                    <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>EVENTS<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+                    <br>
+
+                  <div class="row" id="invitation_form">
+
+                    <% if @event_options!= nil %>
+                        <div class="form-group">
+                          <%= f.label :event_id, 'First Event (required)' %><br>
+                          <%= f.select :event_id, options_for_select(@event_options), prompt: 'Select First Event id', id: 'event_select'  %>
+                        </div>
+
+                        <div class="form-group">
+                          <%= f.label :event_two_id, 'Second Event (optional)' %><br>
+                          <%= f.select :event_two_id, options_for_select(@event_options), prompt: 'Select Second Event id', id: 'event2_select' %>
+                        </div>
+
+                        <div class="field">
+                          <%= f.label :event_three_id, 'Third Event (optional)' %><br>
+                          <%= f.select :event_three_id, options_for_select(@event_options), prompt: 'Select Third Event id', id: 'event3_select' %>
+                        </div>
+
+                    <%end%>
+                  </div>
+                </div>
+                <br>
+
+                <div class="reservation_container">
+
+
+                    <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>RSVP<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+                    <br>
+
+                  <div class="row" id="invitation_form">
+                    <% if @event_options!= nil %>
+                        <div class="form-group">
+                          <%= f.label :event_id, 'First Event (optional)' %><br>
+                          <%= f.select :event_id, options_for_select(@event_options), prompt: 'Select First Event id', id: 'event_select'  %>
+                        </div>
+
+                        <div class="form-group">
+                          <%= f.label :event_two_id, 'Second Event (optional)' %><br>
+                          <%= f.select :event_two_id, options_for_select(@event_options), prompt: 'Select Second Event id', id: 'event2_select' %>
+                        </div>
+
+                        <div class="field">
+                          <%= f.label :event_three_id, 'Third Event (optional)' %><br>
+                          <%= f.select :event_three_id, options_for_select(@event_options), prompt: 'Select Third Event id', id: 'event3_select' %>
+                        </div>
+
+                    <%end%>
+
+                  </div>
+                </div>
+                <br>
+
+                <div class="gift_container">
+
+                    <p align="center" id="invitation_line"><%= image_tag("invitation/left_img_divider.png", :alt =>'invitation left image divider', :class =>"image")%>GIFTS<%= image_tag("invitation/right_img_divider.png", :alt =>'invitation right image divider') %></p>
+                    <br>
+
+                  <div class="row" id="invitation">
+                    <div class="form-group">
+                      <%= f.label :gift_tag_line,'Gift Registry One (optional)' %>
+                      <%= f.text_field :gift_tag_line,placeholder: 'Enter link to gift registry or gift instructions ', class: 'form-control' %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.label :gift_tagline2,'Gift Registry Two (optional)' %>
+                      <%= f.text_field :gift_tagline2,placeholder: 'Enter link to gift registry or gift instructions ', class: 'form-control' %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.label :gift_tagline3, 'Gift Registry Three (optional)' %>
+                      <%= f.text_field :gift_tagline3,placeholder: 'Enter link to gift registry or gift instructions ', class: 'form-control' %>
+                    </div>
+
+                  </div>
+                </div>
+                <br>
+
+                <div class="image_divider">
+                  <p align="center"><%= image_tag( "invitation/ganesha.jpg", :alt =>'invitation image divider') %></p>
+                </div>
+
+                <div class="default_tag">
+                  <p align="center">With Best Compliments</p>
+                </div>
+
+
+                <div class="close_tag">
+                  <p align="center"><%= @invitation.closing_tag_line  %></p>
+                </div>
+
+                <div class="close_tag">
+                  <p align="center"><%= f.text_field :closing_tag_line,placeholder: 'Shrestha and Joshi family', class: 'form-control' %></p>
+                </div>
+
+
+                <br>
+                <div class="actions" id="invitation_form">
+                  <%= f.submit %>
+                </div>
+            <% end %>
+
+          </div><!-- end list-group-item -->
+        </div><!-- end list-group -->
+      </div><!-- end col-sm-10 -->
+
+      <div class="col-sm-1">
+
+      </div><!-- end col-sm-1 -->
+    </div>
+
+  </div><!-- end row -->
+</div><!-- end invitation_container -->
+
+
+
+
+
+
+
+
+
+
+
+

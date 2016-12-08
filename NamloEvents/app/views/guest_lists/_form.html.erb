@@ -1,0 +1,87 @@
+
+          <%= form_for [@event, @guest_list] do |f| %>
+              <% if @guest_list.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@guest_list.errors.count, "error") %> prohibited this guest_list from being saved:</h2>
+
+                    <ul>
+                      <% @guest_list.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <div class="form-group">
+                <%= f.label :first_name,'First Name' %>
+                <%= f.text_field :first_name, class:'form-control'  %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :last_name,'Last Name' %>
+                <%= f.text_field :last_name, class:'form-control'  %>
+              </div>
+
+
+              <!--<div class="form-group">-->
+                <!--<%= f.label :last_name %>-->
+                <!--<%= f.text_field :last_name, class:'form-control'  %>-->
+              <!--</div>-->
+
+
+              <div class="form-group">
+                <%= f.label :email %>
+                <%= f.text_field :email, class:'form-control'  %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :total_attendees_expected,'Total Attendees Expected' %>
+                <%= f.number_field :total_attendees_expected, class:'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :seating_arrangement,'Seating Arrangement' %>
+                <%= f.text_field :seating_arrangement, class:'form-control' %>
+              </div>
+
+              <!--<div class="form-group">-->
+                <!--<%= f.label :seating_arrangement %>-->
+                <!--<%= f.text_field :seating_arrangement, class:'form-control'  %>-->
+              <!--</div>-->
+
+              <div class="form-group">
+                <%= f.label :notes %>
+                <%= f.text_area :notes, class:'form-control'  %>
+              </div>
+
+              <!--<div class="form-group">-->
+                <!--<%= f.label :event_id, 'Event ID' %>-->
+                <!--<%= f.text_field :event_id, class:'form-control'  %>-->
+              <!--</div>-->
+
+              <div class="hidden">
+                <%= hidden_field_tag 'event_id', @event.id %>
+              </div>
+
+              <div class="actions" id="submit_button">
+                <%= f.submit %>
+              </div>
+          <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

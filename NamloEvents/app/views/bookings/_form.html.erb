@@ -1,0 +1,153 @@
+
+<div class="container" id="booking_container">
+  <div class="row">
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Search Event by Host's email</h3>
+        </div><!-- end panel-heading -->
+        <br />
+        <div class="event_search">
+          <%= form_tag new_booking_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search, params[:search] ,placeholder: 'Enter email', :size => '30' %>
+                <%= submit_tag "Search", :name => nil %>
+
+                <div class="hidden">
+                  <%= radio_button_tag 'service_provider_id', @service_provider_id, true %>
+
+                  <% if params[:offer_id] != nil %>
+                      <%= radio_button_tag 'offer_id', params[:offer_id], true %>
+                  <%end%>
+
+                </div>
+
+              </p>
+          <% end %>
+        </div>
+        <hr>
+        <p>
+          <% if (@events == nil || @host == nil) %>
+              <% if params[:search]%>
+                <p align="center", class="error_message"> Sorry, no event found for host with email: <%= params[:search] %> </p>
+            <% end %>
+
+        <% else %>
+
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                    <tr class="info">
+                      <th>Event Name</th>
+                      <th>Event ID</th>
+                      <th>Event Date</th>
+                      <th colspan="3"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @events.each do |event| %>
+                    <tr class="success">
+                      <td><%= event.event_name %></td>
+                      <td><%= event.id %></td>
+                      <td><%= event.event_date %></td>
+                      <td></td>
+                    </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+
+        <% end %>
+        </p>
+
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+
+
+    <div class="col-sm-4">
+      <div class="list-group">
+        <div class="list-group-item">
+          <%= form_for(@booking) do |f| %>
+              <% if @booking.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+                    <ul>
+                      <% @booking.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <div class="form-group">
+                <%= f.label :booked_date %>
+                <%= f.date_select :booked_date , class:'form-control'%>
+              </div>
+
+              <!--<div class="form-group">
+                <%= f.label :event_id %>
+                <%= f.text_field :event_id, class:'form-control' %>
+              </div>-->
+
+              <%#= f.select :event_order_id, options_for_select(@event_options, selected=@selected), {prompt: 'Select event id'}, id: 'event_select', :onchange => "location.href = location.href.slice(0,-11) + '&event_id='+ this.options[this.selectedIndex].value" %>
+
+              <% if @event_options!= nil %>
+                  <div class="form-group">
+                    <%= f.label :event_id, 'Event ID' %>
+                    <%= f.select :event_id, options_for_select(@event_options), {prompt: 'Select event id'}, id: 'event_select' %>
+                  </div>
+              <%end%>
+
+
+              <div class="form-group">
+                <%= f.label :service_provider_id,'Enter Service Provider ID (required)' %>
+                <%= f.text_field :service_provider_id, placeholder: 'Or click Book button on service provider card',value: params[:service_provider_id], class:'form-control' %>
+              </div>
+
+             <div class="hidden">
+                <%#= hidden_field_tag 'service_provider_id', params[:service_provider_id] %>
+               <% if params[:location] != nil %>
+                   <%#= radio_button_tag 'location', params[:location], true %>
+                   <%=hidden_field_tag :location, params[:location] %>
+               <%end%>
+              </div>
+
+
+
+              <% if params[:offer_id] != nil%>
+                  <!--<div class="hidden">
+                    <%= hidden_field_tag 'offer_id', params[:offer_id] %>
+                  </div>-->
+                  <%= f.label :offer_id, 'Selected Offer ID' %>
+                  <%= f.text_field :offer_id, class:'form-control', value:params[:offer_id]  %>
+              <%end%><br>
+
+
+              <div class="actions", id="submit_button">
+                <%= f.submit %>
+              </div>
+          <% end %>
+        </div><!-- end list-group-item -->
+      </div><!-- end list-group -->
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Your Name :: Here</h3>
+        </div><!-- end panel-heading -->
+        <%= image_tag( 'missing.png', :alt =>'Default image', :class =>'img-circle') %>
+        <p></p>
+        <p align="center">"Advertise your self with us. Please contact us for further details"</p>
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+  </div><!-- end row -->
+</div><!-- end booking_container -->
+
+
+
+
+
+
+

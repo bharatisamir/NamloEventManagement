@@ -1,0 +1,37 @@
+
+          <% if reservation != nil %>
+                      <tr class="success">
+                        <td><%= reservation.first_name %></td>
+                        <td><%= reservation.last_name %></td>
+                        <td><%= reservation.email %></td>
+                        <td><%= reservation.complete_address %></td>
+                        <td><%= reservation.primary_phone %></td>
+                        <td><%= reservation.attending_event %></td>
+                        <td><%= reservation.total_attending %></td>
+                        <td><%= reservation.food_choice %></td>
+                        <td><%= reservation.kids_meal_required %></td>
+                        <td><%= reservation.need_paper_invitation %></td>
+                        <td><%= reservation.food_allergies %></td>
+                        <td><%= reservation.special_notes %></td>
+                        <td><%#= link_to 'Show', reservation %></td>
+
+                        <% if can? :update, Reservation%>
+                            <td><%= link_to 'Edit', edit_event_reservation_path(params[:id], reservation), :class => 'btn btn-small btn-warning'%></td>
+                        <% end %>
+
+                        <% if can? :destroy, Reservation%>
+                            <td><%= link_to 'Destroy', event_reservation_path(params[:id], reservation), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-small btn-danger'%></td>
+                        <% end %>
+
+                      </tr>
+          <% end %>
+
+
+
+
+
+
+
+
+
+

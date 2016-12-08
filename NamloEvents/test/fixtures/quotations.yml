@@ -1,19 +1,19 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  rfq_issue_date: 2016-10-23
-  rfq_closing_date: 2016-10-23
-  rfq_contact: MyString
-  frq_delivery_method: MyString
-  services_requested: MyText
-  comments: MyText
-  event: one
-
-two:
-  rfq_issue_date: 2016-10-23
-  rfq_closing_date: 2016-10-23
-  rfq_contact: MyString
-  frq_delivery_method: MyString
-  services_requested: MyText
-  comments: MyText
-  event: two
+## Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+#one:
+#  rfq_issue_date: 2016-10-23
+#  rfq_closing_date: 2016-10-23
+#  rfq_contact: MyString
+#  rfq_delivery_method: MyString
+#  services_requested: MyText
+#  comments: MyText
+#  event: one
+#
+#two:
+#  rfq_issue_date: 2016-10-23
+#  rfq_closing_date: 2016-10-23
+#  rfq_contact: MyString
+#  rfq_delivery_method: MyString
+#  services_requested: MyText
+#  comments: MyText
+#  event: two

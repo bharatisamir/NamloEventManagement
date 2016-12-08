@@ -1,0 +1,17 @@
+## Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+#one:
+#  expense_date: 2016-10-31
+#  expense_source: MyString
+#  budgeted_amount: 1
+#  actual_amount: 1
+#  notes: MyText
+#  event: one
+#
+#two:
+#  expense_date: 2016-10-31
+#  expense_source: MyString
+#  budgeted_amount: 1
+#  actual_amount: 1
+#  notes: MyText
+#  event: two

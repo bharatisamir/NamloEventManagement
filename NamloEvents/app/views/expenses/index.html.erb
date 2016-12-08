@@ -1,0 +1,136 @@
+
+<%#= link_to 'New Expense', new_expense_path %>
+
+<div class="container" id="expense_index_container">
+  <div class="page-header">
+    <h1>Expenses of Event Hosted by You </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Search Event by Host's email</h3>
+        </div><!-- end panel-heading -->
+        <br />
+        <div class="event_search">
+          <%= form_tag expenses_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search, params[:search],placeholder: 'Enter email', :size => '30' %>
+                <%= submit_tag "Search", :name => nil %>
+              </p>
+          <% end %>
+        </div>
+        <hr>
+        <p>
+          <% if (@events == nil || @host == nil) %>
+              <% if params[:search]%>
+                <p align="center", class="error_message"> Sorry, no events found for host with email: <%= params[:search] %> </p>
+            <% end %>
+
+        <% else %>
+            <% @events.each do |event| %>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+                    <tr class="success">
+                      <td> <strong>Event ID:</strong></td>
+                      <td><em><strong><%= event.id %></strong></em></td>
+                      <td> <strong>Event Date:</strong></td>
+                      <td><em><strong><%= event.event_date %></strong></em></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+            <% end %>
+        <% end %>
+        </p>
+
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-4">
+      <div class="list-group">
+        <div class="list-group-item">
+
+          <p>
+            <% if (@expenses == nil || @host == nil) %>
+                <% if params[:search2]%>
+                  <p align="center", class="error_message"> Sorry, no expenses found for event with event id: <%= params[:search2] %> </p>
+              <% end %>
+
+          <% else %>
+              <% @expenses.each do |expense| %>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                      <tr class="info">
+                        <th>Expense date</th>
+                        <th>Expense source</th>
+                        <th>Budgeted amount</th>
+                        <th>Actual amount</th>
+                        <th>Notes</th>
+                        <th>Event</th>
+                        <th colspan="3"></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr class="success">
+                        <td><%= expense.expense_date %></td>
+                        <td><%= expense.expense_source %></td>
+                        <td><%= expense.budgeted_amount %></td>
+                        <td><%= expense.actual_amount %></td>
+                        <td><%= expense.notes %></td>
+                        <td><%#= link_to 'Show', expense %></td>
+                        <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+                        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+              <% end %>
+          <% end %>
+          </p>
+
+
+        </div><!-- end list-group-item -->
+      </div><!-- end list-group -->
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Search Expenses by Event ID</h3>
+        </div><!-- end panel-heading -->
+        <br />
+        <div class="event_search">
+          <%= form_tag expenses_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search2, params[:search2],placeholder: 'Enter Event ID from Search result', :size => '30' %>
+                <%= submit_tag "Search", :name => nil %>
+              </p>
+          <% end %>
+        </div>
+        <hr>
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+  </div><!-- end row -->
+</div><!-- end expense_index_container -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

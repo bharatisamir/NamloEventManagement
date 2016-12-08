@@ -1,11 +1,42 @@
-<%= render 'form', review: @review %>
 
-<%#= link_to 'Back', reviews_path %>
+<div class="container">
+  <div class="page-header">
+    <h2>Review Your Service Provider</h2>
+  </div><!-- end page-header -->
+</div>
+
+<%= render 'form', review: @review %>
 
 <div class="container">
   <div class="row">
     <div class="page-header">
-      <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h1>
-    </div>
-  </div>
-</div>
+      <h2> <%= link_to 'Go Back', service_provider_reviews_path(@service_provider.id), :class => 'btn btn-large btn-info' %></h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
+
+
+
+
+
+<!--<script>
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+</script>-->
+
+
+<!--<script>
+  $('.star-rating').raty({
+    path: '/assets',
+    number: 5,
+    scoreName: 'review[rating_score]'
+  });
+</script>-->
+
+<%#= link_to 'Back', reviews_path %>
+

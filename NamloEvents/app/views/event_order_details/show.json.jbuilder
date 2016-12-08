@@ -1,0 +1,1 @@
+json.partial! "event_order_details/event_order_detail", event_order_detail: @event_order_detail

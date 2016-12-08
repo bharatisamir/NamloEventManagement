@@ -1,0 +1,50 @@
+
+<%#= link_to 'Back', survey_question_responses_path %>
+
+<div class="container" id="booking_container">
+  <div class="page-header">
+    <h2>Please Take a Survey</h2>
+  </div><!-- end page-header -->
+
+  <div class="row">
+    <!--<div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Your Name :: Here</h3>
+        </div>&lt;!&ndash; end panel-heading &ndash;&gt;
+        <%= image_tag( 'missing.png', :alt =>'Default image', :class =>'img-circle') %>
+        <p></p>
+        <p align="center">"Advertise your self with us. Please contact us for further details"</p>
+      </div>&lt;!&ndash; end panel &ndash;&gt;
+    </div>&lt;!&ndash; end col-sm-4 &ndash;&gt;-->
+
+
+    <div class="col-sm-8">
+      <div class="list-group">
+        <div class="list-group-item">
+          <h4 class="list-group-item-text"><strong>Please be as truthful as you can while taking this survey. Your response to the survey is completely anonymous</strong> </h4>
+          <br>
+          <%= render 'form', survey_question_response: @survey_question_response %>
+        </div><!-- end list-group-item -->
+      </div><!-- end list-group -->
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Your Name :: Here</h3>
+        </div><!-- end panel-heading -->
+        <%= image_tag( 'missing.png', :alt =>'Default image', :class =>'img-circle') %>
+        <p></p>
+        <p align="center">"Advertise your self with us. Please contact us for further details"</p>
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+  </div><!-- end row -->
+</div><!-- end booking_container -->
+
+
+
+
+
+
+

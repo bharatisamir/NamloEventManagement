@@ -1,0 +1,2 @@
+json.extract! reservation, :id, :first_name, :last_name, :email, :complete_address, :primary_phone, :attending_event, :total_attending, :food_choice, :kids_meal_required, :need_paper_invitation, :boolean, :food_allergies, :special_notes, :event_id, :created_at, :updated_at
+json.url reservation_url(reservation, format: :json)

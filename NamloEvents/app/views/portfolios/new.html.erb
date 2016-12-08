@@ -1,0 +1,26 @@
+
+
+<%#= render 'form', portfolio: @portfolio %>
+
+<%#= link_to 'Back', portfolios_path %>
+
+
+<div class="container">
+  <div class="page-header">
+    <h2>Please create your Portfolio</h2>
+  </div><!-- end page-header -->
+</div>
+
+<%= render 'form'%>
+
+<%#= render 'form', portfolio: @portfolio %>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
+
+

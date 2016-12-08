@@ -1,0 +1,129 @@
+
+
+<div class="container" id="reservations_container">
+  <div class="row">
+    <div class="col-sm-4 feature">
+    </div><!-- end panel -->
+  </div><!-- end col-sm-4 -->
+
+  <div class="col-sm-4">
+    <div class="list-group">
+      <div class="list-group-item">
+
+        <%= form_for([@event, @event.reservations.build],:url => event_reservations_path(event_id: @event.id)) do |f| %>
+            <% if @event.reservations.build.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@event.reservations.build.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+                  <ul>
+                    <% @event.reservations.build.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+
+            <div class="form-group">
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name,:class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name,:class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :email %>
+              <%= f.text_field :email,:class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :complete_address %>
+              <%= f.text_field :complete_address,:class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :primary_phone %>
+              <%= f.text_field :primary_phone,:class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :attending_event %>
+              <%= f.check_box :attending_event,:class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :total_attending %>
+              <%= f.number_field :total_attending,:class => 'form-control' %>
+            </div>
+
+
+
+
+            <div class="control-group">
+              <%= f.label :pictures, :class => 'control-label' %>
+              <div class="controls">
+                <%= text_field_tag 'images[]',  multiple: true %>
+              </div>
+            </div><br>
+
+
+            <div class="form-group">
+              <%= f.label :food_choice %>
+              <%= f.text_field :food_choice,:class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :kids_meal_required %>
+              <%= f.number_field :kids_meal_required,:class => 'form-control' %>
+            </div>
+
+            <div class="field">
+              <%= f.label :need_paper_invitation %>
+              <%= f.check_box :need_paper_invitation%>
+
+              <%= f.label :food_allergies %>
+              <%= f.check_box :food_allergies %>
+
+            </div>
+
+
+            <!-- <div class="form-group">
+                <%= f.label :food_allergies %>
+                <%= f.check_box :food_allergies,:class => 'form-control' %>
+              </div>-->
+
+            <div class="form-group">
+              <%= f.label :special_notes %>
+              <%= f.text_area :special_notes,:class => 'form-control' %>
+            </div>
+
+            <!--<div class="field">
+                <%= f.label :event_id %>
+                <%= f.text_field :event_id %>
+              </div>-->
+
+            <div class="hidden">
+              <%= hidden_field_tag 'event_id', @event.id %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+        <% end %>
+
+      </div><!-- end list-group-item -->
+    </div><!-- end list-group -->
+  </div><!-- end col-sm-4 -->
+
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+
+    </div><!-- end col-sm-4 -->
+  </div><!-- end row -->
+</div><!-- end confirmation_container -->
+
+
+
+

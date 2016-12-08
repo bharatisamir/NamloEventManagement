@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#one:
+#  service_date: 2016-11-02
+#  service_start_time: 2016-11-02 13:23:51
+#  service_end_time: 2016-11-02 13:23:51
+#  function: MyString
+#  service_location: MyString
+#  service_setup_requirements: MyText
+#  event_order: one
+#  service: one
+#  service_provider: one
+#
+#two:
+#  service_date: 2016-11-02
+#  service_start_time: 2016-11-02 13:23:51
+#  service_end_time: 2016-11-02 13:23:51
+#  function: MyString
+#  service_location: MyString
+#  service_setup_requirements: MyText
+#  event_order: two
+#  service: two
+#  service_provider: two

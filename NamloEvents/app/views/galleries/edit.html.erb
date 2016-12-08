@@ -1,0 +1,20 @@
+
+<%#= link_to 'Show', @gallery %>
+<%#= link_to 'Back', galleries_path %>
+
+
+<div class="container">
+  <div class="page-header">
+    <h2>Please, edit your Gallery here</h2>
+  </div><!-- end page-header -->
+</div>
+
+<%= render 'form', gallery: @gallery %>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1> <%= link_to 'Go Back', service_provider_portfolio_path(@portfolio.service_provider.id,@portfolio.id), :class => 'btn btn-large btn-info' %></h1>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->

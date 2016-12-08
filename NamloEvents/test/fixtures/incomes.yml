@@ -1,0 +1,17 @@
+## Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+#one:
+#  income_date: 2016-11-01
+#  income_source: MyString
+#  expected_amount: 1.5
+#  actual_amount: 1.5
+#  notes: MyText
+#  event: one
+#
+#two:
+#  income_date: 2016-11-01
+#  income_source: MyString
+#  expected_amount: 1.5
+#  actual_amount: 1.5
+#  notes: MyText
+#  event: two

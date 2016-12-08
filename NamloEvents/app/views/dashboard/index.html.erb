@@ -146,14 +146,57 @@
                       <%= link_to 'Edit Profile', edit_user_profile_path(@user.id,@profile.id), :class => 'btn btn-small btn-info' %>
                   <% end %>
 
+                    <% if @service_provider!= nil %>
+                        <%= link_to 'Edit Provider Profile', edit_service_provider_path(@service_provider.id), :class => 'btn btn-small btn-info' %>
+                    <% end %>
 
+                    <% if @survey!= nil %>
+                        <%= link_to 'Social Support Measure Survey', new_survey_question_response_path(survey_id: @survey.id), :class => 'btn btn-small btn-info' %>
+                    <% end %>
 
-                  <%#= link_to 'Edit Service Provider', edit_user_service_provider_path(@user.id,@service_profile.id), :class => 'btn btn-small btn-info' %>
+                    <%#= link_to 'Edit Service Provider', edit_user_service_provider_path(@user.id,@service_profile.id), :class => 'btn btn-small btn-info' %>
 
                   </p>
                   <p></p>
                 </div><!-- end panel -->
               </div><!-- end col-sm-4 -->
+
+
+
+
+
+              <% if current_user.role?(:Admin)%>
+
+                  <div class="col-sm-4">
+
+                  </div><!-- end col-sm-4 -->
+
+
+
+                  <div class="col-sm-7 feature">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title" align="center">Administrator Panel</h5>
+                      </div><!-- end panel-heading -->
+                      <p></p>
+                      <p align="center">
+
+                        <%= link_to 'Go to Admin Dashboard', rails_admin_path, :class=> 'btn btn-small btn-danger'%>
+                        <%= link_to 'Manage Roles', roles_path, :class=> 'btn btn-small btn-primary'%>
+                        <%= link_to 'Manage services', services_path, :class=> 'btn btn-small btn-primary'%>
+                        <%= link_to 'Surveys', surveys_path, :class=> 'btn btn-small btn-primary'%>
+                        <%= link_to 'View Responses', survey_question_responses_path, :class=> 'btn btn-small btn-primary'%>
+
+                      </p>
+                      <p></p>
+                    </div><!-- end panel -->
+                  </div><!-- end col-sm-4 -->
+
+              <%end%>
+
+
+
+
 
               <!--<div class="col-sm-7">
                 <div class="list-group">
@@ -203,6 +246,7 @@
                   <p align="center">
                     <%= link_to 'Create ToDo List', new_user_to_do_list_path(@user), :class => 'btn btn-small btn-info' %>
                     <%= link_to 'View ToDo List', user_to_do_lists_path(@user), :class => 'btn btn-small btn-info' %>
+                    <%= link_to 'Email', new_email_path, 'data-popup' => true, :class => 'btn btn-small btn-info' %>
 
                   </p>
 
@@ -288,13 +332,27 @@
                       <p></p>
                       <p align="center">
                         <%= link_to 'Create an Event', new_user_host_event_path(@user,@host), :class => 'btn btn-small btn-info' %>
-                        <%= link_to 'Create Attendants List', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%#= link_to 'Create Attendants List', edit_user_password_path, :class => 'btn btn-small btn-info' %>
                         <%#= link_to 'Create RFQ', new_event_quotation_path(@event), :class => 'btn btn-small btn-info' %>
-                        <%= link_to 'Book / Appoint Manager', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%#= link_to 'Book / Appoint Manager', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+
+                        <%= link_to 'View Events', user_host_events_path(@user,@host), :class => 'btn btn-small btn-info' %>
+
+                        <%= link_to 'Create Event Order', new_event_order_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'View Event Order', event_orders_path, :class => 'btn btn-small btn-info' %>
+
+
                       </p>
                       <p align="center">
-                      <%= link_to 'View Reports', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                      <%= link_to 'View Events', user_host_events_path(@user,@host), :class => 'btn btn-small btn-info' %>
+                        <%#= link_to 'Create Booking', new_booking_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'View Bookings', bookings_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Create Invitation', new_invitation_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Create Menu', new_menu_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'View Menus', menus_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Go To Marketplace', market_place_index_path , :class => 'btn btn-small btn-info' %>
+                        <%#= link_to 'View Invitation', invitation_path, :class => 'btn btn-small btn-info' %>
+                      <%#= link_to 'View Reports', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                      <%#= link_to 'View Events', user_host_events_path(@user,@host), :class => 'btn btn-small btn-info' %>
 
 
                       </p>
@@ -309,11 +367,9 @@
                           <h5>Activities</h5>
                         </div>&lt;!&ndash; end list-group-item-heading &ndash;&gt;
                         <%= link_to 'Create an Event', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                        <%= link_to 'Create Attendants List', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                        <%= link_to 'Create RFQ', edit_user_password_path, :class => 'btn btn-small btn-info' %>
-                        <%= link_to 'Book / Appoint Manager', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%#= link_to 'Book / Appoint Manager', new_booking_path, :class => 'btn btn-small btn-info' %>
                         <p></p>
-                        <%= link_to 'View Reports', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%#= link_to 'View Reports', edit_user_password_path, :class => 'btn btn-small btn-info' %>
                         <p></p>
                       </div>&lt;!&ndash; end list-group-item &ndash;&gt;
                     </div>&lt;!&ndash; end list-group &ndash;&gt;
@@ -371,9 +427,39 @@
                     </div>&lt;!&ndash; end list-group &ndash;&gt;
                   </div>&lt;!&ndash; end col-sm-7 &ndash;&gt;-->
 
+
                   <div class="col-sm-4">
 
                   </div><!-- end col-sm-4 -->
+
+                  <div class="col-sm-7 feature">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h5 class="panel-title" align="center">Account Settings</h5>
+                      </div><!-- end panel-heading -->
+                      <p></p>
+                      <p align="center">
+
+                        <% if ! @portfolio.present?%>
+                            <%= link_to 'Create Portfolio', new_service_provider_portfolio_path(@service_provider.id), :class => 'btn btn-small btn-info' %>
+                         <%else%>
+                            <%= link_to 'Create Portfolio', {}, :disabled => true, :class => 'btn btn-small btn-info'%>
+                            <%= link_to 'View Portfolio', service_provider_portfolio_path(@service_provider.id, @portfolio.id), :class => 'btn btn-small btn-info' %>
+
+                      <%end%>
+
+                      </p>
+                      <p></p>
+
+                    </div><!-- end panel -->
+                  </div><!-- end col-sm-4 -->
+
+
+
+                  <div class="col-sm-4">
+
+                  </div><!-- end col-sm-4 -->
+
 
                   <div class="col-sm-7 feature">
                     <div class="panel panel-default">
@@ -382,20 +468,63 @@
                       </div><!-- end panel-heading -->
                       <p></p>
                       <p align="center">
-                        <%= link_to 'Visit Marketplace', market_place_index_path , :class => 'btn btn-small btn-info' %>
-                        <%= link_to 'View Booking', edit_user_password_path, :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'Go To Marketplace', market_place_index_path , :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'View Booking', bookings_path, :class => 'btn btn-small btn-info' %>
                         <%= link_to 'View Providers', service_providers_path, :class => 'btn btn-small btn-info' %>
                         <%= link_to 'View Reviews', service_provider_reviews_path(@service_provider.id), :class => 'btn btn-small btn-info' %>
                         <%= link_to 'View Peer Reviews', service_provider_peer_reviews_path(@service_provider.id), :class => 'btn btn-small btn-info' %>
                       </p>
+                      <p></p>
 
                       <p align="center">
+                        <%= link_to 'Create Offer', new_service_provider_offer_path(@service_provider.id), :class => 'btn btn-small btn-info' %>
+                        <%= link_to 'View Offer', service_provider_offers_path(@service_provider.id), :class => 'btn btn-small btn-info' %>
 
                       </p>
                       <p></p>
 
                     </div><!-- end panel -->
                   </div><!-- end col-sm-4 -->
+
+
+                  <div class="col-sm-4">
+
+                  </div><!-- end col-sm-4 -->
+
+                  <% if ((@service_provider != nil) && (@service_provider_management_service != nil)) %>
+
+                      <% if @service_provider_management_service.service_provider_id == @service_provider.id  %>
+                          <div class="col-sm-7 feature">
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h5 class="panel-title" align="center">Event Manager Panel</h5>
+                              </div><!-- end panel-heading -->
+                              <p></p>
+                              <p align="center">
+                                <%#= link_to 'View Events', user_host_events_path(@user,@host), :class => 'btn btn-small btn-info' %>
+                                <%= link_to 'View Events', user_host_events_path(@user,@service_provider,event_manager: @service_provider.id ), :class => 'btn btn-small btn-primary' %>
+                                <%#= link_to 'Create Booking', new_booking_path, :class => 'btn btn-small btn-primary' %>
+                                <%#= link_to 'View Bookings', bookings_path, :class => 'btn btn-small btn-primary' %>
+                                <%= link_to 'Create Event Order', new_event_order_path, :class => 'btn btn-small btn-primary' %>
+                                <%= link_to 'View Event Order', event_orders_path(event_manager: @service_provider.id), :class => 'btn btn-small btn-primary' %>
+                                <%= link_to 'Create Invitation', new_invitation_path, :class => 'btn btn-small btn-primary' %>
+
+
+                              </p>
+
+                              <p align="center">
+                                <%= link_to 'Create Menus', new_menu_path , :class => 'btn btn-small btn-primary' %>
+                                <%= link_to 'View Menus', menus_path, :class => 'btn btn-small btn-primary' %>
+
+                              </p>
+                              <p></p>
+
+                            </div><!-- end panel -->
+                          </div><!-- end col-sm-7 -->
+                      <%end%>
+
+                  <%end%>
+
 
                   <!--<div class="col-sm-7">
                     <div class="list-group">
@@ -423,3 +552,7 @@
   </div><!-- end row -->
 </div><!-- end container -->
 
+<hr>
+<div class="script">
+
+</div>

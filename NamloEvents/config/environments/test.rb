@@ -18,6 +18,10 @@ Rails.application.configure do
     'Cache-Control' => 'public, max-age=3600'
   }
 
+
+
+  config.active_record.time_zone_aware_types = [:datetime]
+
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false

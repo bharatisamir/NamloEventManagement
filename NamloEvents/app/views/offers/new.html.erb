@@ -1,0 +1,18 @@
+<%#= link_to 'Back', offers_path %>
+
+
+<div class="container">
+  <div class="page-header">
+    <h2>Create New Offer Package</h2>
+  </div><!-- end page-header -->
+</div>
+
+<%= render 'form', offer: @offer %>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', service_provider_offers_path(service_provider_id: params[:service_provider_id]), :class => 'btn btn-large btn-info' %></h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->

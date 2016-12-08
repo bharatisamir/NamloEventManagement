@@ -1,4 +1,4 @@
-<div class="container" id="confirmation_container">
+<div class="container" id="service_provider_container">
   <div class="row">
     <div class="col-sm-4 feature">
       <div class="panel panel-default">
@@ -27,10 +27,24 @@
                   </div>
               <% end %>
 
-              <div class="form-group">
+              <!--<div class="form-group">
                 <%= f.label :service_category %>
-                <%= f.text_field :service_category, class: 'form-control' %>
-              </div>
+                <%#=f.text_field :service_category, class: 'form-control' %>
+              </div>-->
+
+              <br>
+              <% if  @service_options!= nil %>
+                  <div class="form-group">
+                    <%= f.label :service_id, 'Service(s)' %>
+                    <%#= f.select :service_id, options_for_select(@service_options), {:multi_select => true}, id: 'provider_select' %>
+
+                    <%#= f.select :service_id, options_for_select(@service_options), { :multiple => true } %>
+                    <%= select_tag 'service_id', options_for_select(@service_options), { :multiple => true } %>
+                  </div>
+              <%end%>
+              <br>
+
+
 
               <div class="form-group">
                 <%= f.label :company %>
@@ -56,7 +70,7 @@
                 <%= hidden_field_tag 'user_id', @user %>
               </div>
 
-              <div class="actions">
+              <div class="actions" id="submit_button">
                 <%= f.submit %>
               </div>
           <% end %>

@@ -1,0 +1,139 @@
+
+<%#= link_to 'New Guest List', new_guest_list_path %>
+
+<div class="container" id="guest_index_container">
+  <div class="page-header">
+    <h1>Your Guest List </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Search Event by Host's email</h3>
+        </div><!-- end panel-heading -->
+        <br />
+        <div class="event_search">
+          <%= form_tag guest_lists_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search, params[:search],placeholder: 'Enter email', :size => '30' %>
+                <%= submit_tag "Search", :name => nil %>
+              </p>
+          <% end %>
+        </div>
+        <hr>
+        <p>
+          <% if (@events == nil || @host == nil) %>
+              <% if params[:search]%>
+                <p align="center", class="error_message"> Sorry, no events found for host with email: <%= params[:search] %> </p>
+            <% end %>
+
+        <% else %>
+            <% @events.each do |event| %>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+                    <tr class="success">
+                      <td> <strong>Event ID:</strong></td>
+                      <td><em><strong><%= event.id %></strong></em></td>
+                      <td> <strong>Event Date:</strong></td>
+                      <td><em><strong><%= event.event_date %></strong></em></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+            <% end %>
+        <% end %>
+        </p>
+
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-4">
+      <div class="list-group">
+        <div class="list-group-item">
+
+          <p>
+            <% if (@guest_lists == nil || @host == nil) %>
+                <% if params[:search2]%>
+                  <p align="center", class="error_message"> Sorry, no guest list found for event with event id: <%= params[:search2] %> </p>
+              <% end %>
+
+          <% else %>
+              <% @guest_lists.each do |guest_list| %>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                      <tr class="info">
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
+                        <th>Total attendees expected</th>
+                        <th>Seating arrangement</th>
+                        <th>Notes</th>
+                        <th>Event</th>
+                        <th colspan="3"></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr class="success">
+                        <td><%= guest_list.first_name %></td>
+                        <td><%= guest_list.last_name %></td>
+                        <td><%= guest_list.email %></td>
+                        <td><%= guest_list.total_attendees_expected %></td>
+                        <td><%= guest_list.seating_arrangement %></td>
+                        <td><%= guest_list.notes %></td>
+                        <td><%= guest_list.event %></td>
+                        <td><%#= link_to 'Show', guest_list %></td>
+                        <td><%= link_to 'Edit', edit_guest_list_path(guest_list) %></td>
+                        <td><%= link_to 'Destroy', guest_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+              <% end %>
+          <% end %>
+          </p>
+
+
+        </div><!-- end list-group-item -->
+      </div><!-- end list-group -->
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Search Guest List by Event ID</h3>
+        </div><!-- end panel-heading -->
+        <br />
+        <div class="event_search">
+          <%= form_tag guest_lists_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search2, params[:search2],placeholder: 'Enter Event ID from Search result', :size => '30' %>
+                <%= submit_tag "Search", :name => nil %>
+              </p>
+          <% end %>
+        </div>
+        <hr>
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+  </div><!-- end row -->
+</div><!-- end guest_index_container -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

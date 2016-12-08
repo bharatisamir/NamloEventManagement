@@ -29,88 +29,251 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
-    def initialize(user)
 
-      #alias_action :create, :read, :update, :destroy, :to => :crud
-      alias_action :update, :destroy, :to => :modify
-      alias_action :complete, :read, :update, :destroy, :to => :crud
+    user ||= User.new
 
-      user ||= User.new
+    if user.role?(:Admin)
+      can :manage, :all
+    end
 
+    if user.role?(:Service_Provider)
 
-      if user.role?(:admin)
-        can :manage, :all
-
-      elsif user.role?(:host)
-        can :create, Event
-        can :modify, Event do |event|
-          event.Host.user_id == user.id
-        end
-
-        can :crud, Quotation do |quote|
-          quote.Event.Host.user_id == user.id
-        end
-
-      elsif user.role?(:service_provider)
-        can :read, Event
-        can :read, Quotation
-
-      else
-        can :create, ToDoList
-        can :crud, ToDoList do |to_do_list|
-          to_do_list.user_id == user.id
-        end
-
+      can :create,ToDoList
+      can :manage, ToDoList do |list|
+        list.try(:user) == user
       end
 
-=begin
-      if user.role?(:admin)
-        can :manage, :all
-
-      else
-
-        can :crud, ToDoList do |to_do_list|
-          to_do_list.user_id == user.id
-        end
-
-
-        can :crcd, ToDoItem do |to_do_item|
-          to_do_item.user_id == user.id
-        end
-
-        can :read, :all
-        can :cud, Quotation do |quote|
-          @event = Event.find(quote.event_id)
-          @host = Host.find(@event.host_id)
-          @host.user_id == user
-        end
-
-
-
-
-      end
-=end
-
-
-
-=begin
-      if user.role?(:host)
-        can :create, Event
-        can :manage, Event do |event|
-          event.user_id == user.id
-        end
+      can :read, ToDoList do |list|
+        list.try(:user) == user
       end
 
-      if user.role?(:service_provider)
-        can :create, Event
-        can :manage, Event do |event|
-          event.user_id == user.id
-        end
+      can :create,Portfolio
+      can :read,Portfolio
+      can :manage, Portfolio do |port|
+        port.service_provider_id == user.service_provider.id
       end
-=end
+
+      can :create, PeerReview
+      can :read, PeerReview
+      can :manage, PeerReview do |peer|
+        peer.reviewer_id.to_i == user.service_provider.id
+      end
+
+      can :read, Review
+      can :read, Quotation
+      can :read, Event, :publish_on_marketplace => true
+
+      can :create, Offer
+      can :read, Offer
+      can :manage, Offer do |offer|
+        offer.service_provider_id.to_i == user.service_provider.id
+      end
 
     end
 
+    if user.role?(:Host)
+
+      can :create,ToDoList
+      can :manage, ToDoList do |list|
+        list.try(:user) == user
+      end
+
+      can :read, ToDoList do |list|
+        list.try(:user) == user
+      end
+
+      can :create, Review
+      can :manage, Review do |review|
+       review.reviewer_id.to_i == user.id
+      end
+
+
+      can :read, Reservation
+
+      can :update, Reservation do |reserve|
+        @event = Event.find(reserve.event_id)
+        @event.host.id == user.host.id
+      end
+
+      can :destroy, Reservation do |reserve|
+        @event = Event.find(reserve.event_id)
+        @event.host.id == user.host.id
+      end
+
+
+      can :create, Quotation
+      can :read, Quotation
+
+      can :update, Quotation do |quote|
+        @event = Event.find(quote.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :destroy, Quotation do |quote|
+        @event = Event.find(quote.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :read, Portfolio
+      can :read, Offer
+
+      can :create, Menu
+
+      can :read, Menu do |menu|
+        @event = Event.find(menu.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :update, Menu do |menu|
+        @event = Event.find(menu.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :destroy, Menu do |menu|
+        @event = Event.find(menu.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :create, Invitation
+
+      can :read, Invitation do |invite|
+        @event = Event.find(invite.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :update, Invitation do |invite|
+        @event = Event.find(invite.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :destroy, Invitation do |invite|
+        @event = Event.find(invite.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :create, Income
+
+      can :read, Income do |income|
+        @event = Event.find(income.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :update, Income do |income|
+        @event = Event.find(income.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :destroy, Income do |income|
+        @event = Event.find(income.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :create, GuestList
+
+      can :read, GuestList do |list|
+        @event = Event.find(list.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :update, GuestList do |list|
+        @event = Event.find(list.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :destroy, GuestList do |destroy|
+        @event = Event.find(destroy.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :create, Expense
+
+      can :read, Expense do |expense|
+        @event = Event.find(expense.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :update, Expense do |expense|
+        @event = Event.find(expense.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :destroy, Expense do |expense|
+        @event = Event.find(expense.event_id)
+        @event_host = Host.find(@event.host_id)
+        @event_host.user_id == user.id
+      end
+
+      can :create, Event
+      can :manage, Event do |event|
+        event.host_id.to_i == user.host.id
+      end
+
+      can :create, EventOrder
+
+      can :read, EventOrder do |order|
+        @event = Event.find(order.event_id)
+        @event.host.id == user.host.id
+      end
+
+      can :update, EventOrder do |order|
+        @event = Event.find(order.event_id)
+        @event.host.id == user.host.id
+      end
+
+      can :destroy, EventOrder do |order|
+        @event = Event.find(order.event_id)
+        @event.host.id == user.host.id
+      end
+
+
+      can :create, Booking
+
+      can :read, Booking do |book|
+        @event = Event.find(book.event_id)
+        @event.host.id == user.host.id
+      end
+
+      can :update,Booking do |book|
+        @event = Event.find(book.event_id)
+        @event.host.id == user.host.id
+      end
+
+      can :destroy, Booking do |book|
+        @event = Event.find(book.event_id)
+        @event.host.id == user.host.id
+      end
+
+    end
+
+    can :read, Invitation
+    can :event_detail, Invitation
+    can :read, Event
+    can :create, Reservation
+    can :update, MenuItem
+    can :read, Survey
+
+
+
 
   end
+
+
+
+
 end

@@ -1,11 +1,22 @@
+
+<%#= link_to 'Back', peer_reviews_path %>
+
+<div class="container">
+  <div class="page-header">
+    <h2>Peer Review Your Service Provider</h2>
+  </div><!-- end page-header -->
+</div>
+
 <%= render 'form', peer_review: @peer_review %>
+
 <div class="container">
   <div class="row">
     <div class="page-header">
-      <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h1>
-    </div>
-  </div>
-</div>
+      <h2> <%= link_to 'Go Back', service_provider_peer_reviews_path(@service_provider.id), :class => 'btn btn-large btn-info' %></h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
 
 
-<%#= link_to 'Back', peer_reviews_path %>
+
+

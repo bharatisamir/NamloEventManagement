@@ -1,6 +1,21 @@
-<h1>Editing Review</h1>
+
+
+
+<%#= link_to 'Show', @review %>
+<%#= link_to 'Back', reviews_path %>
+
+<div class="container">
+  <div class="page-header">
+    <h2>Please, edit your Review here</h2>
+  </div><!-- end page-header -->
+</div>
 
 <%= render 'form', review: @review %>
 
-<%= link_to 'Show', @review %> |
-<%= link_to 'Back', reviews_path %>
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1> <%= link_to 'Go Back', service_provider_reviews_path(@service_provider.id), :class => 'btn btn-large btn-info' %></h1>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->

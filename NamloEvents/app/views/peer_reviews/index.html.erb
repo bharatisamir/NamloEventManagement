@@ -1,13 +1,11 @@
-
-<p id="notice"><%= notice %></p>
-
-
+<% javascript 'jquery.raty' %>
 <div class="container" id="peer_reviews_container">
   <div class="page-header">
     <h2> Peer Reviews for <%= @provider_user.first_name %> <%= @provider_user.last_name %></h2>
   </div>
 
   <div class="container">
+
     <div class="row">
       <div class="col-sm-3 ">
         <div class="img-thumbnail">
@@ -17,57 +15,11 @@
               <%= image_tag(@provider_profile.image.url(:thumb),:alt =>'Profile image', :class =>"img-square") %>
           <% end %>
         </div>
+        <br>
 
         <% if @peer_reviews != nil %>
-
-            <div class="star-rating" data-score=" <%= @avg_review %>">
-
-            </div>
+            
             <em><%= "#{@peer_reviews.length} reviews"%></em>
-            </div>
-
-            <div class="col-sm-9">
-              <div class="list-group">
-                <% @peer_reviews.each do |peer_review| %>
-                    <div class="list-group-item">
-                      <div class="star-rating1" data-score= <%= peer_review.organization_score %> >
-
-                      </div>
-
-                      <div class="star-rating2" data-score= <%= peer_review.expertise_score %> >
-
-                      </div>
-
-                      <div class="star-rating3" data-score= <%= peer_review.professionalism_score %> >
-
-                      </div>
-
-                      <div class="star-rating4" data-score= <%= peer_review.time_management_score %> >
-
-                      </div>
-
-                      <div class="star-rating5" data-score= <%= peer_review.cooperation_score %> >
-
-                      </div>
-
-                      <div class="star-rating6" data-score= <%= peer_review.communication_score %>>
-
-                      </div>
-
-                      <div class="star-rating7" data-score= <%= peer_review.people_skills_score %> >
-
-                      </div>
-
-                      <div class="star-rating8" data-score= <%= peer_review.service_score %> >
-
-                      </div>
-
-                      <h5>- <%=User.find(peer_review.reviewer_id).first_name %> <%=User.find(peer_review.reviewer_id).last_name %>| <%= peer_review.created_at %></h5>
-                      <p></p>
-                      <p class="list-group-item-text"><%= peer_review.comments %></p>
-                    </div>
-                <% end %>
-              </div>
             </div>
 
         <% else %>
@@ -75,6 +27,135 @@
         <% end %>
 
         </div>
+
+    <br>
+
+    <div class="row">
+
+      <div class="col-sm-12">
+        <div class="list-group">
+          <div class="list-group-item-heading"><h4 align="middle">Average Scores</h4></div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr class="info">
+                <th>Organization Score</th>
+                <th>Expertise Score</th>
+                <th>Professionalism Score</th>
+                <th>Time Management Score</th>
+                <th>Cooperation Score </th>
+                <th>People Skills Score</th>
+                <th>Cooperation Score </th>
+                <th>Service Score</th>
+                <th colspan="3"></th>
+              </tr>
+              </thead>
+              <tbody>
+                  <tr >
+                    <td><div class="star-rating1" data-score= <%= @avg_organization_score %> ></div></td>
+                    <td><div class="star-rating2" data-score= <%= @avg_expertise_score %> ></div></td>
+                    <td><div class="star-rating3" data-score= <%= @avg_professionalism_score %> ></div></td>
+                    <td><div class="star-rating4" data-score= <%= @avg_time_management_score %> ></div></td>
+                    <td><div class="star-rating5" data-score= <%= @avg_cooperation_score %> ></div></td>
+                    <td><div class="star-rating6" data-score= <%= @avg_communication_score %>></div></td>
+                    <td><div class="star-rating7" data-score= <%= @avg_people_skills_score %> ></div></td>
+                    <td><div class="star-rating8" data-score= <%= @avg_service_score %> ></div></td>
+                    <td></td>
+                  </tr>
+                  <tr class="danger">
+                    <td><%= @avg_organization_score %></td>
+                    <td><%= @avg_expertise_score %></td>
+                    <td><%= @avg_professionalism_score %></td>
+                    <td><%= @avg_time_management_score %></td>
+                    <td><%= @avg_cooperation_score %></td>
+                    <td><%= @avg_communication_score %></td>
+                    <td><%= @avg_people_skills_score %></td>
+                    <td><%= @avg_service_score %></td>
+                    <td></td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <br>
+    
+    <div class="row">
+
+      <div class="col-sm-12">
+              <div class="list-group">
+                <div class="table-responsive">
+
+                    <% @peer_reviews.each do |peer_review| %>
+                      <table class="table">
+                        <thead>
+                        <tr class="info">
+                          <th>Organization Score</th>
+                          <th>Expertise Score</th>
+                          <th>Professionalism Score</th>
+                          <th>Time Management Score</th>
+                          <th>Cooperation Score </th>
+                          <th>People Skills Score</th>
+                          <th>Cooperation Score </th>
+                          <th>Service Score</th>
+                          <th colspan="3"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr >
+                          <td><div class="star-rating1" data-score= <%= peer_review.organization_score %> ></div></td>
+                          <td><div class="star-rating2" data-score= <%= peer_review.expertise_score %> ></div></td>
+                          <td><div class="star-rating3" data-score= <%= peer_review.professionalism_score %> ></div></td>
+                          <td><div class="star-rating4" data-score= <%= peer_review.time_management_score %> ></div></td>
+                          <td><div class="star-rating5" data-score= <%= peer_review.cooperation_score %> ></div></td>
+                          <td><div class="star-rating6" data-score= <%= peer_review.communication_score %>></div></td>
+                          <td><div class="star-rating7" data-score= <%= peer_review.people_skills_score %> ></div></td>
+                          <td><div class="star-rating8" data-score= <%= peer_review.service_score %> ></div></td>
+                          <td></td>
+                        </tr>
+                        <tr class="success">
+                          <td><%= peer_review.organization_score %></td>
+                          <td><%= peer_review.expertise_score %></td>
+                          <td><%= peer_review.professionalism_score %></td>
+                          <td><%= peer_review.time_management_score %></td>
+                          <td><%= peer_review.cooperation_score %></td>
+                          <td><%= peer_review.communication_score %></td>
+                          <td><%= peer_review.people_skills_score %></td>
+                          <td><%= peer_review.service_score %></td>
+                          <td></td>
+                        </tr>
+
+                        <div class="list-group-item">
+
+                          <h5>- <%=User.find(peer_review.reviewer_id).first_name %> <%=User.find(peer_review.reviewer_id).last_name %> | <%= peer_review.created_at.strftime('%H:%M:%S') %></h5>
+                          <p></p>
+                          <p class="list-group-item-text"><%= peer_review.comments %></p>
+                          <br>
+                          <p align="middle">
+                            <% if can? :update, PeerReview%>
+                                <%= link_to 'Edit Peer Review', edit_service_provider_peer_review_path(peer_review.serviceprovider_id, peer_review), :class => 'btn btn-large btn-warning'%>
+                            <% end %>
+
+                            <% if can? :destroy, PeerReview%>
+                                <%= link_to 'Destroy Peer Review', service_provider_peer_review_path(peer_review.serviceprovider_id,peer_review), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-large btn-danger' %>
+                            <% end %>
+
+                          </p>
+                        </div>
+
+                        </tbody>
+                      </table>
+                    <% end %>
+
+                </div>
+              </div>
+      </div>
+
+    </div>
+
   </div>
 
 </div>
@@ -84,11 +165,11 @@
     <div class="page-header">
 
       <% if @provider_user.id == @user.id %>
-          <h1> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %> </h1>
+          <h2> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %> </h2>
       <% elsif @user_is_provider != nil %>
-          <h1> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %> <%= link_to 'Write Peer Review', new_service_provider_peer_review_path(@provider_user.id), :class => 'btn btn-large btn-info' %> </h1>
+          <h2> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %> <%= link_to 'Write Peer Review', new_service_provider_peer_review_path(@provider_user.id), :class => 'btn btn-large btn-info' %> </h2>
       <% else %>
-          <h1> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %> </h1>
+          <h2> <%= link_to 'Go Back', service_providers_path, :class => 'btn btn-large btn-info' %> </h2>
       <% end %>
 
     </div>
@@ -100,6 +181,7 @@
   $('.star-rating1').raty({
     path: '/assets',
     readOnly: true,
+    half: true,
     score: function() {
       return $(this).attr('data-score');
     }
@@ -110,6 +192,7 @@
     $('.star-rating2').raty({
       path: '/assets',
       readOnly: true,
+      half: true,
       score: function() {
         return $(this).attr('data-score');
       }
@@ -120,6 +203,7 @@
     $('.star-rating3').raty({
       path: '/assets',
       readOnly: true,
+      half: true,
       score: function() {
         return $(this).attr('data-score');
       }
@@ -130,6 +214,7 @@
     $('.star-rating4').raty({
       path: '/assets',
       readOnly: true,
+      half: true,
       score: function() {
         return $(this).attr('data-score');
       }
@@ -140,6 +225,7 @@
     $('.star-rating5').raty({
       path: '/assets',
       readOnly: true,
+      half: true,
       score: function() {
         return $(this).attr('data-score');
       }
@@ -150,6 +236,7 @@
     $('.star-rating6').raty({
       path: '/assets',
       readOnly: true,
+      half: true,
       score: function() {
         return $(this).attr('data-score');
       }
@@ -160,6 +247,7 @@
     $('.star-rating7').raty({
       path: '/assets',
       readOnly: true,
+      half: true,
       score: function() {
         return $(this).attr('data-score');
       }
@@ -170,6 +258,7 @@
     $('.star-rating8').raty({
       path: '/assets',
       readOnly: true,
+      half: true,
       score: function() {
         return $(this).attr('data-score');
       }

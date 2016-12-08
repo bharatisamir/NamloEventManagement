@@ -1,8 +1,5 @@
 
-
-
-
-<%#= link_to 'Show', @quotation %> |
+<%#= link_to 'Show', @quotation %>
 <%#= link_to 'Back', quotations_path %>
 
 <div class="container">
@@ -18,7 +15,7 @@
 <div class="container">
   <div class="row">
     <div class="page-header">
-      <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h1>
+      <h1> <%= link_to 'Go Back', user_host_events_path(@user,@event.host_id), :class => 'btn btn-large btn-info' %></h1>
     </div><!-- end page-header -->
   </div><!-- end row -->
 </div><!-- end container -->

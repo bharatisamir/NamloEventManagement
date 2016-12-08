@@ -1,0 +1,2 @@
+json.extract! guest_list, :id, :first_name, :last_name, :email, :total_attendees_expected, :seating_arangement, :notes, :event_id, :created_at, :updated_at
+json.url guest_list_url(guest_list, format: :json)

@@ -1,0 +1,20 @@
+
+<%#= link_to 'Show', @service %>
+<%#= link_to 'Back', services_path %>
+
+<div class="container">
+  <div class="page-header">
+    <h2>Please, edit services</h2>
+  </div><!-- end page-header -->
+</div>
+
+<%= render 'form', service: @service %>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h1>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
+

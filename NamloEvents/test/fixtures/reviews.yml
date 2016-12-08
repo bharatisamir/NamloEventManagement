@@ -1,13 +1,13 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  reviewer_id: MyString
-  rating_score: 1
-  comments: MyText
-  serviceprovider: one
-
-two:
-  reviewer_id: MyString
-  rating_score: 1
-  comments: MyText
-  serviceprovider: two
+## Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+#one:
+#  reviewer_id: MyString
+#  rating_score: 1
+#  comments: MyText
+#  serviceprovider: one
+#
+#two:
+#  reviewer_id: MyString
+#  rating_score: 1
+#  comments: MyText
+#  serviceprovider: two

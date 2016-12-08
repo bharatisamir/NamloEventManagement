@@ -11,6 +11,10 @@ gem 'puma', '~> 3.0'
 #bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'
 
+gem 'geocoder'
+
+gem 'rails-controller-testing'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -40,10 +44,21 @@ gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 
 gem 'delayed_job_active_record'
 
+#gem 'ratyrate', '~> 1.2.2.alpha'
+
 
 #gem 'mail_form', '~> 1.5', '>= 1.5.1'
 #gem 'simple_form', '~> 3.3', '>= 3.3.1'
 
+gem 'best_in_place', '~> 3.1'
+#gem 'best_in_place', github: 'bernat/best_in_place'
+
+gem 'rails_admin'
+
+gem 'prawnto', '~> 0.1.1', :require => "prawnto"
+
+
+gem 'jquery-ui-rails'
 
 gem 'mail_form'
 gem 'simple_form'
@@ -55,6 +70,11 @@ gem "paperclip", "~> 5.0.0"
 
 gem 'cancancan', '~> 1.10', require: 'cancancan'
 
+gem 'prawn'
+gem 'prawn-table'
+
+
+gem 'jquery-turbolinks', '~> 2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

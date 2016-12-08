@@ -1,9 +1,9 @@
 class QuotationsController < ApplicationController
-  #load_and_authorize_resource
+  load_and_authorize_resource
 
-  before_action :set_quotation, only: [:show, :edit, :update, :destroy]
+  #before_action :set_quotation, only: [:show, :edit, :update, :destroy]
   before_action :set_event
-  before_action :check_permissions
+  #before_action :check_permissions
 
 
 
@@ -17,7 +17,13 @@ class QuotationsController < ApplicationController
   # GET /quotations
   # GET /quotations.json
   def index
-    @quotations = Quotation.all
+
+    if params[:event_id] != nil
+      @quotations = Quotation.where(( 'event_id LIKE ?'), params[:event_id])
+    else
+      @quotations = Quotation.all
+    end
+
   end
 
   # GET /quotations/1
@@ -27,7 +33,7 @@ class QuotationsController < ApplicationController
 
   # GET /quotations/new
   def new
-    @quotation = Quotation.new
+    #@quotation = Quotation.new
   end
 
   # GET /quotations/1/edit
@@ -37,7 +43,7 @@ class QuotationsController < ApplicationController
   # POST /quotations
   # POST /quotations.json
   def create
-    @quotation = Quotation.new(quotation_params)
+    #@quotation = Quotation.new(quotation_params)
     @quotation.event_id = @event.id
 
     respond_to do |format|
@@ -78,7 +84,7 @@ class QuotationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quotation
-      @quotation = Quotation.find(params[:id])
+     # @quotation = Quotation.find(params[:id])
     end
 
     def set_event

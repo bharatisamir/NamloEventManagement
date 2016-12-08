@@ -37,7 +37,17 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        #$profile_status = 'success'
+
+        @user_id = @user.id
+        if @user_id != nil
+          @role = Role.find_by_name('User')
+          @role_id =@role.id
+          if @role_id != nil
+            sql = "INSERT INTO roles_users(user_id, role_id) VALUES( #{@user_id }, #{@role_id})"
+            ActiveRecord::Base.connection.execute(sql)
+          end
+        end
+
         format.html { redirect_to dashboard_index_path, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @profile }
       else

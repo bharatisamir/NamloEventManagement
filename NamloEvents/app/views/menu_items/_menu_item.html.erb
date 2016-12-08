@@ -1,0 +1,21 @@
+
+
+<% if menu_item != nil %>
+    <tr class="success">
+    <td><%= menu_item.menu_id %></td>
+    <td><%= menu_item.id %></td>
+    <td><%= menu_item.name %></td>
+    <td><%= menu_item.description %></td>
+    <td><%= menu_item.quantity %></td>
+
+      <% if can? :update, MenuItem%>
+          <td><%= link_to 'Edit', edit_menu_menu_item_path(params[:id], menu_item), :class => 'btn btn-small btn-warning'%></td>
+      <% end %>
+
+      <% if can? :destroy, MenuItem%>
+          <td><%= link_to 'Destroy', menu_menu_item_path(params[:id], menu_item), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-small btn-danger'%></td>
+      <% end %>
+
+    <td><%#= link_to 'Show', event_order_detail %></td>
+            </tr>
+<% end %>

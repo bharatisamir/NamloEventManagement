@@ -1,0 +1,206 @@
+<!--
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Order date:</strong>
+  <%= @event_order.order_date %>
+</p>
+
+<p>
+  <strong>Primary onsite contact:</strong>
+  <%= @event_order.primary_onsite_contact %>
+</p>
+
+<p>
+  <strong>Secondary onsite contact:</strong>
+  <%= @event_order.secondary_onsite_contact %>
+</p>
+
+<p>
+  <strong>Primary phone:</strong>
+  <%= @event_order.primary_phone %>
+</p>
+
+<p>
+  <strong>Secondary phone:</strong>
+  <%= @event_order.secondary_phone %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @event_order.event %>
+</p>
+
+<%#= link_to 'Edit', edit_event_order_path(@event_order) %>
+<%#= link_to 'Back', event_orders_path %>
+-->
+
+
+
+
+<div class="container" id="event_order_show_container">
+  <div class="page-header">
+    <h2>Event Order Functions</h2>
+  </div><!-- end page-header -->
+
+  <div class="row" id="features">
+    <div class="col-sm-2 feature">
+
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-8">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @event_order.event.event_name %></h3>
+        </div>
+        <br>
+        <strong><p align="middle" class= "event_info">Date : <%= @event_order.event.event_date %> <::::> Time : <%= @event_order.event.event_start_time.strftime('%H:%M') %>
+          - <%=@event_order.event.event_end_time.strftime('%H:%M') %> <::::> Venue : <%= @event_order.event.venue %></p></strong>
+
+      </div>
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-2">
+
+    </div><!-- end col-sm-4 -->
+  </div>
+
+  <hr>
+
+  <div class="container" id="event_tabbed_container">
+
+    <div id="more_info" class="row">
+      <div class="">
+
+      </div><!-- end class -->
+
+      <div class="col-sm-12">
+        <div class="tabbable">
+          <ul class="nav nav-tabs">
+
+            <li class="active">
+              <a href="#OrderDetails" data-toggle="tab"><h4>Order Details</h4></a>
+            </li>
+
+          </ul>
+
+          <div class="tab-content">
+
+            <div id="OrderDetails" class="tab-pane active">
+              <br />
+
+              <div class="row" id="features">
+                <div class="col-sm-2">
+
+                </div><!-- end col-sm-4 -->
+
+                <div class="col-sm-12">
+                  <div class="list-group">
+                    <div class="list-group-item">
+                      <h3 class="list-group-item-heading" align="center"><p class= "event_info">Order Details for your Event Order</p></h3>
+                      <br>
+                      <div>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                            <tr class="info">
+                              <th>Service date</th>
+                              <th>Service</th>
+                              <th>Start</th>
+                              <th>Stop</th>
+                              <th>Service provider</th>
+                              <th>Function</th>
+                              <th>Service location</th>
+                              <th>Service setup requirements</th>
+                              <th colspan="3"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <%= render @event_order.event_order_details %>
+                            </tbody>
+                          </table>
+                        </div>
+                        <br>
+                      </div>
+
+
+                      <% if ! @event_order.event_order_details.empty?%>
+                          <h2><%= link_to 'Generate Event Order Details Report', event_order_report_path(id: @event_order.id, format: "pdf"), :class => 'btn btn-large btn-info' %></h2>
+                      <%end%>
+
+
+                      <% if can? :update, @event%>
+                          <%#= link_to 'Edit', edit_event_expense_path() %>
+                      <% end %>
+                      <% if can? :index, @event%>
+                          <%#= link_to 'Back', edit_event_expense_path() %>
+                      <% end %>
+                    </div><!-- end list-group-item -->
+                  </div><!-- end list-group -->
+                </div><!-- end col-sm-8 -->
+
+                <div class="col-sm-2">
+
+                </div><!-- end col-sm-4 -->
+              </div>
+
+              <div class="row" id="features">
+
+                <div class="col-sm-2">
+
+                </div><!-- end col-sm-2 -->
+
+                <div class="col-sm-8 feature">
+                  <div class="panel panel-danger">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Enter Details of your Event Order</h3>
+                    </div>
+
+                    <div class="list-group">
+                      <div class="list-group-item">
+                        <div id="form">
+                          <p></p>
+                          <%= render 'event_order_details/form' %>
+                        </div>
+                        <% if can? :update, @event%>
+                            <%#= link_to 'Edit', edit_event_expense_path() %> |
+                        <% end %>
+                        <% if can? :index, @event%>
+                            <%#= link_to 'Back', edit_event_expense_path() %>
+                        <% end %>
+                      </div><!-- end list-group-item -->
+                    </div><!-- end list-group -->
+
+                  </div>
+                </div>
+
+                <div class="col-sm-2">
+
+                </div><!-- end col-sm-2 -->
+
+              </div>
+
+            </div><!-- end tab-pane active -->
+          </div><!-- end tab-content -->
+
+        </div><!-- end tabbable -->
+
+      </div><!-- end col-sm-12 -->
+
+    </div><!-- end row -->
+  </div><!-- end container -->
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', event_orders_path(), :class => 'btn btn-large btn-info' %></h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
+
+<div class="script">
+
+</div>

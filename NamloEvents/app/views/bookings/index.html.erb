@@ -1,0 +1,262 @@
+
+<%#= link_to 'New Booking', new_booking_path %>
+
+<div class="container" id="booking_index_container">
+  <div class="page-header">
+    <h2>Your Bookings </h2>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Search Booking </h3>
+        </div><!-- end panel-heading -->
+        <br />
+        <div class="event_search">
+          <%= form_tag bookings_path, :method => 'get' do  %>
+              <p>
+                <%= text_field_tag :search, params[:search],placeholder: 'Enter email', :size => '30' %><%= submit_tag "Search", :name => nil %><br>
+                <br>
+                <%= radio_button_tag 'search_options', 'host_email', true %> Host Email<br>
+                <%= radio_button_tag 'search_options', 'provider_email' %> Service Provider Email<br>
+                <%= radio_button_tag 'search_options', 'event_id' %> Event ID<br>
+              </p>
+        <% end %>
+        </div>
+        <hr>
+        <p>
+          <% if (params[:search_options]=='host_email') && (@events != nil) %>
+
+              <% @events.each do |event| %>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+                    <tr class="success">
+                      <td> <strong>Event ID:</strong></td>
+                      <td><em><strong><%= event.id %></strong></em></td>
+                      <td> <strong>Event Date:</strong></td>
+                      <td><em><strong><%= event.event_date %></strong></em></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+            <% end %>
+        <% end %>
+
+          <% if ((params[:search_options]=='host_email') && (@events == nil)) %>
+            <p align="center", class="error_message"> Sorry, no events found for host with email: <%= params[:search] %> </p>
+
+            <%elsif ((params[:search_options]=='provider_email') && (@service_bookings == nil))  %>
+                <p align="center", class="error_message"> Sorry, no bookings found for service provider with email: <%= params[:search] %> </p>
+
+            <%elsif ((params[:search_options]=='event_id') && (@bookings == nil))  %>
+                <p align="center", class="error_message"> Sorry, no bookings found for event with id: <%= params[:search] %> </p>
+
+      <% end %>
+        </p>
+
+      </div><!-- end panel -->
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-8">
+      <div class="list-group">
+        <div class="list-group-item">
+          <h4 class="list-group-item-heading" id="booking_heading">
+
+            <% if @event_booking != nil %>
+            <%= @event_booking.event_name%> on
+            <%= @event_booking.event_date%> from
+            <%= @event_booking.event_start_time.strftime('%H:%M')%> - <%= @event_booking.event_end_time.strftime('%H:%M')%> at
+            <%= @event_booking.venue%>
+            <%end%>
+
+            <% if @service_provider != nil %>
+                <%= @service_provider.user.first_name%> <%= @service_provider.user.last_name%>
+            <%end%>
+
+          </h4>
+
+          <p>
+            <% if @bookings != nil %>
+
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                      <tr class="info">
+                        <th>Booked Date</th>
+                        <th>Service Providers</th>
+                        <th>Service(s)</th>
+                        <th>Business Phone</th>
+                        <th>Offer ID</th>
+                        <th>Discount Offer</th>
+                        <th colspan="3"></th>
+                      </tr>
+                      </thead>
+
+                      <tbody>
+                      <% @bookings.each do |booking| %>
+                      <tr class="success">
+                        <td><%= booking.booked_date %></td>
+                        <td><%= booking.service_provider.user.first_name %> <%= booking.service_provider.user.last_name %></td>
+                        <td>
+                             <%  @service_provider_service = ServiceProviderService.where((' service_provider_id LIKE ? '), booking.service_provider.id).all %>
+                              <% if @service_provider_service != nil%>
+                                <% @service_provider_service.each do |service|%>
+                                <%=Service.find(service.service_id).service_name%><br>
+                              <%end%>
+                            <%end%>
+
+                        </td>
+                        <td><%= booking.service_provider.business_phone %>
+
+                        <td>
+                          <%=booking.offer_id%><br>
+                        </td>
+
+                        <td>
+
+                          <% if booking.offer_id != nil%>
+                              <%  @discount_offer = Offer.find( booking.offer_id) %>
+                              <%=@discount_offer.name%><br>
+                          <%end%>
+
+                        </td>
+
+                        <td><%#= link_to 'Show', booking %></td>
+
+                        <% if can? :update, Booking %>
+                            <td><%= link_to 'Edit', edit_booking_path(booking, location: @location), class: 'btn btn-small btn-warning' %></td>
+                        <% end %>
+
+                        <% if can? :destroy, Booking%>
+                            <td><%= link_to 'Destroy', booking_path(booking,location: @location), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-small btn-danger' %></td>
+                        <% end %>
+
+
+                      </tr>
+                      <% end %>
+
+                      </tbody>
+
+
+                    </table>
+
+                    <h2 align="middle"><%= link_to 'Generate Bookings Report', booking_report_path(event_id: @event_booking, search:params[:search],search_options: params[:search_options],format: "pdf"), :class => 'btn btn-large btn-info' %></h2>
+
+                  </div>
+          <% end %>
+
+
+          <% if @service_bookings != nil %>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                  <tr class="info">
+                    <th>Booked Date</th>
+                    <th>Event Name</th>
+                    <th>Time</th>
+                    <th>Venue</th>
+                    <th>Offer ID</th>
+                    <th>Discount Offer</th>
+                    <th colspan="3"></th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @service_bookings.each do |booking| %>
+                      <tr class="success">
+                        <td><%= booking.booked_date %></td>
+                        <td><%= booking.event.event_name %></td>
+                        <td><%= booking.event.event_start_time.strftime('%H:%M')%> - <%= booking.event.event_end_time.strftime('%H:%M')%> </td>
+                        <td><%= booking.event.venue %> </td>
+                        <td>
+                          <%=booking.offer_id%><br>
+                        </td>
+
+                        <td>
+
+                          <% if booking.offer_id != nil%>
+                              <%  @discount_offer = Offer.find( booking.offer_id) %>
+                              <%=@discount_offer.name%><br>
+                          <%end%>
+
+                        </td>
+                        <td><%#= link_to 'Show', booking %></td>
+                        <% if can? :update, Booking %>
+                            <td><%= link_to 'Edit', edit_booking_path(booking, location: @location), class: 'btn btn-small btn-warning' %></td>
+                        <% end %>
+
+                        <% if can? :destroy, Booking%>
+                            <td><%= link_to 'Destroy', booking_path(booking,location: @location), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-small btn-danger' %></td>
+                        <% end %>
+                      </tr>
+                  <% end %>
+
+
+                  </tbody>
+
+
+                </table>
+
+                <h2 align="middle"><%= link_to 'Generate Provider Bookings Report', provider_booking_report_path(service_provider_id: @service_provider,search:params[:search],search_options: params[:search_options],format: "pdf"), :class => 'btn btn-large btn-info' %></h2>
+
+              </div>
+
+          <% end %>
+
+
+          </p>
+
+
+        </div><!-- end list-group-item -->
+      </div><!-- end list-group -->
+    </div><!-- end col-sm-4 -->
+
+    <!--<div class="col-sm-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title" align="center">Search Booking by Service Provider email</h3>
+        </div>&lt;!&ndash; end panel-heading &ndash;&gt;
+        <br />
+        <div class="event_search">
+          <%= form_tag bookings_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search2, params[:search2],placeholder: 'Enter Service Provider ID ', :size => '30' %>
+                <%= submit_tag "Search", :name => nil %>
+              </p>
+          <% end %>
+        </div>
+        <hr>
+      </div>&lt;!&ndash; end panel &ndash;&gt;
+    </div>&lt;!&ndash; end col-sm-4 &ndash;&gt;-->
+
+
+  </div><!-- end row -->
+</div><!-- end booking_index_container -->
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1> <%= link_to 'Go Back', dashboard_index_path, :class => 'btn btn-large btn-info' %></h1>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

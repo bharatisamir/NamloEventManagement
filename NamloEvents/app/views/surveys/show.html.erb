@@ -1,0 +1,171 @@
+
+<div class="container" id="event_order_show_container">
+  <div class="page-header">
+    <h2>Survey Functions</h2>
+  </div><!-- end page-header -->
+
+  <div class="row" id="features">
+    <div class="col-sm-2 feature">
+
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-8">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @survey.name %></h3>
+        </div>
+        <br>
+        <strong><p align="middle" class= "event_info"> <%= @survey.description %></p></strong>
+      </div>
+    </div><!-- end col-sm-4 -->
+
+    <div class="col-sm-2">
+
+    </div><!-- end col-sm-4 -->
+  </div>
+
+  <hr>
+
+  <div class="container" id="survey_tabbed_container">
+
+    <div id="more_info" class="row">
+      <div class="">
+
+      </div><!-- end class -->
+
+      <div class="col-sm-12">
+        <div class="tabbable">
+          <ul class="nav nav-tabs">
+
+            <li class="active">
+              <a href="#SurveyQuestions" data-toggle="tab"><h4>Survey Questions</h4></a>
+            </li>
+
+          </ul>
+
+          <div class="tab-content">
+
+            <div id="SurveyQuestions" class="tab-pane active">
+              <br />
+
+              <div class="row" id="features">
+                <div class="col-sm-2">
+
+                </div><!-- end col-sm-4 -->
+
+                <div class="col-sm-12">
+                  <div class="list-group">
+                    <div class="list-group-item">
+                      <h3 class="list-group-item-heading" align="center"><p class= "event_info">Survey Questions</p></h3>
+                      <br>
+                      <div>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                            <tr class="info">
+                              <th>Survey ID</th>
+                              <th>Question ID</th>
+                              <th>Question</th>
+                              <th colspan="3"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <%= render @survey.survey_questions %>
+                            </tbody>
+                          </table>
+                        </div>
+                        <br>
+                      </div>
+
+
+                    </div><!-- end list-group-item -->
+                  </div><!-- end list-group -->
+                </div><!-- end col-sm-8 -->
+
+                <div class="col-sm-2">
+
+                </div><!-- end col-sm-4 -->
+              </div>
+
+              <div class="row" id="features">
+
+                <div class="col-sm-2">
+
+                </div><!-- end col-sm-2 -->
+
+                <div class="col-sm-8 feature">
+                  <div class="panel panel-danger">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Add question for your survey </h3>
+                    </div>
+
+                    <div class="list-group">
+                      <div class="list-group-item">
+                        <div id="form">
+                          <p></p>
+                          <div class="error_message">
+
+                            <% if @form_error != nil %>
+                                <% if @count != 0%>
+                                    <div class="custom_error"><%=@count%> <%= @message%></div>
+
+                                <%end%>
+
+                                <p></p>
+                                <ul>
+                                  <% @@first_err = 0%>
+                                  <% @form_error.each do |err| %>
+                                      <div id="form_error_message">
+                                        <% if @@first_err == 0%>
+                                            <li><%=err%></li>
+                                            <%@@first_err = 1%>
+                                        <%else%>
+                                            <div class="second_error">
+                                              <li><%=err%></li>
+                                            </div>
+                                        <%end%>
+                                      </div>
+                                  <%end%>
+                                </ul>
+                            <%end%>
+
+                          </div>
+
+                          <%= render 'survey_questions/form' %>
+                        </div>
+                      </div><!-- end list-group-item -->
+                    </div><!-- end list-group -->
+
+                  </div>
+                </div>
+
+                <div class="col-sm-2">
+
+                </div><!-- end col-sm-2 -->
+
+              </div>
+
+            </div><!-- end tab-pane active -->
+          </div><!-- end tab-content -->
+
+        </div><!-- end tabbable -->
+
+      </div><!-- end col-sm-12 -->
+
+    </div><!-- end row -->
+  </div><!-- end container -->
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h2> <%= link_to 'Go Back', surveys_path, :class => 'btn btn-large btn-info' %></h2>
+    </div><!-- end page-header -->
+  </div><!-- end row -->
+</div><!-- end container -->
+
+<div class="script">
+
+</div>
